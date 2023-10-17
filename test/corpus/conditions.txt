@@ -1,0 +1,69 @@
+================================================================================
+Condition Precedence In Query
+================================================================================
+
+entity P as projection on E {
+  (1 + true * 4 / null AND 'abc' || `def` is null OR func(`abc`)) as field,
+};
+
+--------------------------------------------------------------------------------
+
+(cds
+  (entity_definition
+    (simple_path
+      (identifier))
+    (projection_spec
+      (from_path
+        (identifier))
+      (select_item_definition_list
+        (select_item_definition
+          (parenthesized_expression
+            (binary_condition
+              (binary_condition
+                (binary_expression
+                  (number)
+                  (binary_expression
+                    (binary_expression
+                      (boolean)
+                      (number))
+                    (null)))
+                (binary_condition
+                  (binary_expression
+                    (single_quote_string)
+                    (backtick_string))
+                  (null)))
+              (value_path
+                (identifier)
+                (path_arguments
+                  (func_expression
+                    (backtick_string))))))
+          (identifier))))))
+
+================================================================================
+Ternary Condition in Query
+================================================================================
+
+entity P as projection on E {
+  (a ? b : c) as field,
+};
+
+--------------------------------------------------------------------------------
+
+(cds
+  (entity_definition
+    (simple_path
+      (identifier))
+    (projection_spec
+      (from_path
+        (identifier))
+      (select_item_definition_list
+        (select_item_definition
+          (parenthesized_expression
+            (ternary_operator
+              (value_path
+                (identifier))
+              (value_path
+                (identifier))
+              (value_path
+                (identifier))))
+          (identifier))))))

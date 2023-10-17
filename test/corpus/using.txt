@@ -1,0 +1,63 @@
+================================================================================
+Using - Simple Identifier
+================================================================================
+
+USING str;
+using str;
+uSIng str;
+
+--------------------------------------------------------------------------------
+
+(cds
+  (using
+    (artifact_import
+      (simple_path
+        (identifier))))
+  (using
+    (artifact_import
+      (simple_path
+        (identifier))))
+  (using
+    (artifact_import
+      (simple_path
+        (identifier)))))
+
+================================================================================
+Using - Namespace
+================================================================================
+
+namespace ns;
+using abc;
+
+--------------------------------------------------------------------------------
+
+(cds
+  (namespace
+    (simple_path
+      (identifier)))
+  (using
+    (artifact_import
+      (simple_path
+        (identifier)))))
+
+================================================================================
+Using - Usage
+================================================================================
+
+using { some.value as val, other.val as value } from './file.cds';
+
+--------------------------------------------------------------------------------
+
+(cds
+  (using
+    (artifact_import
+      (simple_path
+        (identifier)
+        (identifier))
+      (identifier))
+    (artifact_import
+      (simple_path
+        (identifier)
+        (identifier))
+      (identifier))
+    (single_quote_string)))

@@ -1,0 +1,27 @@
+================================================================================
+Expression Precedence In Query
+================================================================================
+
+entity P as projection on E {
+  1 + true * 4 / null as field,
+};
+
+--------------------------------------------------------------------------------
+
+(cds
+  (entity_definition
+    (simple_path
+      (identifier))
+    (projection_spec
+      (from_path
+        (identifier))
+      (select_item_definition_list
+        (select_item_definition
+          (binary_expression
+            (number)
+            (binary_expression
+              (binary_expression
+                (boolean)
+                (number))
+              (null)))
+          (identifier))))))

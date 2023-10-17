@@ -1,0 +1,27 @@
+================================================================================
+Context Parsing: Separate lines
+================================================================================
+
+context C;
+context A
+ .
+  B
+   .
+    C
+     .
+      D {
+
+      };
+
+--------------------------------------------------------------------------------
+
+(cds
+  (context_definition
+    (simple_path
+      (identifier)))
+  (context_definition
+    (simple_path
+      (identifier)
+      (identifier)
+      (identifier)
+      (identifier))))

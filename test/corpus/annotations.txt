@@ -1,0 +1,156 @@
+================================================================================
+Simple Annotations
+================================================================================
+
+@anno
+@(anno)
+type T;
+
+--------------------------------------------------------------------------------
+
+(cds
+  (annotation_assignment
+    (annotation_path
+      (identifier)))
+  (annotation_assignment
+    (annotation_path
+      (identifier)))
+  (type_definition
+    (simple_path
+      (identifier))))
+
+================================================================================
+Annotation Values: Scalar
+================================================================================
+
+@anno: 1
+@(anno: 1)
+type T;
+
+--------------------------------------------------------------------------------
+
+(cds
+  (annotation_assignment
+    (annotation_path
+      (identifier))
+    (annotation_value
+      (number)))
+  (annotation_assignment
+    (annotation_path
+      (identifier))
+    (annotation_value
+      (number)))
+  (type_definition
+    (simple_path
+      (identifier))))
+
+================================================================================
+Annotation Paths
+================================================================================
+
+@anno.value.path#variant
+@(anno.value.path#variant, anno.value.path#second)
+type T;
+
+--------------------------------------------------------------------------------
+
+(cds
+  (annotation_assignment
+    (annotation_path
+      (identifier)
+      (identifier)
+      (identifier))
+    (annotation_path_variant
+      (simple_path
+        (identifier))))
+  (annotation_assignment
+    (annotation_path
+      (identifier)
+      (identifier)
+      (identifier))
+    (annotation_path_variant
+      (simple_path
+        (identifier)))
+    (annotation_path
+      (identifier)
+      (identifier)
+      (identifier))
+    (annotation_path_variant
+      (simple_path
+        (identifier))))
+  (type_definition
+    (simple_path
+      (identifier))))
+
+================================================================================
+Annotation Values: Arrays
+================================================================================
+
+@anno: [ ..., 'val', ... up to 'val' ]
+type T;
+
+--------------------------------------------------------------------------------
+
+(cds
+  (annotation_assignment
+    (annotation_path
+      (identifier))
+    (annotation_value
+      (annotation_ellipsis_up_to)
+      (annotation_value
+        (single_quote_string))
+      (annotation_ellipsis_up_to
+        (annotation_value
+          (single_quote_string)))))
+  (type_definition
+    (simple_path
+      (identifier))))
+
+================================================================================
+Annotation Values: Structures and Arrays
+================================================================================
+
+@anno: {
+  @sub: {
+    val: [
+      { val: null, val: [ 1, 2, 3 ] }
+    ]
+  }
+}
+type T;
+
+--------------------------------------------------------------------------------
+
+(cds
+  (annotation_assignment
+    (annotation_path
+      (identifier))
+    (annotation_value
+      (named_annotation_value
+        (annotation_path
+          (identifier))
+        (annotation_value
+          (named_annotation_value
+            (annotation_path
+              (identifier))
+            (annotation_value
+              (annotation_value
+                (named_annotation_value
+                  (annotation_path
+                    (identifier))
+                  (annotation_value
+                    (null)))
+                (named_annotation_value
+                  (annotation_path
+                    (identifier))
+                  (annotation_value
+                    (annotation_value
+                      (number))
+                    (annotation_value
+                      (number))
+                    (annotation_value
+                      (number)))))))))))
+  (type_definition
+    (simple_path
+      (identifier))))
+

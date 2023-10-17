@@ -1,0 +1,17 @@
+node_modules/
+package-lock.json
+
+.idea/
+.vscode/
+
+build/
+
+.DS_Store
+
+gh-pages/
+*.html
+*.wasm
+log.html
+
+Cargo.lock
+target/

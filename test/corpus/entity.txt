@@ -1,0 +1,73 @@
+================================================================================
+Simple Entity
+================================================================================
+
+entity E {
+   key id : String(length : 100);
+   virtual f : localized String;
+   str : String(100) enum { a = #b };
+};
+
+--------------------------------------------------------------------------------
+
+(cds
+  (entity_definition
+    (simple_path
+      (identifier))
+    (element_definitions
+      (element_definition
+        (identifier)
+        (simple_path
+          (identifier))
+        (type_argument
+          (identifier)
+          (number)))
+      (element_definition
+        (identifier)
+        (type_reference
+          (simple_path
+            (identifier))))
+      (element_definition
+        (identifier)
+        (simple_path
+          (identifier))
+        (type_argument
+          (number))
+        (element_enum_definition
+          (enum_symbol_definition
+            (identifier)
+            (identifier)))))))
+
+================================================================================
+Entity With Parameters
+================================================================================
+
+entity E(P : String(length: 100), P2: Integer) {
+   key id : String;
+};
+
+--------------------------------------------------------------------------------
+
+(cds
+  (entity_definition
+    (simple_path
+      (identifier))
+    (parameter_definition_list
+      (parameter_definition
+        (identifier)
+        (type_reference
+          (simple_path
+            (identifier))
+          (type_argument
+            (identifier)
+            (number))))
+      (parameter_definition
+        (identifier)
+        (type_reference
+          (simple_path
+            (identifier)))))
+    (element_definitions
+      (element_definition
+        (identifier)
+        (simple_path
+          (identifier))))))

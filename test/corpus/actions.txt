@@ -1,0 +1,210 @@
+================================================================================
+Simple Actions
+================================================================================
+
+action A(P: String) returns String;
+function A(P: String) returns String;
+
+--------------------------------------------------------------------------------
+
+(cds
+  (action_definition
+    (simple_path
+      (identifier))
+    (parameter_definition_list
+      (parameter_definition
+        (identifier)
+        (type_reference
+          (simple_path
+            (identifier)))))
+    (return_type
+      (type_reference
+        (simple_path
+          (identifier)))))
+  (function_definition
+    (simple_path
+      (identifier))
+    (parameter_definition_list
+      (parameter_definition
+        (identifier)
+        (type_reference
+          (simple_path
+            (identifier)))))
+    (return_type
+      (type_reference
+        (simple_path
+          (identifier))))))
+
+================================================================================
+Complex Return
+================================================================================
+
+action A(@anno P: String) returns {
+  s: String(100);
+};
+
+function A(@anno P: String) returns {
+  s: String(length: 100);
+};
+
+--------------------------------------------------------------------------------
+
+(cds
+  (action_definition
+    (simple_path
+      (identifier))
+    (parameter_definition_list
+      (parameter_definition
+        (annotation_assignment
+          (annotation_path
+            (identifier)))
+        (identifier)
+        (type_reference
+          (simple_path
+            (identifier)))))
+    (return_type
+      (element_definitions
+        (element_definition
+          (identifier)
+          (simple_path
+            (identifier))
+          (type_argument
+            (number))))))
+  (function_definition
+    (simple_path
+      (identifier))
+    (parameter_definition_list
+      (parameter_definition
+        (annotation_assignment
+          (annotation_path
+            (identifier)))
+        (identifier)
+        (type_reference
+          (simple_path
+            (identifier)))))
+    (return_type
+      (element_definitions
+        (element_definition
+          (identifier)
+          (simple_path
+            (identifier))
+          (type_argument
+            (identifier)
+            (number)))))))
+
+================================================================================
+No Return
+================================================================================
+
+action A(@anno P: String);
+function F(@anno P: String);
+
+--------------------------------------------------------------------------------
+
+(cds
+  (action_definition
+    (simple_path
+      (identifier))
+    (parameter_definition_list
+      (parameter_definition
+        (annotation_assignment
+          (annotation_path
+            (identifier)))
+        (identifier)
+        (type_reference
+          (simple_path
+            (identifier))))))
+  (function_definition
+    (simple_path
+      (identifier))
+    (parameter_definition_list
+      (parameter_definition
+        (annotation_assignment
+          (annotation_path
+            (identifier)))
+        (identifier)
+        (type_reference
+          (simple_path
+            (identifier)))))))
+
+================================================================================
+Bound Actions
+================================================================================
+
+entity MyEntity {} actions {
+  action A(@anno P: String);
+  function F(@anno P: String);
+}
+
+entity MyView as SELECT FROM MyEntity {} actions {
+  action A(@anno P: String);
+  function F(@anno P: String);
+}
+
+--------------------------------------------------------------------------------
+
+(cds
+  (entity_definition
+    (simple_path
+      (identifier))
+    (element_definitions)
+    (action_definition
+      (simple_path
+        (identifier))
+      (parameter_definition_list
+        (parameter_definition
+          (annotation_assignment
+            (annotation_path
+              (identifier)))
+          (identifier)
+          (type_reference
+            (simple_path
+              (identifier))))))
+    (function_definition
+      (simple_path
+        (identifier))
+      (parameter_definition_list
+        (parameter_definition
+          (annotation_assignment
+            (annotation_path
+              (identifier)))
+          (identifier)
+          (type_reference
+            (simple_path
+              (identifier)))))))
+  (entity_definition
+    (simple_path
+      (identifier))
+    (query_expression
+      (query_term
+        (query_primary
+          (query_source
+            (table_expression
+              (table_term
+                (from_path
+                  (identifier)))))
+          (select_item_definition_list))))
+    (action_definition
+      (simple_path
+        (identifier))
+      (parameter_definition_list
+        (parameter_definition
+          (annotation_assignment
+            (annotation_path
+              (identifier)))
+          (identifier)
+          (type_reference
+            (simple_path
+              (identifier))))))
+    (function_definition
+      (simple_path
+        (identifier))
+      (parameter_definition_list
+        (parameter_definition
+          (annotation_assignment
+            (annotation_path
+              (identifier)))
+          (identifier)
+          (type_reference
+            (simple_path
+              (identifier))))))))

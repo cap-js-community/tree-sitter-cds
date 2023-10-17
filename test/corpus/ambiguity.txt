@@ -1,0 +1,53 @@
+================================================================================
+Annotations and Params: Ambiguity
+================================================================================
+
+entity P(P: String) as projection on E {
+
+  // Either: `@(anno:P) as val` (`val` is alias for field `as`)
+  //     Or: `@anno  :P as val` (`val` is alias for parameter `:P`)
+  @anno : P as val,
+  // Expected to be:
+  @(anno : P) as val,
+
+};
+
+--------------------------------------------------------------------------------
+
+(cds
+  (entity_definition
+    (simple_path
+      (identifier))
+    (parameter_definition_list
+      (parameter_definition
+        (identifier)
+        (type_reference
+          (simple_path
+            (identifier)))))
+    (projection_spec
+      (from_path
+        (identifier))
+      (select_item_definition_list
+        (comment)
+        (comment)
+        (select_item_definition
+          (annotation_assignment
+            (annotation_path
+              (identifier))
+            (annotation_value
+              (annotation_path
+                (identifier))))
+          (value_path
+            (identifier))
+          (identifier))
+        (comment)
+        (select_item_definition
+          (annotation_assignment
+            (annotation_path
+              (identifier))
+            (annotation_value
+              (annotation_path
+                (identifier))))
+          (value_path
+            (identifier))
+          (identifier))))))

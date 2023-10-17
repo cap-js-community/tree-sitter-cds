@@ -1,0 +1,112 @@
+;; Currently based on <https://github.com/github/stack-graphs/blob/main/tree-sitter-stack-graphs/examples/nested-scope/stack-graphs.tsg>
+;; ONLY FOR TESTING! NOT FOR PRODUCTION!
+
+;;;;;;;;;;;;;;;;;;;
+;; Global Variables
+
+global FILE_PATH ; provided by tree-sitter-stack-graphs
+global ROOT_NODE ; provided by tree-sitter-stack-graphs
+
+;;;;;;;;;;;;;;;;;;;;;;;
+;; Attribute Shorthands
+
+attribute node_definition = node     => type = "pop_symbol", node_symbol = node, is_definition
+attribute node_reference = node      => type = "push_symbol", node_symbol = node, is_reference
+attribute node_symbol = node         => symbol = (source-text node), source_node = node
+attribute pop_symbol = symbol        => type = "pop_symbol", symbol = symbol
+attribute push_symbol = symbol       => type = "push_symbol", symbol = symbol
+attribute symbol_definition = symbol => type = "pop_symbol", symbol = symbol, is_definition
+attribute symbol_reference = symbol  => type = "push_symbol", symbol = symbol, is_reference
+
+;;;;;;;;;;
+
+(cds) @file {
+    node @file.lexical_scope
+}
+
+(cds (_) @stmt) @file {
+    ;; NOTE: This requires that all top-level statements are defined in this file!
+
+    ;; Every statement in the file can reach all definitions visible in the file
+    edge @stmt.lexical_scope -> @file.lexical_scope
+
+    ;; All statement definitions are visible in the module
+    edge @file.lexical_scope -> @stmt.lexical_defs
+}
+
+;;;;;;;;;;;;
+;; Namespace
+
+(namespace) @ns {
+    node @ns.lexical_scope
+    node @ns.lexical_defs
+}
+
+;;;;;;;;;;;;;;
+;; Definitions
+
+;; All top-level definitions that introduce names
+[
+  (entity_definition)
+  (context_definition)
+] @def {
+    node @def.lexical_scope
+    node @def.lexical_defs
+}
+
+(context_definition name: (simple_path) @name) @def {
+    node def
+    attr (def) node_definition = @name
+
+    ;; The definition is exposed to the surrounding block or module
+    edge @def.lexical_defs -> def
+}
+
+(context_definition (entity_definition) @stmt) @context {
+    ;; Every statement in the context can reach all definitions visible in the context
+    edge @stmt.lexical_scope -> @context.lexical_scope
+
+    ;; All statement definitions are visible in the module
+    edge @context.lexical_scope -> @stmt.lexical_defs
+}
+
+
+(entity_definition name: (simple_path) @name) @def {
+    node def
+    attr (def) node_definition = @name
+
+    ;; The definition is exposed to the surrounding block or module
+    edge @def.lexical_defs -> def
+}
+
+;;;;;;;;;;;;;;
+;; References
+
+(from_path) @ref {
+    node @ref.lexical_scope
+    ;; For aliases
+    node @ref.lexical_defs
+}
+
+(entity_definition (query_expression (query_term (query_primary (query_source (table_expression (table_term (from_path) @from))))))) @entity {
+    edge @from.lexical_scope -> @entity.lexical_scope
+}
+
+(from_path . (identifier) @name) @from {
+    ;; A reference for the name @name is introduced
+    node ref
+    attr (ref) node_reference = @name
+
+    ;; The reference is resolved in the the enclosing scope
+    edge ref -> @from.lexical_scope
+}
+
+;;;;;;;;;;;
+;; Comments
+
+(comment)@comment {
+    ;; Because comments can appear everywhere, we define all possible nodes on
+    ;; them to prevent undefined errors
+    node @comment.lexical_scope
+    node @comment.lexical_defs
+}

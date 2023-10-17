@@ -1,0 +1,45 @@
+{
+  "name": "tree-sitter-cds",
+  "private": true,
+  "version": "0.0.1",
+  "description": "tree-sitter grammar for SAP CAP CDS",
+  "main": "bindings/node",
+  "author": "Andre Meyering <andre.meyering@sap.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cap-js-community/tree-sitter-cds"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "CAP",
+    "CDS",
+    "parser",
+    "lexer",
+    "tree-sitter"
+  ],
+  "dependencies": {
+    "nan": "^2.18.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.8"
+  },
+  "scripts": {
+    "build": "tree-sitter generate && node-gyp configure && node-gyp build",
+    "test": "tree-sitter test",
+    "test:update": "tree-sitter test --update",
+    "playground": "npm run build && tree-sitter build-wasm && tree-sitter playground"
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.cds",
+      "file-types": [
+        "cds",
+        "cdl"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ],
+      "injection-regex": "^(cds)$"
+    }
+  ]
+}
