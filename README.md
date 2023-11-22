@@ -4,16 +4,27 @@
 
 ## About this project
 
-CAP CDS grammar for tree-sitter.  
-This project followed the instructions of the [tree-sitter guide].
+CAP CDS grammar for tree-sitter. 
 
-It is not an official SAP project and is currently very experimental.
+> Tree-sitter is a parser generator tool and an incremental parsing library.
+> It can build a concrete syntax tree for a source file and efficiently update the
+> syntax tree as the source file is edited. Tree-sitter aims to be:
+
+ - https://tree-sitter.github.io/tree-sitter/
+
+You can use tree-sitter-cds to highlight CAP CDS files in NeoVim and
+to query the concrete syntax tree of CDS files.
+
+This project followed the instructions of the [tree-sitter guide].
 
 <img alt="Screenshot of NeoVim. A CDS file is opened and has proper syntax highlighting." title="NeoVim Syntax Highlighting Example" src="./docs/assets/neovim-syntax-highlighting.png" align="right" width="201" height="224" />
 
 ## Requirements and Setup
 
-For NeoVim setup, please see [NeoVim Support](./docs/neovim-support.md).
+If you want to use tree-sitter-cds in NeoVim for syntax highlighting, please see [NeoVim Support](./docs/neovim-support.md).
+For local development setup, see [Development Docs](./docs/development.md).
+
+Documentation on NodeJs and Rust language bindings is work-in-progress.
 
 ## Documentation
 
