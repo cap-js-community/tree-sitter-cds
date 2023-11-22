@@ -7,7 +7,7 @@
 #
 # Variables                 Default
 #  NVIM_DIR                 $HOME/.config/nvim
-#  TREE_SITTER_QUERIES_DIR  $HOME/.local/share/nvim/site/pack/packer/start/nvim-treesitter/queries
+#  TREE_SITTER_QUERIES_DIR  $HOME/.config/nvim/queries
 #
 
 set -euo pipefail
@@ -33,7 +33,7 @@ mkdir -p "${NVIM_DIR}/ftdetect"
 cp cds.vim "${NVIM_DIR}/ftdetect"
 echo "Copied cds.vim to: ${NVIM_DIR}/ftdetect"
 
-TREE_SITTER_QUERIES_DIR="${TREE_SITTER_QUERIES_DIR:-"$HOME/.local/share/nvim/site/pack/packer/start/nvim-treesitter/queries"}"
+TREE_SITTER_QUERIES_DIR="${TREE_SITTER_QUERIES_DIR:-"$HOME/.config/nvim/queries"}"
 
 if [[ ! -d "${TREE_SITTER_QUERIES_DIR}" ]]; then
   cat << EOF
