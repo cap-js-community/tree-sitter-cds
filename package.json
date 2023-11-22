@@ -1,5 +1,5 @@
 {
-  "name": "tree-sitter-cds",
+  "name": "@cap-js-community/tree-sitter-cds",
   "private": true,
   "version": "0.0.1",
   "description": "tree-sitter grammar for SAP CAP CDS",
