@@ -4,7 +4,7 @@
 
 ## About this project
 
-CAP CDS grammar for tree-sitter. 
+CAP CDS grammar for tree-sitter.
 
 > Tree-sitter is a parser generator tool and an incremental parsing library.
 > It can build a concrete syntax tree for a source file and efficiently update the
@@ -19,9 +19,10 @@ This project followed the instructions of the [tree-sitter guide].
 
 <img alt="Screenshot of NeoVim. A CDS file is opened and has proper syntax highlighting." title="NeoVim Syntax Highlighting Example" src="./docs/assets/neovim-syntax-highlighting.png" align="right" width="201" height="224" />
 
-## Requirements and Setup
+## Download and Installation
 
-If you want to use tree-sitter-cds in NeoVim for syntax highlighting, please see [NeoVim Support](./docs/neovim-support.md).
+If you want to use tree-sitter-cds in NeoVim for syntax highlighting,
+please see [NeoVim Support](./docs/neovim-support.md).
 For local development setup, see [Development Docs](./docs/development.md).
 
 Documentation on NodeJs and Rust language bindings is work-in-progress.
@@ -36,9 +37,15 @@ Please refer to the `docs/` folder.  It contains:
 - [CDS Compiler Differences](./docs/cds-compiler-differences.md)
 
 
-## Support, Feedback, Contributing
+## How to obtain support
 
-This project is open to feature requests/suggestions, bug reports etc. via [GitHub issues](https://github.com/cap-js-community/tree-sitter-cds/issues). Contribution and feedback are encouraged and always welcome. For more information about how to contribute, the project structure, as well as additional contribution information, see our [Contribution Guidelines](CONTRIBUTING.md).
+This project is open to feature requests/suggestions, bug reports etc.
+via [GitHub issues](https://github.com/cap-js-community/tree-sitter-cds/issues).
+
+Contribution and feedback are encouraged and always welcome.
+For more information about how to contribute, the project structure,
+as well as additional contribution information, see our [Contribution Guidelines](CONTRIBUTING.md)
+as well as our [development documentation](./docs/development.md).
 
 ## Features & Roadmap
 
