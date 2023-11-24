@@ -19,13 +19,6 @@ This project followed the instructions of the [tree-sitter guide].
 
 <img alt="Screenshot of NeoVim. A CDS file is opened and has proper syntax highlighting." title="NeoVim Syntax Highlighting Example" src="./docs/assets/neovim-syntax-highlighting.png" align="right" width="201" height="224" />
 
-## Download and Installation
-
-If you want to use tree-sitter-cds in NeoVim for syntax highlighting,
-please see [NeoVim Support](./docs/neovim-support.md).
-For local development setup, see [Development Docs](./docs/development.md).
-
-Documentation on NodeJs and Rust language bindings is work-in-progress.
 
 ## Documentation
 
@@ -35,6 +28,23 @@ Please refer to the `docs/` folder.  It contains:
 - [Contributing](./CONTRIBUTING.md)
 - [NeoVim Support](./docs/neovim-support.md)
 - [CDS Compiler Differences](./docs/cds-compiler-differences.md)
+
+
+## Download and Installation
+
+If you want to use tree-sitter-cds in NeoVim for syntax highlighting,
+please see [NeoVim Support](./docs/neovim-support.md) for an
+installation guide.
+
+Documentation on NodeJs and Rust language bindings is work-in-progress.
+
+
+## Requirements
+
+If you want to use tree-sitter-cds in NeoVim for syntax highlighting,
+please see [NeoVim Support](./docs/neovim-support.md) for requirements.
+
+For local development setup, see [Development Docs](./docs/development.md).
 
 
 ## How to obtain support
