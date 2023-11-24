@@ -15,3 +15,5 @@ log.html
 
 Cargo.lock
 target/
+
+*.so
