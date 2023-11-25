@@ -1,0 +1,28 @@
+# <type>(<scope>): <short description>
+#
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Use CONVENTIONAL COMMITS, see <https://www.conventionalcommits.org/en/v1.0.0/>
+#
+# Structure:
+#
+#     <type>(<scope>): <short description>
+#
+#     <long description>
+#
+# Where <type> is one of:
+#   feat     fix    docs    style   refactor
+#   perf     test   build   ci      chore
+#   revert   deps
+#
+# Where <scope> is for example "movie", "scrapers", etc.
+# `(<scope>)` is optional.
+#
+# Examples:
+#
+#    feat(grammar): Introduce unicode identifiers
+#
+#    Introduce the latest identifier syntax of CDS, which
+#    allows more unicode […]
+#

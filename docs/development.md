@@ -2,6 +2,8 @@
 
 ## Setup
 
+### tree-sitter setup
+
 Some files in this repository are _auto generated_.  For example
 `src/parser.c`.  We do this so that users can download and use the grammar
 more easily.  We don't expect the grammar to change frequently.
@@ -30,6 +32,17 @@ tree-sitter test
 ```
 
 
+### Git
+
+We use [Conventional Commits] and have a default commit message
+template, that has some tips. Install it via:
+
+```sh
+cd tree-sitter-cds
+git config commit.template tools/etc/git-default-commit-message.txt
+```
+
+
 ## Debugging
 
 For debugging this grammar, use [nvim-treesitter/playground][].
@@ -47,3 +60,4 @@ docker build --pull -t "tree-sitter-cds:dev" .
 ```
 
 [nvim-treesitter/playground]: https://github.com/nvim-treesitter/playground
+[Conventional Commits]: https://www.conventionalcommits.org/en/v1.0.0/
