@@ -37,6 +37,7 @@ parser_config.cds = {
             -- local path or git repo
             url = "https://github.com/cap-js-community/tree-sitter-cds.git",
             -- url = "/path/to/tree-sitter-cds",
+            branch = "main",
             files = { "src/parser.c", "src/scanner.c" }
       },
       filetype = "cds",
