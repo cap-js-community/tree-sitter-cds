@@ -1,0 +1,30 @@
+name: Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+# Allow parallel jobs on `main` to test each commit. For PRs, only run on the latest commit.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Grammar Tests
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
+      - name: Ensure generated files are up-to-date
+        run: |
+          git diff --diff-filter=M --color | cat
+          git diff --diff-filter=M --quiet || (echo "Generated grammar is not up-to-date: run `npm run build` and commit all changes"; exit 1)
+      - run: npm run test
