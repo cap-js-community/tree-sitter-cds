@@ -8,7 +8,8 @@
   "rules": {
     "max-len": "off",
     "indent": "off",
-    "camelcase": "off"
+    "camelcase": "off",
+    "comma-dangle": ["error", "always-multiline"]
   },
   "globals": {
     "seq": "readonly",
