@@ -10,6 +10,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
 
+env:
+  CARGO_TERM_COLOR: always
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -22,13 +25,26 @@ jobs:
           node-version: 20
           cache: 'npm'
       - run: npm ci
+
       - run: npm run build
       - name: Ensure generated files are up-to-date
         run: |
           git diff --diff-filter=M --color | cat
           git diff --diff-filter=M --quiet || (echo "Generated grammar is not up-to-date: run `npm run build` and commit all changes"; exit 1)
+
       - run: npm run test
+
       - name: shellcheck
         run: |
-          apt-get install -y shellcheck;
           ./tools/checks/run_shellcheck.sh
+
+      - name: test rust bindings
+        run: |
+          cargo build --verbose
+          cargo test --verbose
+
+      - name: test node bindings
+        run: |
+          cd test/bindings/node
+          npm ci
+          npm test
