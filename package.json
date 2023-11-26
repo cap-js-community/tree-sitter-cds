@@ -21,13 +21,15 @@
     "nan": "^2.18.0"
   },
   "devDependencies": {
+    "eslint": "^8.54.0",
     "tree-sitter-cli": "^0.20.8"
   },
   "scripts": {
     "build": "tree-sitter generate && node-gyp configure && node-gyp build",
     "test": "tree-sitter test",
     "test:update": "tree-sitter test --update",
-    "playground": "npm run build && tree-sitter build-wasm && tree-sitter playground"
+    "playground": "npm run build && tree-sitter build-wasm && tree-sitter playground",
+    "lint": "eslint ."
   },
   "tree-sitter": [
     {

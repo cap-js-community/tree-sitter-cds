@@ -38,6 +38,9 @@ jobs:
         run: |
           ./tools/checks/run_shellcheck.sh
 
+      - name: lint
+        run: npm run lint
+
       - name: test rust bindings
         run: |
           cargo build --verbose
