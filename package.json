@@ -31,6 +31,9 @@
     "playground": "npm run build && tree-sitter build-wasm && tree-sitter playground",
     "lint": "eslint ."
   },
+  "engines" : {
+    "node" : ">=18.0.0"
+  },
   "tree-sitter": [
     {
       "scope": "source.cds",
