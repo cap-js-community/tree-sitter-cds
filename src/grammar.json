@@ -10371,7 +10371,7 @@
     },
     "_unquoted_identifier": {
       "type": "PATTERN",
-      "value": "[$_a-zA-Z][$_a-zA-Z0-9]*"
+      "value": "[\\p{ID_Start}$_][\\p{ID_Continue}$\\u200C\\u200D]*"
     },
     "_delimited_identifier": {
       "type": "TOKEN",
