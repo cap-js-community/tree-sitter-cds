@@ -55,8 +55,8 @@ This repository provides a basic Dockerfile. It only serves for testing our
 build steps.
 
 ```sh
-cd tools
-docker build --pull -t "tree-sitter-cds:dev" .
+cd tree-sitter-cds
+docker build --pull -t "tree-sitter-cds:dev" -f tools/Dockerfile .
 ```
 
 [nvim-treesitter/playground]: https://github.com/nvim-treesitter/playground

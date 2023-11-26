@@ -1,3 +1,6 @@
+# Build from project root directory
+# Use this Dockerfile only for testing.
+
 FROM ubuntu:22.04
 
 RUN apt update && \
@@ -6,7 +9,7 @@ RUN apt update && \
     curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs
 
-ADD . /opt/tree-sitter-cds
+COPY .. /opt/tree-sitter-cds
 
 RUN cd /opt/tree-sitter-cds && \
     npm install && \
