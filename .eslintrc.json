@@ -1,0 +1,25 @@
+{
+  "env": {
+    "node": true,
+    "commonjs": true,
+    "es2020": true
+  },
+  "extends": "eslint:recommended",
+  "rules": {
+    "max-len": "off",
+    "indent": "off",
+    "camelcase": "off"
+  },
+  "globals": {
+    "seq": "readonly",
+    "choice": "readonly",
+    "optional": "readonly",
+    "repeat": "readonly",
+    "repeat1": "readonly",
+    "field": "readonly",
+    "prec": "readonly",
+    "token": "readonly",
+    "alias": "readonly",
+    "grammar": "readonly"
+  }
+}

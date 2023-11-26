@@ -1,7 +1,5 @@
-'use strict';
-
 const Parser = require('tree-sitter');
-const Cds = require('tree-sitter-cds');
+const Cds = require('@cap-js-community/tree-sitter-cds');
 
 const parser = new Parser();
 parser.setLanguage(Cds);
@@ -12,11 +10,18 @@ const tree = parser.parse(sourceCode);
 const root = tree.rootNode;
 const entity = root.child(0);
 
-assert_eq(entity.type, "entity_definition");
-assert_eq(entity.nameNode.text, "MyEntity");
+assertEq(entity.type, 'entity_definition');
+assertEq(entity.nameNode.text, 'MyEntity');
 
-function assert_eq(lhs, rhs) {
+/**
+ * Assert that the lhs is equal to the rhs.
+ *
+ * @param {any} lhs
+ * @param {any} rhs
+ */
+function assertEq(lhs, rhs) {
   if (lhs !== rhs) {
-    throw new Error(`${lhs} !== ${rhs}`);
+    throw new Error(`assertion failed: ${lhs} === ${rhs}`);
   }
 }
+

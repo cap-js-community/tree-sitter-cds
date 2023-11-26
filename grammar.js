@@ -1,9 +1,5 @@
 
-class InvalidArgument extends Error {
-  constructor(...params) {
-    super(params);
-  }
-}
+/* eslint-disable no-unused-vars */
 
 module.exports = grammar({
   name: 'cds',
@@ -17,6 +13,7 @@ module.exports = grammar({
     // from language.g4
     // \u00A0 : NBSP
     // \uFEFF : byte-order-mark
+    // eslint-disable-next-line no-control-regex
     /[\r\n\u2028\u2029 \t\f\u000B\u00A0\u1680\u180e\u2000-\u200A\u202F\u205F\u3000\uFEFF]+/
   ],
 
@@ -1448,19 +1445,36 @@ module.exports = grammar({
   }
 });
 
-// At least one rule
+/**
+ * Custom error for invalid arguments to our rule-functions.
+ */
+class InvalidArgument extends Error {}
+
+/**
+ * A list of `rule`. At least one rule must be parsed.
+ *
+ * @param {Rule} rule
+ * @param {string} separator
+ * @return {SeqRule}
+ */
 function list_of(rule, separator = ',') {
-  if (arguments.length > 2)
-    throw new InvalidArgument('too many arguments')
+  if (arguments.length > 2) throw new InvalidArgument('too many arguments');
   return seq(
     rule,
-    repeat(seq(separator, rule))
+    repeat(seq(separator, rule)),
   );
 }
 
+/**
+ * A list of `rule` with an optional trailing `separator`.
+ * At least one rule must be parsed.
+ *
+ * @param {Rule} rule
+ * @param {string} separator
+ * @return {SeqRule}
+ */
 function list_of_trailing(rule, separator = ',') {
-  if (arguments.length > 2)
-    throw new InvalidArgument('too many arguments')
+  if (arguments.length > 2) throw new InvalidArgument('too many arguments');
   return seq(
     rule,
     repeat(seq(separator, rule)),
@@ -1468,24 +1482,41 @@ function list_of_trailing(rule, separator = ',') {
   );
 }
 
+/**
+ * Same as `list_of_trailing()`, but makes the rule optional.
+ *
+ * @param {Rule} rule
+ * @param {string} separator
+ * @return {ChoiceRule}
+ */
 function optional_list_of_trailing(rule, separator = ',') {
   return optional(list_of_trailing(rule, separator));
 }
 
+/**
+ * A CDS keyword.  The string (keyword) can be parsed case-insensitive.
+ *
+ * @param {string} str
+ * @return {AliasRule}
+ */
 function kw(str) {
-  if (typeof str !== 'string')
-    throw new InvalidArgument('keyword is not a string')
-  if (arguments.length !== 1)
-    throw new InvalidArgument('expected exactly one argument')
+  if (typeof str !== 'string') throw new InvalidArgument('keyword is not a string');
+  if (arguments.length !== 1) throw new InvalidArgument('expected exactly one argument');
   // Note: alias() is required for highlights.scm
   return alias(new RegExp(
     str
-      .split("")
-      .map(c => `[${c.toLowerCase()}${c.toUpperCase()}]`)
-      .join(""),
+      .split('')
+      .map((c) => `[${c.toLowerCase()}${c.toUpperCase()}]`)
+      .join(''),
   ), str);
 }
 
+/**
+ * Same as `kw()`, but optional.
+ *
+ * @param {string} str
+ * @return {ChoiceRule}
+ */
 function optional_kw(str) {
   return optional(kw(str));
 }
