@@ -28,3 +28,7 @@ jobs:
           git diff --diff-filter=M --color | cat
           git diff --diff-filter=M --quiet || (echo "Generated grammar is not up-to-date: run `npm run build` and commit all changes"; exit 1)
       - run: npm run test
+      - name: shellcheck
+        run: |
+          apt-get install -y shellcheck;
+          ./tools/checks/run_shellcheck.sh
