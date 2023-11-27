@@ -1,0 +1,34 @@
+================================================================================
+Unicode
+================================================================================
+
+entity Ä {
+   ß : String;
+   _ : _ä;
+   ä_ : $ß;
+   _ä : äöü;
+};
+
+--------------------------------------------------------------------------------
+
+(cds
+  (entity_definition
+    (simple_path
+      (identifier))
+    (element_definitions
+      (element_definition
+        (identifier)
+        (simple_path
+          (identifier)))
+      (element_definition
+        (identifier)
+        (simple_path
+          (identifier)))
+      (element_definition
+        (identifier)
+        (simple_path
+          (identifier)))
+      (element_definition
+        (identifier)
+        (simple_path
+          (identifier))))))
