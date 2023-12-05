@@ -222,7 +222,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "annotation_assignment"
+            "name": "annotation"
           }
         },
         {
@@ -407,7 +407,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "annotation_assignment_fix"
+            "name": "annotation"
           }
         },
         {
@@ -477,7 +477,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "annotation_assignment_fix"
+            "name": "annotation"
           }
         },
         {
@@ -853,7 +853,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "annotation_assignment_fix"
+            "name": "annotation"
           }
         },
         {
@@ -944,7 +944,7 @@
                                   "type": "REPEAT",
                                   "content": {
                                     "type": "SYMBOL",
-                                    "name": "annotation_assignment"
+                                    "name": "annotation"
                                   }
                                 },
                                 {
@@ -3497,7 +3497,7 @@
                 "type": "REPEAT",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "annotation_assignment"
+                  "name": "annotation"
                 }
               },
               {
@@ -3722,7 +3722,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "annotation_assignment"
+            "name": "annotation"
           }
         },
         {
@@ -3733,7 +3733,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "annotation_assignment"
+            "name": "annotation"
           }
         },
         {
@@ -3781,7 +3781,7 @@
                   "type": "REPEAT",
                   "content": {
                     "type": "SYMBOL",
-                    "name": "annotation_assignment"
+                    "name": "annotation"
                   }
                 }
               ]
@@ -3822,7 +3822,7 @@
                 "type": "REPEAT",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "annotation_assignment"
+                  "name": "annotation"
                 }
               },
               {
@@ -3925,7 +3925,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "annotation_assignment_fix"
+            "name": "annotation"
           }
         },
         {
@@ -4073,7 +4073,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "annotation_assignment_fix"
+            "name": "annotation"
           }
         },
         {
@@ -4143,7 +4143,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "annotation_assignment_fix"
+            "name": "annotation"
           }
         },
         {
@@ -4746,7 +4746,7 @@
                               "type": "REPEAT",
                               "content": {
                                 "type": "SYMBOL",
-                                "name": "annotation_assignment"
+                                "name": "annotation"
                               }
                             },
                             {
@@ -4840,7 +4840,7 @@
                       "type": "REPEAT",
                       "content": {
                         "type": "SYMBOL",
-                        "name": "annotation_assignment"
+                        "name": "annotation"
                       }
                     },
                     {
@@ -4946,7 +4946,7 @@
                       "type": "REPEAT",
                       "content": {
                         "type": "SYMBOL",
-                        "name": "annotation_assignment"
+                        "name": "annotation"
                       }
                     },
                     {
@@ -5029,7 +5029,7 @@
                               "type": "REPEAT",
                               "content": {
                                 "type": "SYMBOL",
-                                "name": "annotation_assignment"
+                                "name": "annotation"
                               }
                             },
                             {
@@ -5114,7 +5114,7 @@
                               "type": "REPEAT",
                               "content": {
                                 "type": "SYMBOL",
-                                "name": "annotation_assignment"
+                                "name": "annotation"
                               }
                             },
                             {
@@ -5191,7 +5191,7 @@
                               "type": "REPEAT",
                               "content": {
                                 "type": "SYMBOL",
-                                "name": "annotation_assignment"
+                                "name": "annotation"
                               }
                             },
                             {
@@ -5560,7 +5560,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "annotation_assignment"
+            "name": "annotation"
           }
         },
         {
@@ -5628,7 +5628,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "annotation_assignment_fix"
+            "name": "annotation"
           }
         },
         {
@@ -5799,7 +5799,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "annotation_assignment"
+            "name": "annotation"
           }
         },
         {
@@ -5894,7 +5894,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "annotation_assignment"
+            "name": "annotation"
           }
         },
         {
@@ -5909,7 +5909,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "annotation_assignment_fix"
+            "name": "annotation"
           }
         },
         {
@@ -5954,7 +5954,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "annotation_assignment"
+            "name": "annotation"
           }
         }
       ]
@@ -5975,7 +5975,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "annotation_assignment"
+            "name": "annotation"
           }
         },
         {
@@ -6051,7 +6051,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "annotation_assignment"
+            "name": "annotation"
           }
         },
         {
@@ -6159,7 +6159,7 @@
                   "type": "REPEAT",
                   "content": {
                     "type": "SYMBOL",
-                    "name": "annotation_assignment"
+                    "name": "annotation"
                   }
                 },
                 {
@@ -6214,7 +6214,7 @@
                   "type": "REPEAT",
                   "content": {
                     "type": "SYMBOL",
-                    "name": "annotation_assignment"
+                    "name": "annotation"
                   }
                 },
                 {
@@ -6268,7 +6268,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "annotation_assignment"
+            "name": "annotation"
           }
         },
         {
@@ -6431,7 +6431,7 @@
                   "type": "REPEAT",
                   "content": {
                     "type": "SYMBOL",
-                    "name": "annotation_assignment"
+                    "name": "annotation"
                   }
                 },
                 {
@@ -6493,7 +6493,7 @@
                   "type": "REPEAT",
                   "content": {
                     "type": "SYMBOL",
-                    "name": "annotation_assignment"
+                    "name": "annotation"
                   }
                 },
                 {
@@ -6906,7 +6906,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "SYMBOL",
-                "name": "annotation_assignment"
+                "name": "annotation"
               }
             },
             {
@@ -7113,7 +7113,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "annotation_assignment_fix"
+            "name": "annotation"
           }
         },
         {
@@ -7165,7 +7165,7 @@
                               "type": "REPEAT",
                               "content": {
                                 "type": "SYMBOL",
-                                "name": "annotation_assignment"
+                                "name": "annotation"
                               }
                             }
                           ]
@@ -7183,7 +7183,7 @@
                           "type": "REPEAT",
                           "content": {
                             "type": "SYMBOL",
-                            "name": "annotation_assignment"
+                            "name": "annotation"
                           }
                         }
                       ]
@@ -7216,7 +7216,7 @@
                           "type": "REPEAT",
                           "content": {
                             "type": "SYMBOL",
-                            "name": "annotation_assignment"
+                            "name": "annotation"
                           }
                         }
                       ]
@@ -7370,7 +7370,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "SYMBOL",
-                "name": "annotation_assignment"
+                "name": "annotation"
               }
             },
             {
@@ -7388,7 +7388,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "annotation_assignment"
+            "name": "annotation"
           }
         },
         {
@@ -7466,7 +7466,7 @@
                   "type": "REPEAT",
                   "content": {
                     "type": "SYMBOL",
-                    "name": "annotation_assignment"
+                    "name": "annotation"
                   }
                 },
                 {
@@ -7615,7 +7615,7 @@
                   "type": "REPEAT",
                   "content": {
                     "type": "SYMBOL",
-                    "name": "annotation_assignment"
+                    "name": "annotation"
                   }
                 },
                 {
@@ -9005,7 +9005,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "annotation_assignment"
+            "name": "annotation"
           }
         },
         {
@@ -9176,7 +9176,7 @@
                 "type": "REPEAT",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "annotation_assignment"
+                  "name": "annotation"
                 }
               },
               {
@@ -9187,7 +9187,7 @@
                 "type": "REPEAT",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "annotation_assignment"
+                  "name": "annotation"
                 }
               },
               {
@@ -9286,7 +9286,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "annotation_assignment"
+            "name": "annotation"
           }
         },
         {
@@ -9339,7 +9339,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "annotation_assignment"
+            "name": "annotation"
           }
         },
         {
@@ -9350,7 +9350,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "annotation_assignment"
+            "name": "annotation"
           }
         },
         {
@@ -9403,7 +9403,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "annotation_assignment"
+            "name": "annotation"
           }
         },
         {
@@ -9414,12 +9414,12 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "annotation_assignment"
+            "name": "annotation"
           }
         }
       ]
     },
-    "annotation_assignment": {
+    "annotation": {
       "type": "SEQ",
       "members": [
         {
@@ -9433,45 +9433,23 @@
         {
           "type": "CHOICE",
           "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_annotation_assignment_paren"
-            },
             {
               "type": "SYMBOL",
               "name": "_annotation_assignment_inner"
-            }
-          ]
-        }
-      ]
-    },
-    "annotation_assignment_fix": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "FIELD",
-          "name": "sign",
-          "content": {
-            "type": "STRING",
-            "value": "@"
-          }
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_annotation_assignment_paren"
             },
             {
               "type": "SYMBOL",
-              "name": "_annotation_path_with_variant"
+              "name": "annotation_group"
             }
           ]
         }
       ]
     },
-    "_annotation_assignment_paren": {
+    "annotation_group_item": {
+      "type": "SYMBOL",
+      "name": "_annotation_assignment_inner"
+    },
+    "annotation_group": {
       "type": "SEQ",
       "members": [
         {
@@ -9482,8 +9460,13 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "_annotation_assignment_inner"
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_annotation_assignment_inner"
+              },
+              "named": true,
+              "value": "annotation_group_item"
             },
             {
               "type": "REPEAT",
@@ -9495,8 +9478,13 @@
                     "value": ","
                   },
                   {
-                    "type": "SYMBOL",
-                    "name": "_annotation_assignment_inner"
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_annotation_assignment_inner"
+                    },
+                    "named": true,
+                    "value": "annotation_group_item"
                   }
                 ]
               }
@@ -9526,7 +9514,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_annotation_path_with_variant"
+          "name": "annotation_path"
         },
         {
           "type": "CHOICE",
@@ -9585,10 +9573,22 @@
               }
             ]
           }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "annotation_variant"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
-    "annotation_path_variant": {
+    "annotation_variant": {
       "type": "SEQ",
       "members": [
         {
@@ -9597,36 +9597,44 @@
         },
         {
           "type": "SYMBOL",
-          "name": "simple_path"
-        }
-      ]
-    },
-    "_annotation_path_with_variant": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "FIELD",
-          "name": "path",
-          "content": {
-            "type": "SYMBOL",
-            "name": "annotation_path"
-          }
+          "name": "identifier"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "FIELD",
-              "name": "variant",
-              "content": {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "."
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "#"
+                  }
+                ]
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "@"
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              },
+              {
                 "type": "SYMBOL",
-                "name": "annotation_path_variant"
+                "name": "identifier"
               }
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+            ]
+          }
         }
       ]
     },
@@ -9855,7 +9863,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "_annotation_path_with_variant"
+              "name": "annotation_path"
             }
           ]
         }
@@ -9970,22 +9978,6 @@
         {
           "type": "SYMBOL",
           "name": "annotation_path"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "#"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "simple_path"
-              }
-            ]
-          }
         },
         {
           "type": "CHOICE",
@@ -10457,7 +10449,10 @@
       "query_primary"
     ],
     [
-      "_annotation_path_with_variant"
+      "annotation_path"
+    ],
+    [
+      "annotation_variant"
     ],
     [
       "_annotation_assignment_inner"

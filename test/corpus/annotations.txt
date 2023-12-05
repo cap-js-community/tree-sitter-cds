@@ -3,18 +3,23 @@ Simple Annotations
 ================================================================================
 
 @anno
-@(anno)
+@(anno1, anno2)
 type T;
 
 --------------------------------------------------------------------------------
 
 (cds
-  (annotation_assignment
+  (annotation
     (annotation_path
       (identifier)))
-  (annotation_assignment
-    (annotation_path
-      (identifier)))
+  (annotation
+    (annotation_group
+      (annotation_group_item
+        (annotation_path
+          (identifier)))
+      (annotation_group_item
+        (annotation_path
+          (identifier)))))
   (type_definition
     (simple_path
       (identifier))))
@@ -24,22 +29,29 @@ Annotation Values: Scalar
 ================================================================================
 
 @anno: 1
-@(anno: 1)
+@(anno1: 1, anno2: 2)
 type T;
 
 --------------------------------------------------------------------------------
 
 (cds
-  (annotation_assignment
+  (annotation
     (annotation_path
       (identifier))
     (annotation_value
       (number)))
-  (annotation_assignment
-    (annotation_path
-      (identifier))
-    (annotation_value
-      (number)))
+  (annotation
+    (annotation_group
+      (annotation_group_item
+        (annotation_path
+          (identifier))
+        (annotation_value
+          (number)))
+      (annotation_group_item
+        (annotation_path
+          (identifier))
+        (annotation_value
+          (number)))))
   (type_definition
     (simple_path
       (identifier))))
@@ -55,29 +67,29 @@ type T;
 --------------------------------------------------------------------------------
 
 (cds
-  (annotation_assignment
+  (annotation
     (annotation_path
       (identifier)
       (identifier)
-      (identifier))
-    (annotation_path_variant
-      (simple_path
+      (identifier)
+      (annotation_variant
         (identifier))))
-  (annotation_assignment
-    (annotation_path
-      (identifier)
-      (identifier)
-      (identifier))
-    (annotation_path_variant
-      (simple_path
-        (identifier)))
-    (annotation_path
-      (identifier)
-      (identifier)
-      (identifier))
-    (annotation_path_variant
-      (simple_path
-        (identifier))))
+  (annotation
+    (annotation_group
+      (annotation_group_item
+        (annotation_path
+          (identifier)
+          (identifier)
+          (identifier)
+          (annotation_variant
+            (identifier))))
+      (annotation_group_item
+        (annotation_path
+          (identifier)
+          (identifier)
+          (identifier)
+          (annotation_variant
+            (identifier))))))
   (type_definition
     (simple_path
       (identifier))))
@@ -92,7 +104,7 @@ type T;
 --------------------------------------------------------------------------------
 
 (cds
-  (annotation_assignment
+  (annotation
     (annotation_path
       (identifier))
     (annotation_value
@@ -122,7 +134,7 @@ type T;
 --------------------------------------------------------------------------------
 
 (cds
-  (annotation_assignment
+  (annotation
     (annotation_path
       (identifier))
     (annotation_value
@@ -153,4 +165,3 @@ type T;
   (type_definition
     (simple_path
       (identifier))))
-

@@ -192,3 +192,4 @@
 (function_definition name: (_) @function)
 
 (annotation_path (identifier) @attribute)
+(annotation _ @attribute) ; mark @

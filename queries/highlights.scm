@@ -1,4 +1,7 @@
 ; highlights.scm
+; See https://tree-sitter.github.io/tree-sitter/syntax-highlighting>
+; on how to install these queries to get `tree-sitter highlight file.cds`
+; to work.
 
 ; Note: First matches apply
 
@@ -175,7 +178,7 @@
 (action_definition name: (_) @function)
 (function_definition name: (_) @function)
 
-(annotation_assignment _ @attribute) ; mark @
+(annotation _ @attribute) ; mark @
 
 (from_path) @variable
 (simple_path) @variable

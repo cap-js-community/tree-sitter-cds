@@ -22,7 +22,8 @@ module.exports = grammar({
 
   conflicts: $ => [
     [ $.parenthesized_expression, $.query_primary ],
-    [ $._annotation_path_with_variant ],
+    [ $.annotation_path ],
+    [ $.annotation_variant ],
     [ $._annotation_assignment_inner ],
   ],
 
@@ -76,7 +77,7 @@ module.exports = grammar({
     ),
 
     _definition: $ => seq(
-      repeat($.annotation_assignment),
+      repeat($.annotation),
       choice(
         seq(
           optional_kw('define'),
@@ -120,7 +121,7 @@ module.exports = grammar({
 
     _context_or_service_body: $ => seq(
       field('name', $.simple_path),
-      repeat($.annotation_assignment_fix),
+      repeat($.annotation),
       choice(
         seq('{', repeat($._definition), '}', optional(';')),
         $._required_semicolon,
@@ -130,7 +131,7 @@ module.exports = grammar({
     entity_definition: $ => seq(
       kw('entity'),
       field('name', $.simple_path),
-      repeat($.annotation_assignment_fix),
+      repeat($.annotation),
       optional($.parameter_definition_list),
       choice(
         seq(
@@ -166,7 +167,7 @@ module.exports = grammar({
     event_definition: $ => seq(
       kw('event'),
       field('name', $.simple_path),
-      repeat($.annotation_assignment_fix),
+      repeat($.annotation),
       choice(
         seq($.element_definitions, optional(';')),
         seq(':',
@@ -179,7 +180,7 @@ module.exports = grammar({
                   $.element_definitions,
                   optional(';'),
                 ),
-                seq(repeat($.annotation_assignment), $._required_semicolon),
+                seq(repeat($.annotation), $._required_semicolon),
               ),
             ),
             seq($.element_definitions, optional(';')),
@@ -519,7 +520,7 @@ module.exports = grammar({
     element_definitions: $ => seq(
       '{',
       repeat(seq(
-        repeat($.annotation_assignment),
+        repeat($.annotation),
         $.element_definition,
       )),
       '}',
@@ -552,9 +553,9 @@ module.exports = grammar({
     ),
 
     enum_symbol_definition: $ => seq(
-      repeat($.annotation_assignment),
+      repeat($.annotation),
       $.identifier,
-      repeat($.annotation_assignment),
+      repeat($.annotation),
       optional(
         seq(
           '=',
@@ -562,7 +563,7 @@ module.exports = grammar({
             $._literal,
             seq(choice('+', '-'), $.number),
           ),
-          repeat($.annotation_assignment),
+          repeat($.annotation),
         ),
       ),
       $._required_semicolon,
@@ -571,7 +572,7 @@ module.exports = grammar({
     _action_definitions: $ => seq(
       kw('actions'), '{',
       repeat(seq(
-        repeat($.annotation_assignment),
+        repeat($.annotation),
         field('action', $._action_or_function_definition),
       )),
       '}',
@@ -583,7 +584,7 @@ module.exports = grammar({
       optional_kw('masked'),
       optional_kw('element'),
       field('name', $.identifier),
-      repeat($.annotation_assignment_fix),
+      repeat($.annotation),
       choice(
         $._type_definition_body,
         $._required_semicolon,
@@ -603,7 +604,7 @@ module.exports = grammar({
     annotation_definition: $ => seq(kw('annotation'), $._type_like_definition),
     _type_like_definition: $ => seq(
       field('name', $.simple_path),
-      repeat($.annotation_assignment_fix),
+      repeat($.annotation),
       choice(
         $._type_definition_body,
         $._required_semicolon,
@@ -616,7 +617,7 @@ module.exports = grammar({
         seq(kw('abstract'), kw('entity')),
       ),
       field('name', $.simple_path),
-      repeat($.annotation_assignment_fix),
+      repeat($.annotation),
       optional(seq(':', field('includes', optional(list_of_trailing($.simple_path))))),
       choice(
         seq(
@@ -687,7 +688,7 @@ module.exports = grammar({
               seq(
                 choice($.type_type_of, $.type_reference),
                 optional($.nullability),
-                repeat($.annotation_assignment),
+                repeat($.annotation),
                 choice(
                   seq(
                     seq($.element_enum_definition, choice(optional(';'), seq($.element_properties, $._required_semicolon))),
@@ -701,7 +702,7 @@ module.exports = grammar({
           seq(
             $.type_type_of,
             // optional($.nullability),
-            repeat($.annotation_assignment),
+            repeat($.annotation),
             choice(
               seq($.element_enum_definition, choice(optional(';'), seq($.element_properties, $._required_semicolon))),
               seq(optional($.element_properties), $._required_semicolon),
@@ -712,7 +713,7 @@ module.exports = grammar({
             kw('localized'),
             $.type_reference,
             optional($.element_properties),
-            repeat($.annotation_assignment),
+            repeat($.annotation),
             $._required_semicolon,
           ),
           seq(
@@ -720,7 +721,7 @@ module.exports = grammar({
             choice(
               seq(
                 '(', optional_list_of_trailing($.type_argument), ')',
-                repeat($.annotation_assignment),
+                repeat($.annotation),
                 choice(
                   seq($.element_enum_definition, choice(optional(';'), seq($.element_properties, $._required_semicolon))),
                   seq(optional($.element_properties), $._required_semicolon),
@@ -730,14 +731,14 @@ module.exports = grammar({
                 ':',
                 $.simple_path,
                 // optional($.nullability),
-                repeat($.annotation_assignment),
+                repeat($.annotation),
                 choice(
                   seq($.element_enum_definition, choice(optional(';'), seq($.element_properties, $._required_semicolon))),
                   seq(optional($.element_properties), $._required_semicolon),
                 ),
               ),
               seq(
-                repeat($.annotation_assignment),
+                repeat($.annotation),
                 choice(
                   seq($.element_enum_definition, choice(optional(';'), seq($.element_properties, $._required_semicolon))),
                   seq(optional($.element_properties), $._required_semicolon),
@@ -778,7 +779,7 @@ module.exports = grammar({
           $.default_and_nullability,
         ),
       ),
-      repeat($.annotation_assignment),
+      repeat($.annotation),
       $._required_semicolon,
     ),
 
@@ -790,7 +791,7 @@ module.exports = grammar({
     view_definition: $ => seq(
       kw('view'),
       field('name', $.simple_path),
-      repeat($.annotation_assignment_fix),
+      repeat($.annotation),
       optional(choice(
         $.parameter_definition_list,
         seq(
@@ -820,7 +821,7 @@ module.exports = grammar({
     ),
     _action_or_function_body: $ => seq(
       field('name', $.simple_path),
-      repeat($.annotation_assignment),
+      repeat($.annotation),
       $.parameter_definition_list,
       choice( $.return_type, $._required_semicolon ),
     ),
@@ -832,20 +833,20 @@ module.exports = grammar({
     ),
 
     parameter_definition: $ => seq(
-      repeat($.annotation_assignment),
+      repeat($.annotation),
       field('name', $.identifier),
-      repeat($.annotation_assignment_fix),
+      repeat($.annotation),
       field('type', choice(
         $.element_definitions,
         seq(':', $._type_reference_or_inline_definition),
       )),
       optional($.default_value),
-      repeat($.annotation_assignment),
+      repeat($.annotation),
     ),
 
     return_type: $ => seq(
       kw('returns'),
-      repeat($.annotation_assignment),
+      repeat($.annotation),
       field('type', $._type_reference_or_inline_definition),
       $._required_semicolon,
     ),
@@ -854,7 +855,7 @@ module.exports = grammar({
       field('kind', choice(kw('context'), kw('service'))),
       field('name', $.simple_path),
       optional(kw('with')),
-      repeat($.annotation_assignment),
+      repeat($.annotation),
       choice(
         seq('{', repeat($._definition), '}', optional(';')),
         $._required_semicolon,
@@ -867,14 +868,14 @@ module.exports = grammar({
       choice(
         seq(
           kw('with'),
-          repeat($.annotation_assignment),
+          repeat($.annotation),
           choice(
             seq(list_of($.simple_path), $._required_semicolon),
             $._extend_structure_body,
           ),
         ),
         seq(
-          repeat($.annotation_assignment),
+          repeat($.annotation),
           $._extend_structure_body,
         ),
       ),
@@ -884,7 +885,7 @@ module.exports = grammar({
       kw('projection'),
       field('name', $.simple_path),
       optional_kw('with'),
-      repeat($.annotation_assignment),
+      repeat($.annotation),
       choice(
         seq(
           '{',
@@ -906,7 +907,7 @@ module.exports = grammar({
       field('element', optional(seq(':', $.simple_path))),
       choice(
         seq(
-          repeat($.annotation_assignment),
+          repeat($.annotation),
           choice(
             seq('{', repeat($._element_definition_or_extend), '}', optional(';')),
             $._required_semicolon,
@@ -914,7 +915,7 @@ module.exports = grammar({
         ),
         seq(
           kw('with'),
-          repeat($.annotation_assignment),
+          repeat($.annotation),
           choice(
             seq(list_of($.simple_path), $._required_semicolon),
             $._required_semicolon,
@@ -947,7 +948,7 @@ module.exports = grammar({
     select_item_definition: $ => choice(
       '*',
       seq(
-        repeat($.annotation_assignment),
+        repeat($.annotation),
         optional_kw('virtual'),
         optional_kw('key'),
         $._select_item_definition_body,
@@ -985,7 +986,7 @@ module.exports = grammar({
           $.identifier,
         ),
       ),
-      repeat($.annotation_assignment_fix),
+      repeat($.annotation),
       optional(
         seq(
           ':',
@@ -996,14 +997,14 @@ module.exports = grammar({
               $.simple_path,
               choice(
                 $.type_association_cont,
-                repeat($.annotation_assignment),
+                repeat($.annotation),
               ),
             ),
-            seq($.type_type_of, repeat($.annotation_assignment)),
+            seq($.type_type_of, repeat($.annotation)),
             seq(
               optional_kw('localized'),
               $.type_reference,
-              repeat($.annotation_assignment),
+              repeat($.annotation),
             ),
             seq(
               $.type_association_base,
@@ -1027,11 +1028,11 @@ module.exports = grammar({
 
     select_item_inline_definition: $ => choice(
       '*',
-      seq(repeat($.annotation_assignment), $._select_item_definition_body),
+      seq(repeat($.annotation), $._select_item_definition_body),
     ),
 
     _element_definition_or_extend: $ => seq(
-      repeat($.annotation_assignment),
+      repeat($.annotation),
       choice(
         seq(kw('extend'), $.extend_element),
         $.element_definition,
@@ -1044,7 +1045,7 @@ module.exports = grammar({
       choice(
         seq(
           optional(kw('with')),
-          repeat($.annotation_assignment),
+          repeat($.annotation),
           choice(
             seq(list_of($.simple_path), $._required_semicolon),
             seq('{', repeat($._element_definition_or_extend), '}', optional(';')),
@@ -1054,7 +1055,7 @@ module.exports = grammar({
           ),
         ),
         seq(
-          repeat($.annotation_assignment),
+          repeat($.annotation),
           choice(
             seq('{', repeat($._element_definition_or_extend), '}', optional(',')),
             $._required_semicolon,
@@ -1203,7 +1204,7 @@ module.exports = grammar({
       $.simple_path,
       optional(seq(':', $.simple_path)),
       optional_kw('with'),
-      repeat($.annotation_assignment),
+      repeat($.annotation),
       choice(
         seq('{', repeat($.annotate_element), '}', optional($.annotate_action), optional(';')),
         seq($.annotate_action, optional(';')),
@@ -1226,9 +1227,9 @@ module.exports = grammar({
       '{',
       repeat(
         seq(
-          repeat($.annotation_assignment),
+          repeat($.annotation),
           $.identifier,
-          repeat($.annotation_assignment),
+          repeat($.annotation),
           optional(
             seq(
               '(',
@@ -1247,7 +1248,7 @@ module.exports = grammar({
 
     annotate_returns: $ => seq(
       kw('returns'),
-      repeat($.annotation_assignment),
+      repeat($.annotation),
       choice(
         seq(
           '{',
@@ -1260,9 +1261,9 @@ module.exports = grammar({
     ),
 
     annotate_element: $ => seq(
-      repeat($.annotation_assignment),
+      repeat($.annotation),
       $.identifier,
-      repeat($.annotation_assignment),
+      repeat($.annotation),
       choice(
         seq('{', repeat($.annotate_element), '}', optional(';')),
         $._required_semicolon,
@@ -1270,36 +1271,28 @@ module.exports = grammar({
     ),
 
     annotate_param: $ => seq(
-      repeat($.annotation_assignment),
+      repeat($.annotation),
       $.identifier,
-      repeat($.annotation_assignment),
+      repeat($.annotation),
     ),
 
-    annotation_assignment: $ => seq(
+    annotation: $ => seq(
       field('sign', '@'),
       choice(
-        $._annotation_assignment_paren,
         $._annotation_assignment_inner,
+        $.annotation_group,
       ),
     ),
 
-    annotation_assignment_fix: $ => seq(
-      field('sign', '@'),
-      choice(
-        $._annotation_assignment_paren,
-        // same as _annotation_assignment_inner, but without ':'
-        $._annotation_path_with_variant,
-      ),
-    ),
-
-    _annotation_assignment_paren: $ => seq(
+    annotation_group_item:  $ => $._annotation_assignment_inner,
+    annotation_group: $ => seq(
       '(',
-      list_of_trailing($._annotation_assignment_inner),
+      list_of_trailing(alias($._annotation_assignment_inner, $.annotation_group_item)),
       ')',
     ),
 
     _annotation_assignment_inner: $ => seq(
-      $._annotation_path_with_variant,
+      $.annotation_path,
       optional(seq(':', $.annotation_value)),
     ),
 
@@ -1312,13 +1305,18 @@ module.exports = grammar({
           $.identifier,
         ),
       ),
+      optional($.annotation_variant),
     ),
 
-    annotation_path_variant: $ => seq('#', $.simple_path),
-
-    _annotation_path_with_variant: $ => seq(
-      field('path', $.annotation_path),
-      optional(field('variant', $.annotation_path_variant)),
+    annotation_variant: $ => seq(
+      '#', $.identifier,
+      repeat(
+        seq(
+          choice('.', '#'),
+          optional('@'),
+          $.identifier,
+        ),
+      )
     ),
 
     annotation_ellipsis_up_to: $ => seq(
@@ -1340,7 +1338,7 @@ module.exports = grammar({
       seq('(', $._condition, ')'),
       seq(
         optional('@'),
-        $._annotation_path_with_variant,
+        $.annotation_path,
       ),
     ),
 
@@ -1355,7 +1353,6 @@ module.exports = grammar({
     named_annotation_value: $ => seq(
       optional('@'),
       $.annotation_path,
-      repeat(seq('#', $.simple_path)), // TODO: `@anno#variant.@anno#second`
       optional(seq(':', $.annotation_value)),
     ),
 
