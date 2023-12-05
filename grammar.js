@@ -1316,7 +1316,7 @@ module.exports = grammar({
           optional('@'),
           $.identifier,
         ),
-      )
+      ),
     ),
 
     annotation_ellipsis_up_to: $ => seq(
