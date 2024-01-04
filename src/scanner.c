@@ -13,14 +13,6 @@ void tree_sitter_cds_external_scanner_reset(void *p) {}
 unsigned tree_sitter_cds_external_scanner_serialize(void *p, char *buffer) { return 0; }
 void tree_sitter_cds_external_scanner_deserialize(void *p, const char *b, unsigned n) {}
 
-static void consume_whitespace(TSLexer *lexer) {
-  for (;;) {
-    if (lexer->lookahead == 0) return; // EOF
-    if (!iswspace(lexer->lookahead)) return;
-    lexer->advance(lexer, true); // true: treat as whitespace
-  }
-}
-
 /// Check if we can omit a semicolon in the source.
 /// A semicolon can be skipped if it is right in front of a closing brace.
 static bool scan_automatic_semicolon(TSLexer *lexer) {
