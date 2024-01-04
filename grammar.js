@@ -109,12 +109,12 @@ module.exports = grammar({
     ),
 
     context_definition: $ => seq(
-      field('kind', kw('context')),
+      kw('context'),
       $._context_or_service_body,
     ),
 
     service_definition: $ => seq(
-      field('kind', kw('service')),
+      kw('service'),
       $._context_or_service_body,
     ),
 
@@ -569,7 +569,8 @@ module.exports = grammar({
     ),
 
     _action_definitions: $ => seq(
-      kw('actions'), '{',
+      kw('actions'),
+      '{',
       repeat(seq(
         repeat($.annotation),
         field('action', $._action_or_function_definition),
@@ -810,12 +811,12 @@ module.exports = grammar({
     function_definition: $ => seq(
       // Attention: No annotation assignment at this position!
       // Note: Functions require a return type, but we allow not having one.
-      field('kind', kw('function')),
+      kw('function'),
       $._action_or_function_body,
     ),
     action_definition: $ => seq(
       // Attention: No annotation assignment at this position!
-      field('kind', kw('action')),
+      kw('action'),
       $._action_or_function_body,
     ),
     _action_or_function_body: $ => seq(

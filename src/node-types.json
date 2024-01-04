@@ -3,16 +3,6 @@
     "type": "action_definition",
     "named": true,
     "fields": {
-      "kind": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "action",
-            "named": false
-          }
-        ]
-      },
       "name": {
         "multiple": false,
         "required": true,
@@ -1521,16 +1511,6 @@
     "type": "context_definition",
     "named": true,
     "fields": {
-      "kind": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "context",
-            "named": false
-          }
-        ]
-      },
       "name": {
         "multiple": false,
         "required": true,
@@ -2652,16 +2632,6 @@
     "type": "function_definition",
     "named": true,
     "fields": {
-      "kind": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "function",
-            "named": false
-          }
-        ]
-      },
       "name": {
         "multiple": false,
         "required": true,
@@ -4098,16 +4068,6 @@
     "type": "service_definition",
     "named": true,
     "fields": {
-      "kind": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "service",
-            "named": false
-          }
-        ]
-      },
       "name": {
         "multiple": false,
         "required": true,
