@@ -338,6 +338,25 @@
     }
   },
   {
+    "type": "annotation_named_value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "annotation_path",
+          "named": true
+        },
+        {
+          "type": "annotation_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "annotation_path",
     "named": true,
     "fields": {},
@@ -366,6 +385,10 @@
       "types": [
         {
           "type": "annotation_ellipsis_up_to",
+          "named": true
+        },
+        {
+          "type": "annotation_named_value",
           "named": true
         },
         {
@@ -402,10 +425,6 @@
         },
         {
           "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "named_annotation_value",
           "named": true
         },
         {
@@ -2818,25 +2837,6 @@
         },
         {
           "type": "value_path",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "named_annotation_value",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "annotation_path",
-          "named": true
-        },
-        {
-          "type": "annotation_value",
           "named": true
         }
       ]
