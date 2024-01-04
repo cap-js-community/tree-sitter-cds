@@ -34,14 +34,8 @@ jobs:
           git diff --diff-filter=M --color | head -n 100
           git diff --diff-filter=M --quiet || (echo 'Generated grammar is not up-to-date: run `npm run build` and commit all changes' && false)
 
-      - run: npm run test
-
-      - name: shellcheck
-        run: |
-          ./tools/checks/run_shellcheck.sh
-
-      - name: lint
-        run: npm run lint
+      - run: npm run test:all
+      - run: npm run lint
 
       - name: test rust bindings
         run: |

@@ -12,6 +12,9 @@ cd "$(dirname "${BASH_SOURCE[0]}")/../.." > /dev/null 2>&1
 npm --silent ci
 npm --silent run build
 npm --silent run test
+
+npm run test:queries
+
 ./tools/checks/run_shellcheck.sh
 
 cargo --quiet build
