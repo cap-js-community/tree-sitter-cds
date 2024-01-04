@@ -477,7 +477,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "parameter_definition_list"
+              "name": "parameter_list"
             },
             {
               "type": "BLANK"
@@ -5631,7 +5631,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "parameter_definition_list"
+                  "name": "parameter_list"
                 },
                 {
                   "type": "SEQ",
@@ -5788,7 +5788,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "parameter_definition_list"
+          "name": "parameter_list"
         },
         {
           "type": "CHOICE",
@@ -5805,7 +5805,7 @@
         }
       ]
     },
-    "parameter_definition_list": {
+    "parameter_list": {
       "type": "SEQ",
       "members": [
         {
