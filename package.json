@@ -1,6 +1,5 @@
 {
   "name": "@cap-js-community/tree-sitter-cds",
-  "private": true,
   "version": "0.0.1",
   "description": "tree-sitter grammar for SAP CAP CDS",
   "main": "bindings/node",
@@ -29,7 +28,8 @@
     "test": "tree-sitter test",
     "test:update": "tree-sitter test --update",
     "playground": "npm run build && tree-sitter build-wasm && tree-sitter playground",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "log:versions": "which tree-sitter && tree-sitter --version"
   },
   "engines" : {
     "node" : ">=18.0.0"
