@@ -41,7 +41,6 @@ module.exports = grammar({
 
   externals: $ => [
     $._automatic_semicolon,
-    $._dot_before_brace_or_asterisk,
   ],
 
   rules: {
@@ -967,13 +966,14 @@ module.exports = grammar({
                 optional($.excluding_clause),
               ),
               seq(
-                $._dot_before_brace_or_asterisk,
                 choice(
                   seq(
-                    $.select_item_inline_list,
+                    '.{',
+                    optional_list_of_trailing($.select_item_inline_definition),
+                    '}',
                     optional($.excluding_clause),
                   ),
-                  '*',
+                  '.*',
                 ),
               ),
             ),

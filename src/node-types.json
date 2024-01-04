@@ -3899,6 +3899,10 @@
           "named": true
         },
         {
+          "type": "select_item_inline_definition",
+          "named": true
+        },
+        {
           "type": "select_item_inline_list",
           "named": true
         },
@@ -4022,6 +4026,10 @@
         },
         {
           "type": "quoted_literal",
+          "named": true
+        },
+        {
+          "type": "select_item_inline_definition",
           "named": true
         },
         {
@@ -5367,11 +5375,19 @@
     "named": false
   },
   {
+    "type": ".*",
+    "named": false
+  },
+  {
     "type": "..",
     "named": false
   },
   {
     "type": "...",
+    "named": false
+  },
+  {
+    "type": ".{",
     "named": false
   },
   {
