@@ -29,8 +29,8 @@ jobs:
       - run: npm run build
       - name: Ensure generated files are up-to-date
         run: |
-          git diff --diff-filter=M --color | cat
-          git diff --diff-filter=M --quiet || (echo "Generated grammar is not up-to-date: run `npm run build` and commit all changes"; exit 1)
+          git diff --diff-filter=M --color | head -n 100
+          git diff --diff-filter=M --quiet || echo "Generated grammar is not up-to-date: run `npm run build` and commit all changes" && exit 1
 
       - run: npm run test
 
