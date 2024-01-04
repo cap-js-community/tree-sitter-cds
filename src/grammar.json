@@ -352,17 +352,13 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "FIELD",
-          "name": "kind",
+          "type": "ALIAS",
           "content": {
-            "type": "ALIAS",
-            "content": {
-              "type": "PATTERN",
-              "value": "[cC][oO][nN][tT][eE][xX][tT]"
-            },
-            "named": false,
-            "value": "context"
-          }
+            "type": "PATTERN",
+            "value": "[cC][oO][nN][tT][eE][xX][tT]"
+          },
+          "named": false,
+          "value": "context"
         },
         {
           "type": "SYMBOL",
@@ -374,17 +370,13 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "FIELD",
-          "name": "kind",
+          "type": "ALIAS",
           "content": {
-            "type": "ALIAS",
-            "content": {
-              "type": "PATTERN",
-              "value": "[sS][eE][rR][vV][iI][cC][eE]"
-            },
-            "named": false,
-            "value": "service"
-          }
+            "type": "PATTERN",
+            "value": "[sS][eE][rR][vV][iI][cC][eE]"
+          },
+          "named": false,
+          "value": "service"
         },
         {
           "type": "SYMBOL",
@@ -5744,17 +5736,13 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "FIELD",
-          "name": "kind",
+          "type": "ALIAS",
           "content": {
-            "type": "ALIAS",
-            "content": {
-              "type": "PATTERN",
-              "value": "[fF][uU][nN][cC][tT][iI][oO][nN]"
-            },
-            "named": false,
-            "value": "function"
-          }
+            "type": "PATTERN",
+            "value": "[fF][uU][nN][cC][tT][iI][oO][nN]"
+          },
+          "named": false,
+          "value": "function"
         },
         {
           "type": "SYMBOL",
@@ -5766,17 +5754,13 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "FIELD",
-          "name": "kind",
+          "type": "ALIAS",
           "content": {
-            "type": "ALIAS",
-            "content": {
-              "type": "PATTERN",
-              "value": "[aA][cC][tT][iI][oO][nN]"
-            },
-            "named": false,
-            "value": "action"
-          }
+            "type": "PATTERN",
+            "value": "[aA][cC][tT][iI][oO][nN]"
+          },
+          "named": false,
+          "value": "action"
         },
         {
           "type": "SYMBOL",

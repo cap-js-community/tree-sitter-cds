@@ -1,9 +1,9 @@
 ================================================================================
-Context: Separate lines; no content
+Service: Separate lines; no content
 ================================================================================
 
-context C;
-context A
+service C;
+service A
  .
   B
    .
@@ -16,10 +16,10 @@ context A
 --------------------------------------------------------------------------------
 
 (cds
-  (context_definition
+  (service_definition
     (simple_path
       (identifier)))
-  (context_definition
+  (service_definition
     (simple_path
       (identifier)
       (identifier)
@@ -27,13 +27,13 @@ context A
       (identifier))))
 
 ================================================================================
-Context: With sub-context and definitions
+Service: With sub-service and definitions
 ================================================================================
 
 @anno
-context C {
+service C {
   @anno
-  context C {
+  service C {
     type T;
   };
   type T;
@@ -45,13 +45,13 @@ context C {
   (annotation
     (annotation_path
       (identifier)))
-  (context_definition
+  (service_definition
     (simple_path
       (identifier))
     (annotation
       (annotation_path
         (identifier)))
-    (context_definition
+    (service_definition
       (simple_path
         (identifier))
       (type_definition
