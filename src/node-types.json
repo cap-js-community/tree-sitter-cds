@@ -609,30 +609,6 @@
     "type": "aspect_definition",
     "named": true,
     "fields": {
-      "action": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "action_definition",
-            "named": true
-          },
-          {
-            "type": "function_definition",
-            "named": true
-          }
-        ]
-      },
-      "elements": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "element_definitions",
-            "named": true
-          }
-        ]
-      },
       "includes": {
         "multiple": true,
         "required": false,
@@ -664,6 +640,14 @@
       "types": [
         {
           "type": "annotation",
+          "named": true
+        },
+        {
+          "type": "bound_actions",
+          "named": true
+        },
+        {
+          "type": "element_definitions",
           "named": true
         }
       ]
@@ -1131,6 +1115,29 @@
     "type": "boolean",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "bound_actions",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "action_definition",
+          "named": true
+        },
+        {
+          "type": "annotation",
+          "named": true
+        },
+        {
+          "type": "function_definition",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "calc_element_assignment",
@@ -1836,20 +1843,6 @@
     "type": "entity_definition",
     "named": true,
     "fields": {
-      "action": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "action_definition",
-            "named": true
-          },
-          {
-            "type": "function_definition",
-            "named": true
-          }
-        ]
-      },
       "elements": {
         "multiple": false,
         "required": false,
@@ -1907,6 +1900,10 @@
         },
         {
           "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "bound_actions",
           "named": true
         },
         {
@@ -2127,20 +2124,6 @@
     "type": "extend_artifact",
     "named": true,
     "fields": {
-      "action": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "action_definition",
-            "named": true
-          },
-          {
-            "type": "function_definition",
-            "named": true
-          }
-        ]
-      },
       "element": {
         "multiple": true,
         "required": false,
@@ -2188,6 +2171,10 @@
         },
         {
           "type": "aspect_definition",
+          "named": true
+        },
+        {
+          "type": "bound_actions",
           "named": true
         },
         {
@@ -2400,20 +2387,6 @@
     "type": "extend_projection",
     "named": true,
     "fields": {
-      "action": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "action_definition",
-            "named": true
-          },
-          {
-            "type": "function_definition",
-            "named": true
-          }
-        ]
-      },
       "name": {
         "multiple": false,
         "required": true,
@@ -2434,6 +2407,10 @@
           "named": true
         },
         {
+          "type": "bound_actions",
+          "named": true
+        },
+        {
           "type": "select_item_definition",
           "named": true
         }
@@ -2444,20 +2421,6 @@
     "type": "extend_structure",
     "named": true,
     "fields": {
-      "action": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "action_definition",
-            "named": true
-          },
-          {
-            "type": "function_definition",
-            "named": true
-          }
-        ]
-      },
       "name": {
         "multiple": false,
         "required": true,
@@ -2475,6 +2438,10 @@
       "types": [
         {
           "type": "annotation",
+          "named": true
+        },
+        {
+          "type": "bound_actions",
           "named": true
         },
         {

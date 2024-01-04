@@ -148,30 +148,31 @@ entity MyView as SELECT FROM MyEntity {} actions {
     (simple_path
       (identifier))
     (element_definitions)
-    (action_definition
-      (simple_path
-        (identifier))
-      (parameter_list
-        (parameter_definition
-          (annotation
-            (annotation_path
-              (identifier)))
-          (identifier)
-          (type_reference
-            (simple_path
-              (identifier))))))
-    (function_definition
-      (simple_path
-        (identifier))
-      (parameter_list
-        (parameter_definition
-          (annotation
-            (annotation_path
-              (identifier)))
-          (identifier)
-          (type_reference
-            (simple_path
-              (identifier)))))))
+    (bound_actions
+      (action_definition
+        (simple_path
+          (identifier))
+        (parameter_list
+          (parameter_definition
+            (annotation
+              (annotation_path
+                (identifier)))
+            (identifier)
+            (type_reference
+              (simple_path
+                (identifier))))))
+      (function_definition
+        (simple_path
+          (identifier))
+        (parameter_list
+          (parameter_definition
+            (annotation
+              (annotation_path
+                (identifier)))
+            (identifier)
+            (type_reference
+              (simple_path
+                (identifier))))))))
   (entity_definition
     (simple_path
       (identifier))
@@ -184,27 +185,28 @@ entity MyView as SELECT FROM MyEntity {} actions {
                 (from_path
                   (identifier)))))
           (select_item_definition_list))))
-    (action_definition
-      (simple_path
-        (identifier))
-      (parameter_list
-        (parameter_definition
-          (annotation
-            (annotation_path
-              (identifier)))
-          (identifier)
-          (type_reference
-            (simple_path
-              (identifier))))))
-    (function_definition
-      (simple_path
-        (identifier))
-      (parameter_list
-        (parameter_definition
-          (annotation
-            (annotation_path
-              (identifier)))
-          (identifier)
-          (type_reference
-            (simple_path
-              (identifier))))))))
+    (bound_actions
+      (action_definition
+        (simple_path
+          (identifier))
+        (parameter_list
+          (parameter_definition
+            (annotation
+              (annotation_path
+                (identifier)))
+            (identifier)
+            (type_reference
+              (simple_path
+                (identifier))))))
+      (function_definition
+        (simple_path
+          (identifier))
+        (parameter_list
+          (parameter_definition
+            (annotation
+              (annotation_path
+                (identifier)))
+            (identifier)
+            (type_reference
+              (simple_path
+                (identifier)))))))))

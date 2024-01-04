@@ -128,6 +128,7 @@ module.exports = grammar({
     ),
 
     entity_definition: $ => seq(
+      optional_kw('abstract'),
       kw('entity'),
       field('name', $.simple_path),
       repeat($.annotation),
@@ -136,14 +137,14 @@ module.exports = grammar({
         seq(
           optional(seq(':', field('includes', optional(list_of_trailing($.simple_path))))),
           field('elements', $.element_definitions),
-          optional($._action_definitions),
+          optional($.bound_actions),
           optional(';'),
         ),
         seq(
           kw('as'),
           $.query_expression,
           choice(
-            seq($._action_definitions, optional(';')),
+            seq($.bound_actions, optional(';')),
             $._required_semicolon,
           ),
         ),
@@ -157,7 +158,7 @@ module.exports = grammar({
             optional($.order_by_clause),
             optional($.limit_clause),
           ),
-          optional($._action_definitions),
+          optional($.bound_actions),
           optional(';'),
         ),
       ),
@@ -568,12 +569,12 @@ module.exports = grammar({
       $._required_semicolon,
     ),
 
-    _action_definitions: $ => seq(
+    bound_actions: $ => seq(
       kw('actions'),
       '{',
       repeat(seq(
         repeat($.annotation),
-        field('action', $._action_or_function_definition),
+        $._action_or_function_definition,
       )),
       '}',
     ),
@@ -612,17 +613,14 @@ module.exports = grammar({
     ),
 
     aspect_definition: $ => seq(
-      choice(
-        kw('aspect'),
-        seq(kw('abstract'), kw('entity')),
-      ),
+      kw('aspect'),
       field('name', $.simple_path),
       repeat($.annotation),
-      optional(seq(':', field('includes', optional(list_of_trailing($.simple_path))))),
+      optional(seq(':', field('includes', optional_list_of_trailing($.simple_path)))),
       choice(
         seq(
-          field('elements', $.element_definitions),
-          optional($._action_definitions),
+          $.element_definitions,
+          optional($.bound_actions),
           optional(';'),
         ),
         $._required_semicolon,
@@ -891,11 +889,11 @@ module.exports = grammar({
           '{',
           optional_list_of_trailing($.select_item_definition),
           '}',
-          optional($._action_definitions),
+          optional($.bound_actions),
           optional(';'),
         ),
         seq(
-          $._action_definitions,
+          $.bound_actions,
           optional(';'),
         ),
         $._required_semicolon,
@@ -923,7 +921,7 @@ module.exports = grammar({
             seq(optional(kw('elements')), '{', repeat($._element_definition_or_extend), '}', optional(';')),
             seq(kw('definitions'), '{', repeat($._definition), '}', optional(';')),
             seq(kw('columns'), '{', optional_list_of_trailing($.select_item_definition), '}', optional(';')),
-            seq($._action_definitions, optional(';')),
+            seq($.bound_actions, optional(';')),
             seq($.element_enum_definition, optional(';')),
           ),
         ),
@@ -935,11 +933,11 @@ module.exports = grammar({
         '{',
         repeat($._element_definition_or_extend),
         '}',
-        optional($._action_definitions),
+        optional($.bound_actions),
         optional(';'),
       ),
       seq(
-        $._action_definitions,
+        $.bound_actions,
         optional(';'),
       ),
       $._required_semicolon,
