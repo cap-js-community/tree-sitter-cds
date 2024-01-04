@@ -138,21 +138,21 @@ type T;
     (annotation_path
       (identifier))
     (annotation_value
-      (named_annotation_value
+      (annotation_named_value
         (annotation_path
           (identifier))
         (annotation_value
-          (named_annotation_value
+          (annotation_named_value
             (annotation_path
               (identifier))
             (annotation_value
               (annotation_value
-                (named_annotation_value
+                (annotation_named_value
                   (annotation_path
                     (identifier))
                   (annotation_value
                     (null)))
-                (named_annotation_value
+                (annotation_named_value
                   (annotation_path
                     (identifier))
                   (annotation_value

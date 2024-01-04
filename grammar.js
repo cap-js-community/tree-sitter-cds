@@ -1325,7 +1325,7 @@ module.exports = grammar({
     ),
 
     annotation_value: $ => choice(
-      seq('{', list_of_trailing($.named_annotation_value), '}'),
+      seq('{', list_of_trailing($.annotation_named_value), '}'),
       seq('[',
         list_of_trailing(choice($.annotation_ellipsis_up_to, $.annotation_value)),
         ']',
@@ -1350,7 +1350,7 @@ module.exports = grammar({
       seq($.nullability, optional($.default_value)),
     ),
 
-    named_annotation_value: $ => seq(
+    annotation_named_value: $ => seq(
       optional('@'),
       $.annotation_path,
       optional(seq(':', $.annotation_value)),
