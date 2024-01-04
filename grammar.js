@@ -150,7 +150,7 @@ module.exports = grammar({
         ),
         seq(
           kw('as'),
-          $.projection_spec,
+          $.projection_clause,
           seq(
             optional(seq(kw('where'), $._condition)),
             optional(seq(kw('group'), kw('by'), list_of($._expression))),
@@ -184,18 +184,18 @@ module.exports = grammar({
               ),
             ),
             seq($.element_definitions, optional(';')),
-            seq($.projection_spec, $._required_semicolon),
+            seq($.projection_clause, $._required_semicolon),
           ),
         ),
       ),
     ),
 
-    projection_spec: $ => seq(
+    projection_clause: $ => seq(
       kw('projection'),
       kw('on'),
       $.from_path,
       optional(seq(':', $.from_path)),
-      optional(seq(kw('as'), $.identifier)),
+      optional(seq(kw('as'), field('alias', $.identifier))),
       optional($.select_item_definition_list),
       optional($.excluding_clause),
     ),
@@ -826,7 +826,7 @@ module.exports = grammar({
 
     parameter_list: $ => seq(
       '(',
-      optional_list_of_trailing(field('parameter', $.parameter_definition)),
+      optional_list_of_trailing($.parameter_definition),
       ')',
     ),
 

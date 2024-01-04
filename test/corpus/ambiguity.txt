@@ -24,7 +24,7 @@ entity P(P: String) as projection on E {
         (type_reference
           (simple_path
             (identifier)))))
-    (projection_spec
+    (projection_clause
       (from_path
         (identifier))
       (select_item_definition_list

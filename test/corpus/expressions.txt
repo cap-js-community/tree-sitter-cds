@@ -12,7 +12,7 @@ entity P as projection on E {
   (entity_definition
     (name
       (identifier))
-    (projection_spec
+    (projection_clause
       (from_path
         (identifier))
       (select_item_definition_list

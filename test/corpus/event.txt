@@ -1,0 +1,57 @@
+================================================================================
+Event: Scalar
+================================================================================
+
+event A : String;
+event A : many String; // FIXME: Not an include!
+
+--------------------------------------------------------------------------------
+
+(cds
+  (event_definition
+    (name
+      (identifier))
+    (simple_path
+      (identifier)))
+  (event_definition
+    (name
+      (identifier))
+    (simple_path
+      (identifier))
+    (ERROR))
+  (comment))
+
+================================================================================
+Event: Struct
+================================================================================
+
+event A : { elem: String; };
+
+--------------------------------------------------------------------------------
+
+(cds
+  (event_definition
+    (name
+      (identifier))
+    (element_definitions
+      (element_definition
+        (name)
+        (simple_path
+          (identifier))))))
+
+================================================================================
+Event: Projection
+================================================================================
+
+event A : projection on ns.E;
+
+--------------------------------------------------------------------------------
+
+(cds
+  (event_definition
+    (name
+      (identifier))
+    (projection_clause
+      (from_path
+        (identifier)
+        (identifier)))))
