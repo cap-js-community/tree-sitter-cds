@@ -18,25 +18,25 @@
 ;------------
 
 (parameter_definition
-  name: (identifier) @local.definition)
+  (name) @local.definition)
 
 (artifact_import
-  name: (simple_path) @local.definition)
+  alias: (_) @local.definition)
 
 (entity_definition
-  name: (simple_path) @local.definition)
+  (name) @local.definition)
 
 (view_definition
-  name: (simple_path) @local.definition)
+  (name) @local.definition)
 
 (type_definition
-  name: (simple_path) @local.definition)
+  (name) @local.definition)
 
 (event_definition
-  name: (simple_path) @local.definition)
+  (name) @local.definition)
 
 (aspect_definition
-  name: (simple_path) @local.definition)
+  (name) @local.definition)
 
 
 ; References

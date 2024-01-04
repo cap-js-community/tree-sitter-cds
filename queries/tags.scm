@@ -3,7 +3,7 @@
   (comment)* @doc
   .
   (entity_definition
-   name: (simple_path) @name) @definition.class
+   (name) @name) @definition.class
 )
 
 (namespace) @definition.module

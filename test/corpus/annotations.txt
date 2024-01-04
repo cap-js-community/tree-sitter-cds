@@ -21,7 +21,7 @@ type T;
         (annotation_path
           (identifier)))))
   (type_definition
-    (simple_path
+    (name
       (identifier))))
 
 ================================================================================
@@ -53,7 +53,7 @@ type T;
         (annotation_value
           (number)))))
   (type_definition
-    (simple_path
+    (name
       (identifier))))
 
 ================================================================================
@@ -91,7 +91,7 @@ type T;
           (annotation_variant
             (identifier))))))
   (type_definition
-    (simple_path
+    (name
       (identifier))))
 
 ================================================================================
@@ -115,7 +115,7 @@ type T;
         (annotation_value
           (single_quote_string)))))
   (type_definition
-    (simple_path
+    (name
       (identifier))))
 
 ================================================================================
@@ -163,5 +163,5 @@ type T;
                     (annotation_value
                       (number)))))))))))
   (type_definition
-    (simple_path
+    (name
       (identifier))))

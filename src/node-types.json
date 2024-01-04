@@ -8,7 +8,7 @@
         "required": true,
         "types": [
           {
-            "type": "simple_path",
+            "type": "name",
             "named": true
           }
         ]
@@ -199,7 +199,7 @@
         "required": true,
         "types": [
           {
-            "type": "simple_path",
+            "type": "name",
             "named": true
           }
         ]
@@ -592,17 +592,17 @@
             "named": true
           }
         ]
-      },
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "simple_path",
-            "named": true
-          }
-        ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "simple_path",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -628,7 +628,7 @@
         "required": true,
         "types": [
           {
-            "type": "simple_path",
+            "type": "name",
             "named": true
           }
         ]
@@ -1523,7 +1523,7 @@
         "required": true,
         "types": [
           {
-            "type": "simple_path",
+            "type": "name",
             "named": true
           }
         ]
@@ -1707,7 +1707,7 @@
         "required": true,
         "types": [
           {
-            "type": "identifier",
+            "type": "name",
             "named": true
           }
         ]
@@ -1872,7 +1872,7 @@
         "required": true,
         "types": [
           {
-            "type": "simple_path",
+            "type": "name",
             "named": true
           }
         ]
@@ -2004,10 +2004,21 @@
   {
     "type": "enum_symbol_definition",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "annotation",
@@ -2057,7 +2068,7 @@
         "required": true,
         "types": [
           {
-            "type": "simple_path",
+            "type": "name",
             "named": true
           }
         ]
@@ -2143,7 +2154,7 @@
         "required": true,
         "types": [
           {
-            "type": "simple_path",
+            "type": "name",
             "named": true
           }
         ]
@@ -2271,7 +2282,7 @@
         "required": true,
         "types": [
           {
-            "type": "simple_path",
+            "type": "name",
             "named": true
           }
         ]
@@ -2392,7 +2403,7 @@
         "required": true,
         "types": [
           {
-            "type": "simple_path",
+            "type": "name",
             "named": true
           }
         ]
@@ -2426,7 +2437,7 @@
         "required": true,
         "types": [
           {
-            "type": "simple_path",
+            "type": "name",
             "named": true
           }
         ]
@@ -2604,7 +2615,7 @@
         "required": true,
         "types": [
           {
-            "type": "simple_path",
+            "type": "name",
             "named": true
           }
         ]
@@ -2682,7 +2693,7 @@
         "required": true,
         "types": [
           {
-            "type": "identifier",
+            "type": "name",
             "named": true
           }
         ]
@@ -2774,6 +2785,21 @@
         },
         {
           "type": "value_path",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "identifier",
           "named": true
         }
       ]
@@ -3080,7 +3106,7 @@
         "required": true,
         "types": [
           {
-            "type": "identifier",
+            "type": "name",
             "named": true
           }
         ]
@@ -4040,7 +4066,7 @@
         "required": true,
         "types": [
           {
-            "type": "simple_path",
+            "type": "name",
             "named": true
           }
         ]
@@ -4744,7 +4770,7 @@
         "required": true,
         "types": [
           {
-            "type": "simple_path",
+            "type": "name",
             "named": true
           }
         ]
@@ -5168,7 +5194,7 @@
         "required": true,
         "types": [
           {
-            "type": "simple_path",
+            "type": "name",
             "named": true
           }
         ]

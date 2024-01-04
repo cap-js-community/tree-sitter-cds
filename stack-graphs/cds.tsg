@@ -54,7 +54,7 @@ attribute symbol_reference = symbol  => type = "push_symbol", symbol = symbol, i
     node @def.lexical_defs
 }
 
-(context_definition name: (simple_path) @name) @def {
+(context_definition (name) @name) @def {
     node def
     attr (def) node_definition = @name
 
@@ -71,7 +71,7 @@ attribute symbol_reference = symbol  => type = "push_symbol", symbol = symbol, i
 }
 
 
-(entity_definition name: (simple_path) @name) @def {
+(entity_definition (name) @name) @def {
     node def
     attr (def) node_definition = @name
 

@@ -8,7 +8,7 @@ type S : String;
 
 (cds
   (type_definition
-    (simple_path
+    (name
       (identifier))
     (simple_path
       (identifier))))
@@ -23,7 +23,7 @@ type T : String(length: 10);
 
 (cds
   (type_definition
-    (simple_path
+    (name
       (identifier))
     (simple_path
       (identifier))
@@ -42,11 +42,11 @@ type T {};
 
 (cds
   (type_definition
-    (simple_path
+    (name
       (identifier))
     (element_definitions))
   (type_definition
-    (simple_path
+    (name
       (identifier))
     (element_definitions)))
 
@@ -61,18 +61,18 @@ type T { e : String; };
 
 (cds
   (type_definition
-    (simple_path
+    (name
       (identifier))
     (element_definitions
       (element_definition
-        (identifier)
+        (name)
         (simple_path
           (identifier)))))
   (type_definition
-    (simple_path
+    (name
       (identifier))
     (element_definitions
       (element_definition
-        (identifier)
+        (name)
         (simple_path
           (identifier))))))

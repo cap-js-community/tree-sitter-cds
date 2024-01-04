@@ -171,25 +171,23 @@
 (namespace path: (_) @namespace)
 
 (action_definition
-  name: (simple_path
-          (identifier) @function))
+  (name) @function)
 
 (function_definition
-  name: (simple_path
-          (identifier) @function))
+  (name) @function)
 
 (parameter_definition type: (_ (_ (_ (identifier) @type))))
-(parameter_definition name: (identifier) @variable.parameter)
+(parameter_definition (name) @variable.parameter)
 
-(entity_definition name: (_) @function)
-(type_definition name: (_) @function)
-(view_definition name: (_) @function)
-(event_definition name: (_) @function)
-(annotation_definition name: (_) @function)
-(context_definition name: (_) @function)
-(service_definition name: (_) @function)
-(action_definition name: (_) @function)
-(function_definition name: (_) @function)
+(entity_definition (name) @function)
+(type_definition (name) @function)
+(view_definition (name) @function)
+(event_definition (name) @function)
+(annotation_definition (name) @function)
+(context_definition (name) @function)
+(service_definition (name) @function)
+(action_definition (name) @function)
+(function_definition (name) @function)
 
 (annotation_path (identifier) @attribute)
 (annotation _ @attribute) ; mark @

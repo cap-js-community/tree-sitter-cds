@@ -16,11 +16,11 @@ entity P(P: String) as projection on E {
 
 (cds
   (entity_definition
-    (simple_path
+    (name
       (identifier))
     (parameter_list
       (parameter_definition
-        (identifier)
+        (name)
         (type_reference
           (simple_path
             (identifier)))))

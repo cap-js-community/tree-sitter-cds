@@ -13,22 +13,22 @@ entity Ä {
 
 (cds
   (entity_definition
-    (simple_path
+    (name
       (identifier))
     (element_definitions
       (element_definition
-        (identifier)
+        (name)
         (simple_path
           (identifier)))
       (element_definition
-        (identifier)
+        (name)
         (simple_path
           (identifier)))
       (element_definition
-        (identifier)
+        (name)
         (simple_path
           (identifier)))
       (element_definition
-        (identifier)
+        (name)
         (simple_path
           (identifier))))))
