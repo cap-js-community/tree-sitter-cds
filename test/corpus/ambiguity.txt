@@ -18,7 +18,7 @@ entity P(P: String) as projection on E {
   (entity_definition
     (simple_path
       (identifier))
-    (parameter_definition_list
+    (parameter_list
       (parameter_definition
         (identifier)
         (type_reference

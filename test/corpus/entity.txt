@@ -52,7 +52,7 @@ entity E(P : String(length: 100), P2: Integer) {
   (entity_definition
     (simple_path
       (identifier))
-    (parameter_definition_list
+    (parameter_list
       (parameter_definition
         (identifier)
         (type_reference

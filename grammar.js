@@ -131,7 +131,7 @@ module.exports = grammar({
       kw('entity'),
       field('name', $.simple_path),
       repeat($.annotation),
-      optional($.parameter_definition_list),
+      optional($.parameter_list),
       choice(
         seq(
           optional(seq(':', field('includes', optional(list_of_trailing($.simple_path))))),
@@ -793,7 +793,7 @@ module.exports = grammar({
       field('name', $.simple_path),
       repeat($.annotation),
       optional(choice(
-        $.parameter_definition_list,
+        $.parameter_list,
         seq(
           kw('with'), kw('parameters'),
           list_of_trailing($.parameter_definition),
@@ -822,11 +822,11 @@ module.exports = grammar({
     _action_or_function_body: $ => seq(
       field('name', $.simple_path),
       repeat($.annotation),
-      $.parameter_definition_list,
+      $.parameter_list,
       choice( $.return_type, $._required_semicolon ),
     ),
 
-    parameter_definition_list: $ => seq(
+    parameter_list: $ => seq(
       '(',
       optional_list_of_trailing(field('parameter', $.parameter_definition)),
       ')',

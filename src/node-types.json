@@ -23,7 +23,7 @@
           "named": true
         },
         {
-          "type": "parameter_definition_list",
+          "type": "parameter_list",
           "named": true
         },
         {
@@ -1946,7 +1946,7 @@
           "named": true
         },
         {
-          "type": "parameter_definition_list",
+          "type": "parameter_list",
           "named": true
         },
         {
@@ -2652,7 +2652,7 @@
           "named": true
         },
         {
-          "type": "parameter_definition_list",
+          "type": "parameter_list",
           "named": true
         },
         {
@@ -3169,7 +3169,7 @@
     }
   },
   {
-    "type": "parameter_definition_list",
+    "type": "parameter_list",
     "named": true,
     "fields": {
       "parameter": {
@@ -5220,7 +5220,7 @@
           "named": true
         },
         {
-          "type": "parameter_definition_list",
+          "type": "parameter_list",
           "named": true
         },
         {

@@ -11,7 +11,7 @@ function A(P: String) returns String;
   (action_definition
     (simple_path
       (identifier))
-    (parameter_definition_list
+    (parameter_list
       (parameter_definition
         (identifier)
         (type_reference
@@ -24,7 +24,7 @@ function A(P: String) returns String;
   (function_definition
     (simple_path
       (identifier))
-    (parameter_definition_list
+    (parameter_list
       (parameter_definition
         (identifier)
         (type_reference
@@ -53,7 +53,7 @@ function A(@anno P: String) returns {
   (action_definition
     (simple_path
       (identifier))
-    (parameter_definition_list
+    (parameter_list
       (parameter_definition
         (annotation
           (annotation_path
@@ -73,7 +73,7 @@ function A(@anno P: String) returns {
   (function_definition
     (simple_path
       (identifier))
-    (parameter_definition_list
+    (parameter_list
       (parameter_definition
         (annotation
           (annotation_path
@@ -105,7 +105,7 @@ function F(@anno P: String);
   (action_definition
     (simple_path
       (identifier))
-    (parameter_definition_list
+    (parameter_list
       (parameter_definition
         (annotation
           (annotation_path
@@ -117,7 +117,7 @@ function F(@anno P: String);
   (function_definition
     (simple_path
       (identifier))
-    (parameter_definition_list
+    (parameter_list
       (parameter_definition
         (annotation
           (annotation_path
@@ -151,7 +151,7 @@ entity MyView as SELECT FROM MyEntity {} actions {
     (action_definition
       (simple_path
         (identifier))
-      (parameter_definition_list
+      (parameter_list
         (parameter_definition
           (annotation
             (annotation_path
@@ -163,7 +163,7 @@ entity MyView as SELECT FROM MyEntity {} actions {
     (function_definition
       (simple_path
         (identifier))
-      (parameter_definition_list
+      (parameter_list
         (parameter_definition
           (annotation
             (annotation_path
@@ -187,7 +187,7 @@ entity MyView as SELECT FROM MyEntity {} actions {
     (action_definition
       (simple_path
         (identifier))
-      (parameter_definition_list
+      (parameter_list
         (parameter_definition
           (annotation
             (annotation_path
@@ -199,7 +199,7 @@ entity MyView as SELECT FROM MyEntity {} actions {
     (function_definition
       (simple_path
         (identifier))
-      (parameter_definition_list
+      (parameter_list
         (parameter_definition
           (annotation
             (annotation_path
