@@ -67,7 +67,7 @@ It is _not_ a 100% CAP CDS compatible parser. There are places that this grammar
 can't parse properly, yet.   There is also no error reporting by tree-sitter and
 the syntax tree can change any time, as this project is not complete, yet.
 
-In the future, we may try to [stack-graphs by GitHub][stack-graphs].
+In the future, we may try to add support for [stack-graphs by GitHub][stack-graphs].
 
 ## Code of Conduct
 
