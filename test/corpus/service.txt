@@ -17,10 +17,10 @@ service A
 
 (cds
   (service_definition
-    (simple_path
+    (name
       (identifier)))
   (service_definition
-    (simple_path
+    (name
       (identifier)
       (identifier)
       (identifier)
@@ -46,17 +46,17 @@ service C {
     (annotation_path
       (identifier)))
   (service_definition
-    (simple_path
+    (name
       (identifier))
     (annotation
       (annotation_path
         (identifier)))
     (service_definition
-      (simple_path
+      (name
         (identifier))
       (type_definition
-        (simple_path
+        (name
           (identifier))))
     (type_definition
-      (simple_path
+      (name
         (identifier)))))

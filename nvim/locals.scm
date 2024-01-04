@@ -10,10 +10,10 @@
 ;------------
 
 (parameter_definition
-  name: (identifier) @definition.var)
+  (name) @definition.var)
 
 (artifact_import
-  name: (simple_path) @definition.import)
+  alias: (_) @definition.import)
 
 ; References
 ;------------

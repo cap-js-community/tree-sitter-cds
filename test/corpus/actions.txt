@@ -9,11 +9,11 @@ function A(P: String) returns String;
 
 (cds
   (action_definition
-    (simple_path
+    (name
       (identifier))
     (parameter_list
       (parameter_definition
-        (identifier)
+        (name)
         (type_reference
           (simple_path
             (identifier)))))
@@ -22,11 +22,11 @@ function A(P: String) returns String;
         (simple_path
           (identifier)))))
   (function_definition
-    (simple_path
+    (name
       (identifier))
     (parameter_list
       (parameter_definition
-        (identifier)
+        (name)
         (type_reference
           (simple_path
             (identifier)))))
@@ -51,41 +51,41 @@ function A(@anno P: String) returns {
 
 (cds
   (action_definition
-    (simple_path
+    (name
       (identifier))
     (parameter_list
       (parameter_definition
         (annotation
           (annotation_path
             (identifier)))
-        (identifier)
+        (name)
         (type_reference
           (simple_path
             (identifier)))))
     (return_type
       (element_definitions
         (element_definition
-          (identifier)
+          (name)
           (simple_path
             (identifier))
           (type_argument
             (number))))))
   (function_definition
-    (simple_path
+    (name
       (identifier))
     (parameter_list
       (parameter_definition
         (annotation
           (annotation_path
             (identifier)))
-        (identifier)
+        (name)
         (type_reference
           (simple_path
             (identifier)))))
     (return_type
       (element_definitions
         (element_definition
-          (identifier)
+          (name)
           (simple_path
             (identifier))
           (type_argument
@@ -103,26 +103,26 @@ function F(@anno P: String);
 
 (cds
   (action_definition
-    (simple_path
+    (name
       (identifier))
     (parameter_list
       (parameter_definition
         (annotation
           (annotation_path
             (identifier)))
-        (identifier)
+        (name)
         (type_reference
           (simple_path
             (identifier))))))
   (function_definition
-    (simple_path
+    (name
       (identifier))
     (parameter_list
       (parameter_definition
         (annotation
           (annotation_path
             (identifier)))
-        (identifier)
+        (name)
         (type_reference
           (simple_path
             (identifier)))))))
@@ -145,36 +145,36 @@ entity MyView as SELECT FROM MyEntity {} actions {
 
 (cds
   (entity_definition
-    (simple_path
+    (name
       (identifier))
     (element_definitions)
     (bound_actions
       (action_definition
-        (simple_path
+        (name
           (identifier))
         (parameter_list
           (parameter_definition
             (annotation
               (annotation_path
                 (identifier)))
-            (identifier)
+            (name)
             (type_reference
               (simple_path
                 (identifier))))))
       (function_definition
-        (simple_path
+        (name
           (identifier))
         (parameter_list
           (parameter_definition
             (annotation
               (annotation_path
                 (identifier)))
-            (identifier)
+            (name)
             (type_reference
               (simple_path
                 (identifier))))))))
   (entity_definition
-    (simple_path
+    (name
       (identifier))
     (query_expression
       (query_term
@@ -187,26 +187,26 @@ entity MyView as SELECT FROM MyEntity {} actions {
           (select_item_definition_list))))
     (bound_actions
       (action_definition
-        (simple_path
+        (name
           (identifier))
         (parameter_list
           (parameter_definition
             (annotation
               (annotation_path
                 (identifier)))
-            (identifier)
+            (name)
             (type_reference
               (simple_path
                 (identifier))))))
       (function_definition
-        (simple_path
+        (name
           (identifier))
         (parameter_list
           (parameter_definition
             (annotation
               (annotation_path
                 (identifier)))
-            (identifier)
+            (name)
             (type_reference
               (simple_path
                 (identifier)))))))))

@@ -71,7 +71,7 @@ module.exports = grammar({
     ),
 
     artifact_import: $ => seq(
-      field('name', $.simple_path),
+      $.simple_path,
       optional(seq(kw('as'), field("alias", $.identifier))),
     ),
 
@@ -119,7 +119,7 @@ module.exports = grammar({
     ),
 
     _context_or_service_body: $ => seq(
-      field('name', $.simple_path),
+      def_path_name($),
       repeat($.annotation),
       choice(
         seq('{', repeat($._definition), '}', optional(';')),
@@ -130,7 +130,7 @@ module.exports = grammar({
     entity_definition: $ => seq(
       optional_kw('abstract'),
       kw('entity'),
-      field('name', $.simple_path),
+      def_path_name($),
       repeat($.annotation),
       optional($.parameter_list),
       choice(
@@ -166,7 +166,7 @@ module.exports = grammar({
 
     event_definition: $ => seq(
       kw('event'),
-      field('name', $.simple_path),
+      def_path_name($),
       repeat($.annotation),
       choice(
         seq($.element_definitions, optional(';')),
@@ -554,7 +554,7 @@ module.exports = grammar({
 
     enum_symbol_definition: $ => seq(
       repeat($.annotation),
-      $.identifier,
+      field('name', $.identifier),
       repeat($.annotation),
       optional(
         seq(
@@ -584,7 +584,7 @@ module.exports = grammar({
       optional_kw('key'),
       optional_kw('masked'),
       optional_kw('element'),
-      field('name', $.identifier),
+      field('name', alias($.identifier, $.name)),
       repeat($.annotation),
       choice(
         $._type_definition_body,
@@ -604,7 +604,7 @@ module.exports = grammar({
     type_definition: $ => seq(kw('type'), $._type_like_definition),
     annotation_definition: $ => seq(kw('annotation'), $._type_like_definition),
     _type_like_definition: $ => seq(
-      field('name', $.simple_path),
+      def_path_name($),
       repeat($.annotation),
       choice(
         $._type_definition_body,
@@ -614,7 +614,7 @@ module.exports = grammar({
 
     aspect_definition: $ => seq(
       kw('aspect'),
-      field('name', $.simple_path),
+      def_path_name($),
       repeat($.annotation),
       optional(seq(':', field('includes', optional_list_of_trailing($.simple_path)))),
       choice(
@@ -788,7 +788,7 @@ module.exports = grammar({
 
     view_definition: $ => seq(
       kw('view'),
-      field('name', $.simple_path),
+      def_path_name($),
       repeat($.annotation),
       optional(choice(
         $.parameter_list,
@@ -818,7 +818,7 @@ module.exports = grammar({
       $._action_or_function_body,
     ),
     _action_or_function_body: $ => seq(
-      field('name', $.simple_path),
+      def_path_name($),
       repeat($.annotation),
       $.parameter_list,
       choice( $.return_type, $._required_semicolon ),
@@ -832,7 +832,7 @@ module.exports = grammar({
 
     parameter_definition: $ => seq(
       repeat($.annotation),
-      field('name', $.identifier),
+      field('name', alias($.identifier, $.name)),
       repeat($.annotation),
       field('type', choice(
         $.element_definitions,
@@ -851,7 +851,7 @@ module.exports = grammar({
 
     extend_context_or_service: $ => seq(
       field('kind', choice(kw('context'), kw('service'))),
-      field('name', $.simple_path),
+      def_path_name($),
       optional(kw('with')),
       repeat($.annotation),
       choice(
@@ -862,7 +862,7 @@ module.exports = grammar({
 
     extend_structure: $ => seq(
       choice(kw('type'), kw('aspect'), kw('entity')),
-      field('name', $.simple_path),
+      def_path_name($),
       choice(
         seq(
           kw('with'),
@@ -881,7 +881,7 @@ module.exports = grammar({
 
     extend_projection: $ => seq(
       kw('projection'),
-      field('name', $.simple_path),
+      def_path_name($),
       optional_kw('with'),
       repeat($.annotation),
       choice(
@@ -901,7 +901,7 @@ module.exports = grammar({
     ),
 
     extend_artifact: $ => seq(
-      field('name', $.simple_path),
+      def_path_name($),
       field('element', optional(seq(':', $.simple_path))),
       choice(
         seq(
@@ -1178,7 +1178,7 @@ module.exports = grammar({
     ),
 
     mixin_element_definition: $ => seq(
-      field('name', $.identifier),
+      field('name', alias($.identifier, $.name)),
       choice(
         seq(
           ':',
@@ -1447,6 +1447,19 @@ module.exports = grammar({
 class InvalidArgument extends Error {}
 
 /**
+ * Convenience function for a _definition name_, that is, a node that _introduces_
+ * a new name and not a reference.
+ *
+ * @param {object} $
+ * @return {FieldRule}
+ */
+function def_path_name($) {
+  if (arguments.length !== 1)
+    throw new InvalidArgument('incorrect number of arguments');
+  return field('name', alias($.simple_path, $.name));
+}
+
+/**
  * A list of `rule`. At least one rule must be parsed.
  *
  * @param {Rule} rule
@@ -1454,7 +1467,8 @@ class InvalidArgument extends Error {}
  * @return {SeqRule}
  */
 function list_of(rule, separator = ',') {
-  if (arguments.length > 2) throw new InvalidArgument('too many arguments');
+  if (arguments.length > 2)
+    throw new InvalidArgument('too many arguments');
   return seq(
     rule,
     repeat(seq(separator, rule)),
@@ -1470,7 +1484,8 @@ function list_of(rule, separator = ',') {
  * @return {SeqRule}
  */
 function list_of_trailing(rule, separator = ',') {
-  if (arguments.length > 2) throw new InvalidArgument('too many arguments');
+  if (arguments.length > 2)
+    throw new InvalidArgument('too many arguments');
   return seq(
     rule,
     repeat(seq(separator, rule)),

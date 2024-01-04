@@ -12,23 +12,23 @@ entity E {
 
 (cds
   (entity_definition
-    (simple_path
+    (name
       (identifier))
     (element_definitions
       (element_definition
-        (identifier)
+        (name)
         (simple_path
           (identifier))
         (type_argument
           (identifier)
           (number)))
       (element_definition
-        (identifier)
+        (name)
         (type_reference
           (simple_path
             (identifier))))
       (element_definition
-        (identifier)
+        (name)
         (simple_path
           (identifier))
         (type_argument
@@ -50,11 +50,11 @@ entity E(P : String(length: 100), P2: Integer) {
 
 (cds
   (entity_definition
-    (simple_path
+    (name
       (identifier))
     (parameter_list
       (parameter_definition
-        (identifier)
+        (name)
         (type_reference
           (simple_path
             (identifier))
@@ -62,12 +62,12 @@ entity E(P : String(length: 100), P2: Integer) {
             (identifier)
             (number))))
       (parameter_definition
-        (identifier)
+        (name)
         (type_reference
           (simple_path
             (identifier)))))
     (element_definitions
       (element_definition
-        (identifier)
+        (name)
         (simple_path
           (identifier))))))

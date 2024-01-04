@@ -10,7 +10,7 @@ entity P as projection on E {
 
 (cds
   (entity_definition
-    (simple_path
+    (name
       (identifier))
     (projection_spec
       (from_path
@@ -51,7 +51,7 @@ entity P as projection on E {
 
 (cds
   (entity_definition
-    (simple_path
+    (name
       (identifier))
     (projection_spec
       (from_path
