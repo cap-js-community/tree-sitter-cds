@@ -1,0 +1,158 @@
+================================================================================
+Projection: Event
+================================================================================
+
+event A : projection on ns.E { * }
+
+--------------------------------------------------------------------------------
+
+(cds
+  (event_definition
+    (name
+      (identifier))
+    (projection_clause
+      (from_path
+        (identifier)
+        (identifier))
+      (select_item_definition_list
+        (select_item_definition)))))
+
+================================================================================
+Projection: No select list
+================================================================================
+
+entity P as projection on ns.E as F;
+
+--------------------------------------------------------------------------------
+
+(cds
+  (entity_definition
+    (name
+      (identifier))
+    (projection_clause
+      (from_path
+        (identifier)
+        (identifier))
+      (identifier))))
+
+================================================================================
+Projection: Empty select list
+================================================================================
+
+entity P as projection on ns.E as F {}
+
+--------------------------------------------------------------------------------
+
+(cds
+  (entity_definition
+    (name
+      (identifier))
+    (projection_clause
+      (from_path
+        (identifier)
+        (identifier))
+      (identifier)
+      (select_item_definition_list))))
+
+================================================================================
+Projection: Asterisks
+================================================================================
+
+entity P as projection on ns.E as F { * };
+
+--------------------------------------------------------------------------------
+
+(cds
+  (entity_definition
+    (name
+      (identifier))
+    (projection_clause
+      (from_path
+        (identifier)
+        (identifier))
+      (identifier)
+      (select_item_definition_list
+        (select_item_definition)))))
+
+================================================================================
+Projection: Select Paths
+================================================================================
+
+entity P as projection on ns.E as F {
+ *,
+ field as f,
+ field.sub as s,
+ field[1>1].sub as f,
+};
+
+--------------------------------------------------------------------------------
+
+(cds
+  (entity_definition
+    (name
+      (identifier))
+    (projection_clause
+      (from_path
+        (identifier)
+        (identifier))
+      (identifier)
+      (select_item_definition_list
+        (select_item_definition)
+        (select_item_definition
+          (value_path
+            (identifier))
+          (identifier))
+        (select_item_definition
+          (value_path
+            (identifier)
+            (identifier))
+          (identifier))
+        (select_item_definition
+          (value_path
+            (identifier)
+            (cardinality_and_filter
+              (binary_condition
+                (number)
+                (number)))
+            (identifier))
+          (identifier))))))
+
+================================================================================
+Projection: Expand/inline
+================================================================================
+
+entity P as projection on ns.E as F {
+ *,
+ field.*,
+ field.{*},
+ field.{ field { * } }
+};
+
+--------------------------------------------------------------------------------
+
+(cds
+  (entity_definition
+    (name
+      (identifier))
+    (projection_clause
+      (from_path
+        (identifier)
+        (identifier))
+      (identifier)
+      (select_item_definition_list
+        (select_item_definition)
+        (select_item_definition
+          (value_path
+            (identifier)))
+        (select_item_definition
+          (value_path
+            (identifier))
+          (select_item_inline_definition))
+        (select_item_definition
+          (value_path
+            (identifier))
+          (select_item_inline_definition
+            (value_path
+              (identifier))
+            (select_item_inline_list
+              (select_item_inline_definition))))))))

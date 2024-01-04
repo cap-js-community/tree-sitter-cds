@@ -675,7 +675,7 @@
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "projection_spec"
+                  "name": "projection_clause"
                 },
                 {
                   "type": "SEQ",
@@ -1003,7 +1003,7 @@
                       "members": [
                         {
                           "type": "SYMBOL",
-                          "name": "projection_spec"
+                          "name": "projection_clause"
                         },
                         {
                           "type": "SYMBOL",
@@ -1019,7 +1019,7 @@
         }
       ]
     },
-    "projection_spec": {
+    "projection_clause": {
       "type": "SEQ",
       "members": [
         {
@@ -1081,8 +1081,12 @@
                   "value": "as"
                 },
                 {
-                  "type": "SYMBOL",
-                  "name": "identifier"
+                  "type": "FIELD",
+                  "name": "alias",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "identifier"
+                  }
                 }
               ]
             },
@@ -5840,12 +5844,8 @@
               "type": "SEQ",
               "members": [
                 {
-                  "type": "FIELD",
-                  "name": "parameter",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "parameter_definition"
-                  }
+                  "type": "SYMBOL",
+                  "name": "parameter_definition"
                 },
                 {
                   "type": "REPEAT",
@@ -5857,12 +5857,8 @@
                         "value": ","
                       },
                       {
-                        "type": "FIELD",
-                        "name": "parameter",
-                        "content": {
-                          "type": "SYMBOL",
-                          "name": "parameter_definition"
-                        }
+                        "type": "SYMBOL",
+                        "name": "parameter_definition"
                       }
                     ]
                   }

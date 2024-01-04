@@ -1959,7 +1959,7 @@
           "named": true
         },
         {
-          "type": "projection_spec",
+          "type": "projection_clause",
           "named": true
         },
         {
@@ -2087,7 +2087,7 @@
           "named": true
         },
         {
-          "type": "projection_spec",
+          "type": "projection_clause",
           "named": true
         },
         {
@@ -3164,17 +3164,16 @@
   {
     "type": "parameter_list",
     "named": true,
-    "fields": {
-      "parameter": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "parameter_definition",
-            "named": true
-          }
-        ]
-      }
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "parameter_definition",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3549,9 +3548,20 @@
     }
   },
   {
-    "type": "projection_spec",
+    "type": "projection_clause",
     "named": true,
-    "fields": {},
+    "fields": {
+      "alias": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
@@ -3562,10 +3572,6 @@
         },
         {
           "type": "from_path",
-          "named": true
-        },
-        {
-          "type": "identifier",
           "named": true
         },
         {
