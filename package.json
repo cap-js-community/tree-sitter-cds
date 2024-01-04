@@ -26,6 +26,9 @@
   "scripts": {
     "build": "tree-sitter generate && node-gyp configure && node-gyp build",
     "test": "tree-sitter test",
+    "test:all": "npm run test && npm run test:queries && npm run test:shellcheck",
+    "test:queries": "./tools/checks/test_queries.sh",
+    "test:shellcheck": "./tools/checks/run_shellcheck.sh",
     "test:update": "tree-sitter test --update",
     "playground": "npm run build && tree-sitter build-wasm && tree-sitter playground",
     "lint": "eslint .",
