@@ -1,7 +1,14 @@
-# Build from project root directory
-# Use this Dockerfile only for testing.
+# Build / Generate grammar from project root directory.
+#
+# Usage:
+#  cd tree-sitter-cds
+#  docker build --pull -t "tree-sitter-cds:ci" -f tools/Dockerfile .
+#  docker run --rm --volume "$(pwd):/opt/tree-sitter-cds" -it "tree-sitter-cds:ci" /bin/bash
+#  # Inside the image
+#  cd /opt/tree-sitter-cds
+#  npm run build
 
-FROM ubuntu:22.04
+FROM ubuntu:23.04
 
 RUN apt update && \
     apt upgrade -y && \
@@ -9,7 +16,7 @@ RUN apt update && \
     curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs
 
-COPY .. /opt/tree-sitter-cds
+VOLUME /opt/tree-sitter-cds
 
 RUN cd /opt/tree-sitter-cds && \
     npm install && \
