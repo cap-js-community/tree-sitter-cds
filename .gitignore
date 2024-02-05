@@ -12,7 +12,6 @@ gh-pages/
 *.wasm
 log.html
 
-Cargo.lock
 target/
 
 *.so
