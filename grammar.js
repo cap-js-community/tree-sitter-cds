@@ -544,12 +544,12 @@ module.exports = grammar({
     ),
 
     type_argument: $ => seq(
-      optional(seq($.identifier, ':')),
-      choice(
+      optional(field('type_param', seq($.identifier, ':'))),
+      field('value', choice(
         $.number,
         kw('variable'),
         kw('floating'),
-      ),
+      )),
     ),
 
     enum_symbol_definition: $ => seq(

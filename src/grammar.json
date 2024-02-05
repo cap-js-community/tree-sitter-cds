@@ -3693,17 +3693,21 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "identifier"
-                },
-                {
-                  "type": "STRING",
-                  "value": ":"
-                }
-              ]
+              "type": "FIELD",
+              "name": "type_param",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "identifier"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": ":"
+                  }
+                ]
+              }
             },
             {
               "type": "BLANK"
@@ -3711,31 +3715,35 @@
           ]
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "number"
-            },
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "PATTERN",
-                "value": "[vV][aA][rR][iI][aA][bB][lL][eE]"
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "number"
               },
-              "named": false,
-              "value": "variable"
-            },
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "PATTERN",
-                "value": "[fF][lL][oO][aA][tT][iI][nN][gG]"
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "[vV][aA][rR][iI][aA][bB][lL][eE]"
+                },
+                "named": false,
+                "value": "variable"
               },
-              "named": false,
-              "value": "floating"
-            }
-          ]
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "[fF][lL][oO][aA][tT][iI][nN][gG]"
+                },
+                "named": false,
+                "value": "floating"
+              }
+            ]
+          }
         }
       ]
     },

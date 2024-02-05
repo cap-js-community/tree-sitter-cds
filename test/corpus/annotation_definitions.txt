@@ -1,0 +1,36 @@
+================================================================================
+Scalar Annotation Definition
+================================================================================
+
+annotation Str : String(100);
+
+--------------------------------------------------------------------------------
+
+(cds
+  (annotation_definition
+    (name
+      (identifier))
+    (simple_path
+      (identifier))
+    (type_argument
+      (number))))
+
+================================================================================
+Structured Annotation Definition
+================================================================================
+
+annotation Str {
+  field : String;
+};
+
+--------------------------------------------------------------------------------
+
+(cds
+  (annotation_definition
+    (name
+      (identifier))
+    (element_definitions
+      (element_definition
+        (name)
+        (simple_path
+          (identifier))))))
