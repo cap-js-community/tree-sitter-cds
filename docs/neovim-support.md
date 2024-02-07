@@ -18,7 +18,8 @@ and add tree-sitter-cds's queries to NeoVim for syntax highlighting.
 
 We have a convenience script to copy all queries (`*.scm` files) to
 NeoVim's `queries` directory: `./nvim/setup-nvim-treesitter.sh`.
-
+If you update tree-sitter-cds, you will also have to update the queries
+again using this script.
 
 ## Setup Guide with `lazy.nvim`
 
@@ -56,6 +57,15 @@ nvim --headless -c ':TSInstallSync cds' -c ':qa'
 
 Also run `:checkhealth lazy` and `:checkhealth nvim-treesitter` to ensure
 that everything is installed and configured correctly.
+
+## Update
+
+When you update tree-sitter-cds via `:TSUpdate cds`, you will also have to
+install/update the queries again. See [setup](#setup) above.
+
+Run `:checkhealth` to ensure that everything works as intended.
+
+Note that the grammar (and queries) may change drastically until v1 is reached.
 
 [ftdetect]: https://neovim.io/doc/user/filetype.html
 [nvim-install]: https://github.com/neovim/neovim/wiki/Installing-Neovim

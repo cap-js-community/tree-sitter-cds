@@ -4,7 +4,7 @@
 #   nvim /opt/tree-sitter-cds/examples/entity.cds
 # Test the nvim config guide for https://github.com/cap-js-community/tree-sitter-cds
 
-FROM ubuntu:latest
+FROM ubuntu:23.04
 
 RUN apt update && apt upgrade -y && \
     apt install -y \
@@ -24,6 +24,7 @@ RUN git clone --depth=1 --single-branch --branch=stable https://github.com/neovi
 COPY .. /opt/tree-sitter-cds
 
 RUN cd /opt/tree-sitter-cds && \
+    rm -rf node_modules/ build/ && \
     ./nvim/setup-nvim-treesitter.sh && \
     NVIM_CONFIG_DIR="$(nvim --headless -c ':echo stdpath("config")' -c ':qa' 2>&1)" && \
     cp ./nvim/init.lua "${NVIM_CONFIG_DIR:?}/"  && \
