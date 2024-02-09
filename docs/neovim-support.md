@@ -62,6 +62,8 @@ that everything is installed and configured correctly.
 
 When you update tree-sitter-cds via `:TSUpdate cds`, you will also have to
 install/update the queries again. See [setup](#setup) above.
+nvim-treesitter does [not copy queries](https://github.com/nvim-treesitter/nvim-treesitter/discussions/5608#discussioncomment-7450342)
+from this repository, hence why it needs to be done manually.
 
 Run `:checkhealth` to ensure that everything works as intended.
 
