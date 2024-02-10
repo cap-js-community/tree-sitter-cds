@@ -46,7 +46,7 @@ git config commit.template tools/etc/git-default-commit-message.txt
 ## Debugging
 
 For debugging this grammar, use [nvim-treesitter/playground][].
-Use their settings and ensure that you are using _NeoVim Nightly_.
+Use their settings and ensure that you are using _Neovim Nightly_.
 
 
 ## Docker

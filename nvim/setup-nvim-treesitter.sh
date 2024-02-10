@@ -9,19 +9,19 @@
 #   NVIM_CONFIG_DIR       ':echo stdpath("config")'
 #   NVIM_QUERIES_DIR      $NVIM_CONFIG_DIR/queries
 #
-# See `:h rtp` for NeoVim's runtime configuration paths.
+# See `:h rtp` for Neovim's runtime configuration paths.
 
 set -euo pipefail
 IFS=$'\n\t'
 
 cd "$(dirname "${BASH_SOURCE[0]}")/.." > /dev/null 2>&1
 
-# NeoVim configuration directory.  Most often just ~/.config/nvim
+# Neovim configuration directory.  Most often just ~/.config/nvim
 NVIM_CONFIG_DIR="${NVIM_CONFIG_DIR:-"$(nvim --headless -c 'echo stdpath("config")' -c 'q' 2>&1)"}"
 
 if [[ ! -d "${NVIM_CONFIG_DIR:?}" ]]; then
   mkdir -p "${NVIM_CONFIG_DIR}"
-  echo "Created NeoVim config directory, as it did not exist: ${NVIM_CONFIG_DIR}"
+  echo "Created Neovim config directory, as it did not exist: ${NVIM_CONFIG_DIR}"
 fi
 
 mkdir -p "${NVIM_CONFIG_DIR}/ftdetect"

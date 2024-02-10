@@ -12,12 +12,12 @@ CAP CDS grammar for tree-sitter.
 
  - https://tree-sitter.github.io/tree-sitter/
 
-You can use tree-sitter-cds to highlight CAP CDS files in NeoVim and
+You can use tree-sitter-cds to highlight CAP CDS files in Neovim and
 to query the concrete syntax tree of CDS files.
 
 This project followed the instructions of the [tree-sitter guide].
 
-<img alt="Screenshot of NeoVim. A CDS file is opened and has proper syntax highlighting." title="NeoVim Syntax Highlighting Example" src="./docs/assets/neovim-syntax-highlighting.png" align="right" width="201" height="224" />
+<img alt="Screenshot of Neovim. A CDS file is opened and has proper syntax highlighting." title="Neovim Syntax Highlighting Example" src="./docs/assets/neovim-syntax-highlighting.png" align="right" width="201" height="224" />
 
 
 ## Documentation
@@ -26,14 +26,14 @@ Please refer to the `docs/` folder.  It contains:
 
 - [Development](./docs/development.md)
 - [Contributing](./CONTRIBUTING.md)
-- [NeoVim Support](./docs/neovim-support.md)
+- [Neovim Support](./docs/neovim-support.md)
 - [CDS Compiler Differences](./docs/cds-compiler-differences.md)
 
 
 ## Download and Installation
 
-If you want to use tree-sitter-cds in NeoVim for syntax highlighting,
-please see [NeoVim Support](./docs/neovim-support.md) for an
+If you want to use tree-sitter-cds in Neovim for syntax highlighting,
+please see [Neovim Support](./docs/neovim-support.md) for an
 installation guide.
 
 Documentation on NodeJs and Rust language bindings is work-in-progress.
@@ -41,8 +41,8 @@ Documentation on NodeJs and Rust language bindings is work-in-progress.
 
 ## Requirements
 
-If you want to use tree-sitter-cds in NeoVim for syntax highlighting,
-please see [NeoVim Support](./docs/neovim-support.md) for requirements.
+If you want to use tree-sitter-cds in Neovim for syntax highlighting,
+please see [Neovim Support](./docs/neovim-support.md) for requirements.
 
 For local development setup, see [Development Docs](./docs/development.md).
 
@@ -61,7 +61,7 @@ as well as our [development documentation](./docs/development.md).
 
 This project contains a tree-sitter grammar for [CAP CDS](https://cap.cloud.sap/).
 
-The main goal of this project it to provide syntax highlighting, e.g. for [NeoVim](./docs/neovim-support.md).
+The main goal of this project it to provide syntax highlighting, e.g. for [Neovim](./docs/neovim-support.md).
 
 It is _not_ a 100% CAP CDS compatible parser. There are places that this grammar
 can't parse properly, yet.   There is also no error reporting by tree-sitter and
