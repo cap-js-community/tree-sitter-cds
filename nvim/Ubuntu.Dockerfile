@@ -16,7 +16,7 @@ RUN apt update && apt upgrade -y && \
     apt-get install -y nodejs && \
     rm -rf /var/lib/apt/lists/*
 
-# Install NeoVim
+# Install Neovim
 RUN git clone --depth=1 --single-branch --branch=stable https://github.com/neovim/neovim && \
     cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo && \
     make install

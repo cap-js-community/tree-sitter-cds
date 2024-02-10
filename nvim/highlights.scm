@@ -1,4 +1,4 @@
-; highlights.scm for NeoVim
+; highlights.scm for Neovim
 ; See <https://github.com/nvim-treesitter/nvim-treesitter/blob/master/CONTRIBUTING.md#highlights>
 
 ; Note: First matches apply
