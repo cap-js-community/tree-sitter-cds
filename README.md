@@ -36,7 +36,7 @@ If you want to use tree-sitter-cds in Neovim for syntax highlighting,
 please see [Neovim Support](./docs/neovim-support.md) for an
 installation guide.
 
-Documentation on NodeJs and Rust language bindings is work-in-progress.
+Documentation on Node.js and Rust language bindings is work-in-progress.
 
 
 ## Requirements

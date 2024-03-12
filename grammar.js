@@ -1420,7 +1420,7 @@ module.exports = grammar({
       $._delimited_identifier,
     ),
 
-    _unquoted_identifier: $ => /[\p{ID_Start}$_][\p{ID_Continue}$\u200C\u200D]*/u,
+    _unquoted_identifier: $ => /[\p{ID_Start}$_][\p{ID_Continue}$\u200C\u200D]*/,
     _delimited_identifier: $ => token(choice(
       // new style
       /!\[[^\]\n\r\u2028\u2029]*](][^\]\n\r\u2028\u2029]*])*/,

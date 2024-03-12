@@ -1,7 +1,7 @@
 {
   "name": "node",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Test project for the tree-sitter-cds NodeJs bindings.",
   "main": "index.js",
   "author": "Andre Meyering <andre.meyering@sap.com>",
@@ -9,7 +9,7 @@
     "test": "node index.js"
   },
   "dependencies": {
-    "tree-sitter": "^0.20.6",
+    "tree-sitter": "^0.21.0",
     "@cap-js-community/tree-sitter-cds": "file:../../.."
   }
 }
