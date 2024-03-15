@@ -9,6 +9,7 @@
     "max-len": "off",
     "indent": "off",
     "camelcase": "off",
+    "no-empty": "off",
     "comma-dangle": ["error", "always-multiline"]
   },
   "ignorePatterns": ["temp.js", "target/*"],

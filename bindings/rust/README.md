@@ -11,7 +11,7 @@ To use this crate, add it to the `[dependencies]` section of your
 ``` toml
 [dependencies]
 tree-sitter = "~0.20"
-tree-sitter-cds = "~0.0.1"
+tree-sitter-cds = "~0.0.2"
 ```
 
 The below example demonstrates a simple program that parses a CDS

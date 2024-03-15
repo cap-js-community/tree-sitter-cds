@@ -16,6 +16,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## Version 0.0.2 - 2024-03-15
+
+## Changed
+
+- Updated to tree-sitter v0.22.1, which has breaking changes for Node bindings
 
 ## Version 0.0.1 - 2023-10-17
 
