@@ -1,5 +1,4 @@
-
-/* eslint-disable no-unused-vars */
+'use strict';
 
 module.exports = grammar({
   name: 'cds',

@@ -30,7 +30,7 @@ const version_regexes = [
   /"version": "(?<version>[\d.]+)"/, // package.json
   /version = "(?<version>[\d.]+)"/,  // Cargo.toml
   /VERSION := (?<version>[\d.]+)/,   // Makefile
-  /tree-sitter-cds = "~(?<version>[\d.]+)"/ // Rust example
+  /tree-sitter-cds = "~(?<version>[\d.]+)"/, // Rust example
 ];
 
 version_files.forEach(update_version);
