@@ -7,6 +7,6 @@
     ":assignAndReview(bugwelle)",
     ":enableVulnerabilityAlerts",
     ":semanticCommitTypeAll(deps)",
-    ":semanticCommitScope(package)"
+    ":semanticCommitScopeDisabled"
   ]
 }
