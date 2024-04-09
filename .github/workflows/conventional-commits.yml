@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # v5
-      - uses: amannn/action-semantic-pull-request@e9fabac35e210fea40ca5b14c0da95a099eff26f
+      - uses: amannn/action-semantic-pull-request@67cbd7a15a6eeea0c3a0dffff4768fa5653de05c
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
