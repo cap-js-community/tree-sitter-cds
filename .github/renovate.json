@@ -5,6 +5,8 @@
     "group:allNonMajor",
     "schedule:weekly",
     ":assignAndReview(bugwelle)",
-    ":enableVulnerabilityAlerts"
+    ":enableVulnerabilityAlerts",
+    ":semanticCommitTypeAll(deps)",
+    ":semanticCommitScope(package)"
   ]
 }
