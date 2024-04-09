@@ -6,7 +6,7 @@
 #  docker build --pull -t "tree-sitter-cds:ci" -f tools/Dockerfile .
 #  docker run --rm --volume "$(pwd):/opt/tree-sitter-cds" "tree-sitter-cds:ci"
 
-FROM ubuntu:23.04
+FROM ubuntu:lunar-20231128
 
 RUN apt update && \
     apt upgrade -y && \

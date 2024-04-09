@@ -4,7 +4,7 @@
 #   nvim /opt/tree-sitter-cds/examples/entity.cds
 # Test the nvim config guide for https://github.com/cap-js-community/tree-sitter-cds
 
-FROM ubuntu:23.04
+FROM ubuntu:lunar-20231128
 
 RUN apt update && apt upgrade -y && \
     apt install -y \
