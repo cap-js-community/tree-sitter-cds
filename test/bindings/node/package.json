@@ -9,7 +9,7 @@
     "test": "node index.js"
   },
   "dependencies": {
-    "tree-sitter": "^0.21.0",
+    "tree-sitter": "^0.21.1",
     "@cap-js-community/tree-sitter-cds": "file:../../.."
   }
 }
