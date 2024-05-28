@@ -157,11 +157,14 @@
   "end"
 ] @conditional
 
+"@" @attribute ; annotations
+
 (comment) @comment
-(identifier) @variable
 
 (from_path) @variable
 (simple_path) @variable
+
+(identifier) @variable
 
 (number) @number
 (single_quote_string) @string
@@ -169,12 +172,6 @@
 (text_block) @string
 
 (namespace path: (_) @namespace)
-
-(action_definition
-  (name) @function)
-
-(function_definition
-  (name) @function)
 
 (parameter_definition type: (_ (_ (_ (identifier) @type))))
 (parameter_definition (name) @variable.parameter)
@@ -190,4 +187,3 @@
 (function_definition (name) @function)
 
 (annotation_path (identifier) @attribute)
-(annotation _ @attribute) ; mark @

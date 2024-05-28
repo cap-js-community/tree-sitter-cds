@@ -149,6 +149,12 @@
   "virtual"
   "year"
 ] @keyword
+"@" @attribute ; annotations
+
+(from_path) @variable
+(simple_path) @variable
+
+(identifier) @variable
 
 (comment) @comment
 
@@ -156,11 +162,6 @@
 (single_quote_string) @string
 (backtick_string) @string
 (text_block) @string
-
-(action_definition
-  (name) @function)
-(function_definition
-  (name) @function)
 
 (parameter_definition type: (_ (_ (_ (identifier) @type))))
 (parameter_definition (name) @variable.parameter)
@@ -176,9 +177,5 @@
 (action_definition (name) @function)
 (function_definition (name) @function)
 
-(annotation _ @attribute) ; mark @
 
-(from_path) @variable
-(simple_path) @variable
-
-(identifier) @variable
+(annotation_path (identifier) @attribute)
