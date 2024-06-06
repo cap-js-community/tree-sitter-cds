@@ -2479,6 +2479,10 @@
       "required": true,
       "types": [
         {
+          "type": "annotation",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },

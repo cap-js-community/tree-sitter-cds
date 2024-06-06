@@ -1,0 +1,173 @@
+================================================================================
+Simple Foreign Key List
+================================================================================
+
+entity ForeignKeys {
+  key ID : UUID;
+  a : Integer;
+  assoc: Association to ForeignKeys { ID, a };
+};
+
+--------------------------------------------------------------------------------
+
+(cds
+  (entity_definition
+    (name
+      (identifier))
+    (element_definitions
+      (element_definition
+        (name)
+        (simple_path
+          (identifier)))
+      (element_definition
+        (name)
+        (simple_path
+          (identifier)))
+      (element_definition
+        (name)
+        (type_association_base)
+        (to_one_or_many_path
+          (simple_path
+            (identifier)))
+        (type_association_element_cont
+          (foreign_key
+            (simple_path
+              (identifier)))
+          (foreign_key
+            (simple_path
+              (identifier))))))))
+
+================================================================================
+Foreign Key List with Alias
+================================================================================
+
+entity ForeignKeys {
+  key ID : UUID;
+  a : Integer;
+  b : Integer;
+  assoc: Association to ForeignKeys {
+    ID as ID_alias,
+    a as a_alias,
+    b as b_alias,
+   };
+};
+
+--------------------------------------------------------------------------------
+
+(cds
+  (entity_definition
+    (name
+      (identifier))
+    (element_definitions
+      (element_definition
+        (name)
+        (simple_path
+          (identifier)))
+      (element_definition
+        (name)
+        (simple_path
+          (identifier)))
+      (element_definition
+        (name)
+        (simple_path
+          (identifier)))
+      (element_definition
+        (name)
+        (type_association_base)
+        (to_one_or_many_path
+          (simple_path
+            (identifier)))
+        (type_association_element_cont
+          (foreign_key
+            (simple_path
+              (identifier))
+            (identifier))
+          (foreign_key
+            (simple_path
+              (identifier))
+            (identifier))
+          (foreign_key
+            (simple_path
+              (identifier))
+            (identifier)))))))
+
+================================================================================
+Foreign Key List with Annotations
+================================================================================
+
+entity ForeignKeys {
+  key ID : UUID;
+  a : Integer;
+  b : Integer;
+  assoc: Association to ForeignKeys {
+    @first_annotation
+    @second_annotation
+    ID,
+    @structured: {
+      val: 'foo'
+    }
+    a as a_alias,
+    @(parentheses: 'are nice')
+    b as b_alias,
+   };
+};
+
+--------------------------------------------------------------------------------
+
+(cds
+  (entity_definition
+    (name
+      (identifier))
+    (element_definitions
+      (element_definition
+        (name)
+        (simple_path
+          (identifier)))
+      (element_definition
+        (name)
+        (simple_path
+          (identifier)))
+      (element_definition
+        (name)
+        (simple_path
+          (identifier)))
+      (element_definition
+        (name)
+        (type_association_base)
+        (to_one_or_many_path
+          (simple_path
+            (identifier)))
+        (type_association_element_cont
+          (foreign_key
+            (annotation
+              (annotation_path
+                (identifier)))
+            (annotation
+              (annotation_path
+                (identifier)))
+            (simple_path
+              (identifier)))
+          (foreign_key
+            (annotation
+              (annotation_path
+                (identifier))
+              (annotation_value
+                (annotation_named_value
+                  (annotation_path
+                    (identifier))
+                  (annotation_value
+                    (single_quote_string)))))
+            (simple_path
+              (identifier))
+            (identifier))
+          (foreign_key
+            (annotation
+              (annotation_group
+                (annotation_group_item
+                  (annotation_path
+                    (identifier))
+                  (annotation_value
+                    (single_quote_string)))))
+            (simple_path
+              (identifier))
+            (identifier)))))))

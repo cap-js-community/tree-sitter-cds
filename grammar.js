@@ -781,6 +781,7 @@ module.exports = grammar({
     ),
 
     foreign_key: $ => seq(
+      repeat($.annotation),
       $.simple_path,
       optional(seq(kw('as'), $.identifier)),
     ),
