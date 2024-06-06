@@ -2063,6 +2063,20 @@
     "type": "event_definition",
     "named": true,
     "fields": {
+      "includes": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "simple_path",
+            "named": true
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": true,
@@ -2088,10 +2102,6 @@
         },
         {
           "type": "projection_clause",
-          "named": true
-        },
-        {
-          "type": "simple_path",
           "named": true
         }
       ]

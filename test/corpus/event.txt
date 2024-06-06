@@ -1,37 +1,58 @@
 ================================================================================
-Event: Scalar
-================================================================================
-
-event A : String;
-event A : many String; // FIXME: Not an include!
-
---------------------------------------------------------------------------------
-
-(cds
-  (event_definition
-    (name
-      (identifier))
-    (simple_path
-      (identifier)))
-  (event_definition
-    (name
-      (identifier))
-    (simple_path
-      (identifier))
-    (ERROR))
-  (comment))
-
-================================================================================
-Event: Struct
+Event: Simple Struct
 ================================================================================
 
 event A : { elem: String; };
+event B   { elem: String; };
 
 --------------------------------------------------------------------------------
 
 (cds
   (event_definition
     (name
+      (identifier))
+    (element_definitions
+      (element_definition
+        (name)
+        (simple_path
+          (identifier)))))
+  (event_definition
+    (name
+      (identifier))
+    (element_definitions
+      (element_definition
+        (name)
+        (simple_path
+          (identifier))))))
+
+================================================================================
+Event: Struct with Includes
+================================================================================
+
+event A : B       { elem: String; };
+event B : C, D, E { elem: String; };
+
+--------------------------------------------------------------------------------
+
+(cds
+  (event_definition
+    (name
+      (identifier))
+    (simple_path
+      (identifier))
+    (element_definitions
+      (element_definition
+        (name)
+        (simple_path
+          (identifier)))))
+  (event_definition
+    (name
+      (identifier))
+    (simple_path
+      (identifier))
+    (simple_path
+      (identifier))
+    (simple_path
       (identifier))
     (element_definitions
       (element_definition
@@ -44,6 +65,7 @@ Event: Projection
 ================================================================================
 
 event A : projection on ns.E;
+event B : projection on ns.E { *, ID };
 
 --------------------------------------------------------------------------------
 
@@ -54,4 +76,16 @@ event A : projection on ns.E;
     (projection_clause
       (from_path
         (identifier)
-        (identifier)))))
+        (identifier))))
+  (event_definition
+    (name
+      (identifier))
+    (projection_clause
+      (from_path
+        (identifier)
+        (identifier))
+      (select_item_definition_list
+        (select_item_definition)
+        (select_item_definition
+          (value_path
+            (identifier)))))))

@@ -171,19 +171,13 @@ module.exports = grammar({
         seq($.element_definitions, optional(';')),
         seq(':',
           choice(
-            seq(
-              $.simple_path,
-              choice(
-                seq(
-                  repeat(seq(',', $.simple_path)),
-                  $.element_definitions,
-                  optional(';'),
-                ),
-                seq(repeat($.annotation), $._required_semicolon),
-              ),
-            ),
             seq($.element_definitions, optional(';')),
             seq($.projection_clause, $._required_semicolon),
+            seq(
+              field('includes', optional_list_of_trailing($.simple_path)),
+              $.element_definitions,
+              optional(';'),
+            ),
           ),
         ),
       ),
