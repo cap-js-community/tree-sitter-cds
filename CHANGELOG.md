@@ -10,7 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Annotations on foreign keys are supported
+
 ### Changed
+
+- Updated to tree-sitter v0.22.6
 
 ### Fixed
 
