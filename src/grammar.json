@@ -915,73 +915,6 @@
                       "members": [
                         {
                           "type": "SYMBOL",
-                          "name": "simple_path"
-                        },
-                        {
-                          "type": "CHOICE",
-                          "members": [
-                            {
-                              "type": "SEQ",
-                              "members": [
-                                {
-                                  "type": "REPEAT",
-                                  "content": {
-                                    "type": "SEQ",
-                                    "members": [
-                                      {
-                                        "type": "STRING",
-                                        "value": ","
-                                      },
-                                      {
-                                        "type": "SYMBOL",
-                                        "name": "simple_path"
-                                      }
-                                    ]
-                                  }
-                                },
-                                {
-                                  "type": "SYMBOL",
-                                  "name": "element_definitions"
-                                },
-                                {
-                                  "type": "CHOICE",
-                                  "members": [
-                                    {
-                                      "type": "STRING",
-                                      "value": ";"
-                                    },
-                                    {
-                                      "type": "BLANK"
-                                    }
-                                  ]
-                                }
-                              ]
-                            },
-                            {
-                              "type": "SEQ",
-                              "members": [
-                                {
-                                  "type": "REPEAT",
-                                  "content": {
-                                    "type": "SYMBOL",
-                                    "name": "annotation"
-                                  }
-                                },
-                                {
-                                  "type": "SYMBOL",
-                                  "name": "_required_semicolon"
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "type": "SEQ",
-                      "members": [
-                        {
-                          "type": "SYMBOL",
                           "name": "element_definitions"
                         },
                         {
@@ -1008,6 +941,76 @@
                         {
                           "type": "SYMBOL",
                           "name": "_required_semicolon"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "SEQ",
+                      "members": [
+                        {
+                          "type": "FIELD",
+                          "name": "includes",
+                          "content": {
+                            "type": "CHOICE",
+                            "members": [
+                              {
+                                "type": "SEQ",
+                                "members": [
+                                  {
+                                    "type": "SYMBOL",
+                                    "name": "simple_path"
+                                  },
+                                  {
+                                    "type": "REPEAT",
+                                    "content": {
+                                      "type": "SEQ",
+                                      "members": [
+                                        {
+                                          "type": "STRING",
+                                          "value": ","
+                                        },
+                                        {
+                                          "type": "SYMBOL",
+                                          "name": "simple_path"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "type": "CHOICE",
+                                    "members": [
+                                      {
+                                        "type": "STRING",
+                                        "value": ","
+                                      },
+                                      {
+                                        "type": "BLANK"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "BLANK"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "element_definitions"
+                        },
+                        {
+                          "type": "CHOICE",
+                          "members": [
+                            {
+                              "type": "STRING",
+                              "value": ";"
+                            },
+                            {
+                              "type": "BLANK"
+                            }
+                          ]
                         }
                       ]
                     }
