@@ -323,22 +323,8 @@
               ]
             },
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[aA][nN][nN][oO][tT][aA][tT][eE]"
-                  },
-                  "named": false,
-                  "value": "annotate"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "annotate_artifact"
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "annotate_artifact"
             }
           ]
         }
@@ -6025,17 +6011,13 @@
           }
         },
         {
-          "type": "FIELD",
-          "name": "name",
+          "type": "ALIAS",
           "content": {
-            "type": "ALIAS",
-            "content": {
-              "type": "SYMBOL",
-              "name": "simple_path"
-            },
-            "named": true,
-            "value": "name"
-          }
+            "type": "SYMBOL",
+            "name": "simple_path"
+          },
+          "named": true,
+          "value": "definition_reference"
         },
         {
           "type": "CHOICE",
@@ -6140,17 +6122,13 @@
           ]
         },
         {
-          "type": "FIELD",
-          "name": "name",
+          "type": "ALIAS",
           "content": {
-            "type": "ALIAS",
-            "content": {
-              "type": "SYMBOL",
-              "name": "simple_path"
-            },
-            "named": true,
-            "value": "name"
-          }
+            "type": "SYMBOL",
+            "name": "simple_path"
+          },
+          "named": true,
+          "value": "definition_reference"
         },
         {
           "type": "CHOICE",
@@ -6252,17 +6230,13 @@
           "value": "projection"
         },
         {
-          "type": "FIELD",
-          "name": "name",
+          "type": "ALIAS",
           "content": {
-            "type": "ALIAS",
-            "content": {
-              "type": "SYMBOL",
-              "name": "simple_path"
-            },
-            "named": true,
-            "value": "name"
-          }
+            "type": "SYMBOL",
+            "name": "simple_path"
+          },
+          "named": true,
+          "value": "definition_reference"
         },
         {
           "type": "CHOICE",
@@ -6406,42 +6380,44 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "FIELD",
-          "name": "name",
-          "content": {
-            "type": "ALIAS",
-            "content": {
-              "type": "SYMBOL",
-              "name": "simple_path"
-            },
-            "named": true,
-            "value": "name"
-          }
-        },
-        {
-          "type": "FIELD",
-          "name": "element",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "STRING",
-                    "value": ":"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "simple_path"
-                  }
-                ]
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "simple_path"
               },
-              {
-                "type": "BLANK"
-              }
-            ]
-          }
+              "named": true,
+              "value": "definition_reference"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": ":"
+                    },
+                    {
+                      "type": "ALIAS",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "simple_path"
+                      },
+                      "named": true,
+                      "value": "element_reference"
+                    }
+                  ]
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "CHOICE",
@@ -9032,27 +9008,51 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "simple_path"
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[aA][nN][nN][oO][tT][aA][tT][eE]"
+          },
+          "named": false,
+          "value": "annotate"
         },
         {
-          "type": "CHOICE",
+          "type": "SEQ",
           "members": [
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": ":"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "simple_path"
-                }
-              ]
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "simple_path"
+              },
+              "named": true,
+              "value": "definition_reference"
             },
             {
-              "type": "BLANK"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": ":"
+                    },
+                    {
+                      "type": "ALIAS",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "simple_path"
+                      },
+                      "named": true,
+                      "value": "element_reference"
+                    }
+                  ]
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
             }
           ]
         },

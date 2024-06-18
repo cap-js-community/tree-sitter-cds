@@ -100,10 +100,7 @@ module.exports = grammar({
             $.extend_artifact,
           ),
         ),
-        seq(
-          kw('annotate'),
-          $.annotate_artifact,
-        ),
+        $.annotate_artifact,
       ),
     ),
 
@@ -827,7 +824,7 @@ module.exports = grammar({
 
     extend_context_or_service: $ => seq(
       field('kind', choice(kw('context'), kw('service'))),
-      def_path_name($),
+      ref_definition($),
       optional(kw('with')),
       repeat($.annotation),
       choice(
@@ -838,7 +835,7 @@ module.exports = grammar({
 
     extend_structure: $ => seq(
       choice(kw('type'), kw('aspect'), kw('entity')),
-      def_path_name($),
+      ref_definition($),
       choice(
         seq(
           kw('with'),
@@ -857,7 +854,7 @@ module.exports = grammar({
 
     extend_projection: $ => seq(
       kw('projection'),
-      def_path_name($),
+      ref_definition($),
       optional_kw('with'),
       repeat($.annotation),
       choice(
@@ -877,8 +874,7 @@ module.exports = grammar({
     ),
 
     extend_artifact: $ => seq(
-      def_path_name($),
-      field('element', optional(seq(':', $.simple_path))),
+      ref_definition_with_optional_element($),
       choice(
         seq(
           repeat($.annotation),
@@ -1176,12 +1172,18 @@ module.exports = grammar({
     ),
 
     annotate_artifact: $ => seq(
-      $.simple_path,
-      optional(seq(':', $.simple_path)),
+      kw('annotate'),
+      ref_definition_with_optional_element($),
       optional_kw('with'),
       repeat($.annotation),
       choice(
-        seq('{', repeat($.annotate_element), '}', optional($.annotate_action), optional(';')),
+        seq(
+          '{',
+          repeat($.annotate_element),
+          '}',
+          optional($.annotate_action),
+          optional(';'),
+        ),
         seq($.annotate_action, optional(';')),
         seq(
           '(',
@@ -1433,6 +1435,34 @@ function def_path_name($) {
   if (arguments.length !== 1)
     throw new InvalidArgument('incorrect number of arguments');
   return field('name', alias($.simple_path, $.name));
+}
+
+/**
+ * Convenience function for a reference that is either a definition (`E`)
+ * or an element (`E:elem`).
+ *
+ * @param {object} $
+ * @return {SeqRule}
+ */
+function ref_definition_with_optional_element($) {
+  if (arguments.length !== 1)
+    throw new InvalidArgument('incorrect number of arguments');
+  return seq(
+    alias($.simple_path, $.definition_reference),
+    optional(seq(':', alias($.simple_path, $.element_reference))),
+  );
+}
+
+/**
+ * Convenience function for a reference that is a definition (`E`).
+ *
+ * @param {object} $
+ * @return {AliasRule}
+ */
+function ref_definition($) {
+  if (arguments.length !== 1)
+    throw new InvalidArgument('incorrect number of arguments');
+  return alias($.simple_path, $.definition_reference);
 }
 
 /**

@@ -1,0 +1,104 @@
+================================================================================
+Extend - Simple
+================================================================================
+
+extend E;
+extend E with { field : String; };
+extend E:elem with { field : String; };
+
+--------------------------------------------------------------------------------
+
+(cds
+  (extend_artifact
+    (definition_reference
+      (identifier)))
+  (extend_artifact
+    (definition_reference
+      (identifier))
+    (element_definition
+      (name)
+      (simple_path
+        (identifier))))
+  (extend_artifact
+    (definition_reference
+      (identifier))
+    (element_reference
+      (identifier))
+    (element_definition
+      (name)
+      (simple_path
+        (identifier)))))
+
+================================================================================
+Extend - Sub-Extend
+================================================================================
+
+
+extend E with {
+  extend struct { field : String; };
+};
+extend E:elem with {
+  extend struct { field : String; };
+};
+
+--------------------------------------------------------------------------------
+
+(cds
+  (extend_artifact
+    (definition_reference
+      (identifier))
+    (extend_element
+      (identifier)
+      (element_definition
+        (name)
+        (simple_path
+          (identifier)))))
+  (extend_artifact
+    (definition_reference
+      (identifier))
+    (element_reference
+      (identifier))
+    (extend_element
+      (identifier)
+      (element_definition
+        (name)
+        (simple_path
+          (identifier))))))
+
+================================================================================
+Annotate - Simple
+================================================================================
+
+@anno
+annotate E;
+
+annotate E with @anno;
+annotate E:elem @(anno: false);
+
+--------------------------------------------------------------------------------
+
+(cds
+  (annotation
+    (annotation_path
+      (identifier)))
+  (annotate_artifact
+    (definition_reference
+      (identifier)))
+  (annotate_artifact
+    (definition_reference
+      (identifier))
+    (annotation
+      (annotation_path
+        (identifier))))
+  (annotate_artifact
+    (definition_reference
+      (identifier))
+    (element_reference
+      (identifier))
+    (annotation
+      (annotation_group
+        (annotation_group_item
+          (annotation_path
+            (identifier))
+          (annotation_value
+            (boolean)))))))
