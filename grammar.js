@@ -214,7 +214,7 @@ module.exports = grammar({
     ),
 
     from_arguments: $ => seq(
-      '(', list_of_trailing($.named_expression), ')',
+      '(', list_of_trailing($.named_argument), ')',
     ),
 
     cardinality_and_filter: $ => seq(
@@ -231,15 +231,15 @@ module.exports = grammar({
       $.binary_condition,
       $._expression,
       $.predicate_condition,
-      $.ternary_operator,
+      $.ternary,
     ),
 
-    ternary_operator: $ => seq(
+    ternary: $ => seq(
       $._condition,
       '?',
-      $._expression,
+      field('then', $._expression),
       ':',
-      $._expression,
+      field('else', $._expression),
     ),
 
     binary_condition: $ => choice(
@@ -286,7 +286,7 @@ module.exports = grammar({
       optional(kw('not')),
       choice(
         seq(kw('in'), $._expression),
-        seq(kw('between'), $._expression, kw('and'), $._expression),
+        seq(kw('between'), field('left', $._expression), kw('and'), field('right', $._expression)),
         seq(kw('like'), $._expression, optional(seq(kw('escape'), $._expression))),
       ),
     ),
@@ -294,7 +294,7 @@ module.exports = grammar({
     _expression: $ => choice(
       $._literal,
       $.value_path,
-      $.special_function,
+      $._special_function,
       $.binary_expression,
       $.unary_expression,
       $.new_expression,
@@ -337,36 +337,21 @@ module.exports = grammar({
 
     case_expression: $ => seq(
       kw('case'),
-      choice(
-        seq(
-          $._expression,
-          repeat1(
-            seq(
-              kw('when'),
-              $._expression,
-              kw('then'),
-              $._expression,
-            ),
-          ),
-        ),
-        seq(
-          repeat1(
-            seq(
-              kw('when'),
-              $._condition,
-              kw('then'),
-              $._expression,
-            ),
+      seq(
+        optional($._expression),
+        repeat1(
+          seq(
+            kw('when'),
+            $._expression,
+            kw('then'),
+            $._expression,
           ),
         ),
       ),
-      optional(
-        seq(
-          kw('else'),
-          $._expression),
-      ),
+      optional(seq(kw('else'), $._expression)),
       kw('end'),
     ),
+
     parameter_ref_expression: $ => seq(':', choice($.value_path, $.number)),
     parenthesized_expression: $ => seq(
       '(',
@@ -414,65 +399,67 @@ module.exports = grammar({
 
     window_frame_clause: $ => seq(
       kw('rows'),
-      $.window_frame_extent_spec,
-    ),
-
-    window_frame_extent_spec: $ => choice(
-      $.window_frame_start_spec,
-      seq(
-        kw('between'),
-        $.widow_frame_bound_spec,
-        kw('and'),
-        $.widow_frame_bound_spec,
+      choice(
+        $.window_frame_start,
+        seq(
+          kw('between'),
+          field('left', $.window_frame_start),
+          kw('and'),
+          field('right', $.window_frame_end),
+        ),
       ),
     ),
 
-    window_frame_start_spec: $ => choice(
-      seq(kw('unbounded'), kw('preceding')),
-      seq($.number, kw('preceding')),
+
+    // *_start should only allow preceding, *_end only following, for "unbounded", but
+    // for simplicity, we allow both.
+    window_frame_start: $ => $._window_frame_start_end,
+    window_frame_end: $ => $._window_frame_start_end,
+    _window_frame_start_end: $ => choice(
+      seq(kw('unbounded'), choice(kw('following'), kw('preceding'))),
+      seq(field('offset', $.number), choice(kw('following'), kw('preceding'))),
       seq(kw('current'), kw('row')),
     ),
 
-    widow_frame_bound_spec: $ => choice(
-      seq(kw('unbounded'), kw('following')),
-      seq($.number, kw('following')),
-      $.window_frame_start_spec,
+    function_trim: $ => seq(
+      kw('trim'),
+      '(',
+      choice(
+        seq(
+          choice(kw('leading'), kw('trailing'), kw('both')),
+          optional($._expression),
+          kw('from'),
+          $._expression,
+        ),
+        seq(
+          $._expression,
+          optional(seq(kw('from'), $._expression)),
+        ),
+      ),
+      ')',
+    ),
+    function_extract: $ => seq(
+      kw('extract'),
+      '(',
+      choice(kw('year'), kw('month'), kw('day'), kw('hour'), kw('minute'), kw('second')),
+      kw('from'),
+      $._expression,
+      ')',
+    ),
+    function_cast: $ => seq(
+      kw('cast'),
+      '(',
+      $._expression,
+      kw('as'),
+      $.type_reference,
+      ')',
     ),
 
-    special_function: $ => choice(
-      seq(
-        kw('trim'),
-        '(',
-        choice(
-          seq(
-            choice(kw('leading'), kw('trailing'), kw('both')),
-            optional($._expression),
-            kw('from'),
-            $._expression,
-          ),
-          seq(
-            $._expression,
-            optional(seq(kw('from'), $._expression)),
-          ),
-        ),
-        ')',
-      ),
-      seq(
-        kw('extract'),
-        '(',
-        choice(kw('year'), kw('month'), kw('day'), kw('hour'), kw('minute'), kw('second')),
-        kw('from'),
-        $._expression,
-        ')',
-      ),
-      seq(
-        kw('cast'),
-        '(',
-        $._expression,
-        kw('as'),
-        $.type_reference,
-        ')',
-      ),
+    // We have a few special functions that are handled in syntax.
+    _special_function: $ => choice(
+      $.function_trim,
+      $.function_extract,
+      $.function_cast,
     ),
 
     value_path: $ => list_of(
@@ -484,15 +471,12 @@ module.exports = grammar({
       '.',
     ),
 
-    value_p_helper: $ => seq(
-    ),
-
     path_arguments: $ => seq(
       '(',
       optional(choice(
-        list_of_trailing($.named_expression),
+        list_of_trailing($.named_argument),
         list_of_trailing($.arrowed_expression),
-        list_of_trailing($.func_expression),
+        list_of_trailing($._expression),
         seq(kw('all'), $._expression),
         list_of(seq(kw('distinct'), $._expression)),
         '*',
@@ -500,15 +484,13 @@ module.exports = grammar({
       ')',
     ),
 
-    named_expression: $ => seq(
+    named_argument: $ => seq(
       $.identifier,
       ':',
       $._expression,
     ),
 
     arrowed_expression: $ => seq($.identifier, '=>', $._expression),
-    func_expression: $ => $._expression,
-
 
     element_definitions: $ => seq(
       '{',

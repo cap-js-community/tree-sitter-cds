@@ -3,7 +3,11 @@ Condition Precedence In Query
 ================================================================================
 
 entity P as projection on E {
-  (1 + true * 4 / null AND 'abc' || `def` is null OR func(`abc`)) as field,
+  (
+       -1 + true * 4 / null
+  AND 'abc'||`def` is null
+  OR  func(`abc`)
+  ) as field,
 };
 
 --------------------------------------------------------------------------------
@@ -21,7 +25,8 @@ entity P as projection on E {
             (binary_condition
               (binary_condition
                 (binary_expression
-                  (number)
+                  (unary_expression
+                    (number))
                   (binary_expression
                     (binary_expression
                       (boolean)
@@ -35,8 +40,7 @@ entity P as projection on E {
               (value_path
                 (identifier)
                 (path_arguments
-                  (func_expression
-                    (backtick_string))))))
+                  (backtick_string)))))
           (identifier))))))
 
 ================================================================================
@@ -59,11 +63,53 @@ entity P as projection on E {
       (select_item_definition_list
         (select_item_definition
           (parenthesized_expression
-            (ternary_operator
+            (ternary
               (value_path
                 (identifier))
               (value_path
                 (identifier))
               (value_path
                 (identifier))))
+          (identifier))))))
+
+================================================================================
+Over Clause in Query
+================================================================================
+
+entity P as projection on E {
+  rank() OVER ( ROWS BETWEEN UNBOUNDED FOLLOWING AND UNBOUNDED PRECEDING ) AS unboundedFollowingPreceding,
+  binning(value => struct.elem) OVER () AS bin_num,
+};
+
+--------------------------------------------------------------------------------
+
+(cds
+  (entity_definition
+    (name
+      (identifier))
+    (projection_clause
+      (from_path
+        (identifier))
+      (select_item_definition_list
+        (select_item_definition
+          (over_expression
+            (value_path
+              (identifier)
+              (path_arguments))
+            (over_clause
+              (window_frame_clause
+                (window_frame_start)
+                (window_frame_end))))
+          (identifier))
+        (select_item_definition
+          (over_expression
+            (value_path
+              (identifier)
+              (path_arguments
+                (arrowed_expression
+                  (identifier)
+                  (value_path
+                    (identifier)
+                    (identifier)))))
+            (over_clause))
           (identifier))))))

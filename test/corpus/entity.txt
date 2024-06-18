@@ -42,6 +42,7 @@ entity E {
 Entity With Parameters
 ================================================================================
 
+@anno
 entity E(P : String(length: 100), P2: Integer) {
    key id : String;
 };
@@ -49,6 +50,9 @@ entity E(P : String(length: 100), P2: Integer) {
 --------------------------------------------------------------------------------
 
 (cds
+  (annotation
+    (annotation_path
+      (identifier)))
   (entity_definition
     (name
       (identifier))
