@@ -89,7 +89,11 @@
           "named": true
         },
         {
-          "type": "simple_path",
+          "type": "definition_reference",
+          "named": true
+        },
+        {
+          "type": "element_reference",
           "named": true
         }
       ]
@@ -1759,6 +1763,21 @@
     }
   },
   {
+    "type": "definition_reference",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "element_definition",
     "named": true,
     "fields": {
@@ -1894,6 +1913,21 @@
         },
         {
           "type": "default_and_nullability",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "element_reference",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
           "named": true
         }
       ]
@@ -2212,35 +2246,10 @@
   {
     "type": "extend_artifact",
     "named": true,
-    "fields": {
-      "element": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": ":",
-            "named": false
-          },
-          {
-            "type": "simple_path",
-            "named": true
-          }
-        ]
-      },
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "name",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "action_definition",
@@ -2271,11 +2280,19 @@
           "named": true
         },
         {
+          "type": "definition_reference",
+          "named": true
+        },
+        {
           "type": "element_definition",
           "named": true
         },
         {
           "type": "element_enum_definition",
+          "named": true
+        },
+        {
+          "type": "element_reference",
           "named": true
         },
         {
@@ -2354,21 +2371,11 @@
             "named": false
           }
         ]
-      },
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "name",
-            "named": true
-          }
-        ]
       }
     },
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "action_definition",
@@ -2392,6 +2399,10 @@
         },
         {
           "type": "context_definition",
+          "named": true
+        },
+        {
+          "type": "definition_reference",
           "named": true
         },
         {
@@ -2475,21 +2486,10 @@
   {
     "type": "extend_projection",
     "named": true,
-    "fields": {
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "name",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "annotation",
@@ -2497,6 +2497,10 @@
         },
         {
           "type": "bound_actions",
+          "named": true
+        },
+        {
+          "type": "definition_reference",
           "named": true
         },
         {
@@ -2509,21 +2513,10 @@
   {
     "type": "extend_structure",
     "named": true,
-    "fields": {
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "name",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "annotation",
@@ -2531,6 +2524,10 @@
         },
         {
           "type": "bound_actions",
+          "named": true
+        },
+        {
+          "type": "definition_reference",
           "named": true
         },
         {

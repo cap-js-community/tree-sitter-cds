@@ -153,6 +153,8 @@
 
 (from_path) @variable
 (simple_path) @variable
+(definition_reference) @variable
+(element_reference) @variable
 
 (identifier) @variable
 
