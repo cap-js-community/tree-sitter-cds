@@ -19,8 +19,8 @@ entity P as projection on E {
     (projection_clause
       (from_path
         (identifier))
-      (select_item_definition_list
-        (select_item_definition
+      (select_item_list
+        (select_item
           (parenthesized_expression
             (binary_condition
               (binary_condition
@@ -60,8 +60,8 @@ entity P as projection on E {
     (projection_clause
       (from_path
         (identifier))
-      (select_item_definition_list
-        (select_item_definition
+      (select_item_list
+        (select_item
           (parenthesized_expression
             (ternary
               (value_path
@@ -90,8 +90,8 @@ entity P as projection on E {
     (projection_clause
       (from_path
         (identifier))
-      (select_item_definition_list
-        (select_item_definition
+      (select_item_list
+        (select_item
           (over_expression
             (value_path
               (identifier)
@@ -101,7 +101,7 @@ entity P as projection on E {
                 (window_frame_start)
                 (window_frame_end))))
           (identifier))
-        (select_item_definition
+        (select_item
           (over_expression
             (value_path
               (identifier)

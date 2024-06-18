@@ -71,7 +71,7 @@ module.exports = grammar({
 
     artifact_import: $ => seq(
       $.simple_path,
-      optional(seq(kw('as'), field("alias", $.identifier))),
+      optional(seq(kw('as'), field('alias', $.identifier))),
     ),
 
     _definition: $ => seq(
@@ -181,17 +181,15 @@ module.exports = grammar({
     ),
 
     projection_clause: $ => seq(
-      kw('projection'),
-      kw('on'),
-      $.from_path,
-      optional(seq(':', $.from_path)),
+      kw('projection'), kw('on'),
+      $.from_path, optional(seq(':', $.from_path)),
       optional(seq(kw('as'), field('alias', $.identifier))),
-      optional($.select_item_definition_list),
+      optional($.select_item_list),
       optional($.excluding_clause),
     ),
 
-    select_item_definition_list: $ => seq(
-      '{', optional_list_of_trailing($.select_item_definition), '}',
+    select_item_list: $ => seq(
+      '{', optional_list_of_trailing($.select_item), '}',
     ),
 
     excluding_clause: $ => seq(
@@ -860,7 +858,7 @@ module.exports = grammar({
       choice(
         seq(
           '{',
-          optional_list_of_trailing($.select_item_definition),
+          optional_list_of_trailing($.select_item),
           '}',
           optional($.bound_actions),
           optional(';'),
@@ -892,7 +890,7 @@ module.exports = grammar({
             seq('(', optional_list_of_trailing($.type_argument), ')', $._required_semicolon),
             seq(optional(kw('elements')), '{', repeat($._element_definition_or_extend), '}', optional(';')),
             seq(kw('definitions'), '{', repeat($._definition), '}', optional(';')),
-            seq(kw('columns'), '{', optional_list_of_trailing($.select_item_definition), '}', optional(';')),
+            seq(kw('columns'), '{', optional_list_of_trailing($.select_item), '}', optional(';')),
             seq($.bound_actions, optional(';')),
             seq($.element_enum_definition, optional(';')),
           ),
@@ -915,46 +913,42 @@ module.exports = grammar({
       $._required_semicolon,
     ),
 
-    select_item_definition: $ => choice(
+    select_item: $ => choice(
       '*',
       seq(
         repeat($.annotation),
         optional_kw('virtual'),
         optional_kw('key'),
-        $._select_item_definition_body,
+        $._select_item_body,
       ),
     ),
 
-    _select_item_definition_body: $ => seq(
+    _select_item_body: $ => seq(
       choice(
         seq(
           $._expression,
-          optional(seq(optional(kw('as')), $.identifier)),
+          optional(seq(optional(kw('as')), field('alias', $.identifier))),
           optional(
             choice(
-              seq(
-                $.select_item_inline_list,
+              seq( // expand
+                $.select_item_list,
                 optional($.excluding_clause),
               ),
-              seq(
-                choice(
-                  seq(
-                    '.{',
-                    optional_list_of_trailing($.select_item_inline_definition),
-                    '}',
-                    optional($.excluding_clause),
-                  ),
-                  '.*',
-                ),
+              '.*',
+              seq( // inline
+                '.{',
+                optional_list_of_trailing($.select_item),
+                '}',
+                optional($.excluding_clause),
               ),
             ),
           ),
         ),
         seq(
-          $.select_item_inline_list,
+          $.select_item_list,
           optional($.excluding_clause),
           kw('as'),
-          $.identifier,
+          field('alias', $.identifier),
         ),
       ),
       repeat($.annotation),
@@ -989,17 +983,6 @@ module.exports = grammar({
           ),
         ),
       ),
-    ),
-
-    select_item_inline_list: $ => seq(
-      '{',
-      optional_list_of_trailing($.select_item_inline_definition),
-      '}',
-    ),
-
-    select_item_inline_definition: $ => choice(
-      '*',
-      seq(repeat($.annotation), $._select_item_definition_body),
     ),
 
     _element_definition_or_extend: $ => seq(
@@ -1089,12 +1072,12 @@ module.exports = grammar({
               ),
             ),
             optional(choice(kw('all'), kw('distinct'))),
-            optional($.select_item_definition_list),
+            optional($.select_item_list),
             optional($.excluding_clause),
           ),
           seq(
             optional(choice(kw('all'), kw('distinct'))),
-            list_of_trailing($.select_item_definition),
+            list_of_trailing($.select_item),
             kw('from'),
             $.query_source,
           ),
@@ -1141,10 +1124,10 @@ module.exports = grammar({
       seq(
         $.from_path,
         optional(seq(':', $.from_path)),
-        optional(seq(optional_kw('as'), $.identifier)),
+        optional(seq(optional_kw('as'), field('alias', $.identifier))),
       ),
       choice(
-        seq('(', $.query_expression, ')', optional('as'), $.identifier),
+        seq('(', $.query_expression, ')', optional('as'), field('alias', $.identifier)),
         seq('(', $.table_expression, ')'),
       ),
     ),
@@ -1380,7 +1363,7 @@ module.exports = grammar({
     // ```-strings
     text_block: $ => seq(
       '```',
-      optional(field("language", $.language_identifier)),
+      optional(field('language', $.language_identifier)),
       /\r\n?|[\n\u2028\u2029]/,
       /([^`\\]|\\[^`]|\\`)*/,
       '```',

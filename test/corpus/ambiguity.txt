@@ -27,10 +27,10 @@ entity P(P: String) as projection on E {
     (projection_clause
       (from_path
         (identifier))
-      (select_item_definition_list
+      (select_item_list
         (comment)
         (comment)
-        (select_item_definition
+        (select_item
           (annotation
             (annotation_path
               (identifier))
@@ -41,7 +41,7 @@ entity P(P: String) as projection on E {
             (identifier))
           (identifier))
         (comment)
-        (select_item_definition
+        (select_item
           (annotation
             (annotation_group
               (annotation_group_item

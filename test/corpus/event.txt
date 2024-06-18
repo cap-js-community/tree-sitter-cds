@@ -84,8 +84,8 @@ event B : projection on ns.E { *, ID };
       (from_path
         (identifier)
         (identifier))
-      (select_item_definition_list
-        (select_item_definition)
-        (select_item_definition
+      (select_item_list
+        (select_item)
+        (select_item
           (value_path
             (identifier)))))))

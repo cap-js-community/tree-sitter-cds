@@ -14,8 +14,8 @@ event A : projection on ns.E { * }
       (from_path
         (identifier)
         (identifier))
-      (select_item_definition_list
-        (select_item_definition)))))
+      (select_item_list
+        (select_item)))))
 
 ================================================================================
 Projection: No select list
@@ -52,7 +52,7 @@ entity P as projection on ns.E as F {}
         (identifier)
         (identifier))
       (identifier)
-      (select_item_definition_list))))
+      (select_item_list))))
 
 ================================================================================
 Projection: Asterisks
@@ -71,8 +71,8 @@ entity P as projection on ns.E as F { * };
         (identifier)
         (identifier))
       (identifier)
-      (select_item_definition_list
-        (select_item_definition)))))
+      (select_item_list
+        (select_item)))))
 
 ================================================================================
 Projection: Select Paths
@@ -96,18 +96,18 @@ entity P as projection on ns.E as F {
         (identifier)
         (identifier))
       (identifier)
-      (select_item_definition_list
-        (select_item_definition)
-        (select_item_definition
+      (select_item_list
+        (select_item)
+        (select_item
           (value_path
             (identifier))
           (identifier))
-        (select_item_definition
+        (select_item
           (value_path
             (identifier)
             (identifier))
           (identifier))
-        (select_item_definition
+        (select_item
           (value_path
             (identifier)
             (cardinality_and_filter
@@ -139,20 +139,20 @@ entity P as projection on ns.E as F {
         (identifier)
         (identifier))
       (identifier)
-      (select_item_definition_list
-        (select_item_definition)
-        (select_item_definition
+      (select_item_list
+        (select_item)
+        (select_item
           (value_path
             (identifier)))
-        (select_item_definition
+        (select_item
           (value_path
             (identifier))
-          (select_item_inline_definition))
-        (select_item_definition
+          (select_item))
+        (select_item
           (value_path
             (identifier))
-          (select_item_inline_definition
+          (select_item
             (value_path
               (identifier))
-            (select_item_inline_list
-              (select_item_inline_definition))))))))
+            (select_item_list
+              (select_item))))))))

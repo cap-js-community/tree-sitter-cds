@@ -2328,7 +2328,7 @@
           "named": true
         },
         {
-          "type": "select_item_definition",
+          "type": "select_item",
           "named": true
         },
         {
@@ -2504,7 +2504,7 @@
           "named": true
         },
         {
-          "type": "select_item_definition",
+          "type": "select_item",
           "named": true
         }
       ]
@@ -4065,7 +4065,7 @@
           "named": true
         },
         {
-          "type": "select_item_definition_list",
+          "type": "select_item_list",
           "named": true
         }
       ]
@@ -4191,11 +4191,11 @@
           "named": true
         },
         {
-          "type": "select_item_definition",
+          "type": "select_item",
           "named": true
         },
         {
-          "type": "select_item_definition_list",
+          "type": "select_item_list",
           "named": true
         },
         {
@@ -4302,9 +4302,20 @@
     }
   },
   {
-    "type": "select_item_definition",
+    "type": "select_item",
     "named": true,
-    "fields": {},
+    "fields": {
+      "alias": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": false,
@@ -4378,149 +4389,11 @@
           "named": true
         },
         {
-          "type": "select_item_inline_definition",
+          "type": "select_item",
           "named": true
         },
         {
-          "type": "select_item_inline_list",
-          "named": true
-        },
-        {
-          "type": "simple_path",
-          "named": true
-        },
-        {
-          "type": "single_quote_string",
-          "named": true
-        },
-        {
-          "type": "text_block",
-          "named": true
-        },
-        {
-          "type": "type_association_base",
-          "named": true
-        },
-        {
-          "type": "type_association_cont",
-          "named": true
-        },
-        {
-          "type": "type_reference",
-          "named": true
-        },
-        {
-          "type": "type_type_of",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "value_path",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "select_item_definition_list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "select_item_definition",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "select_item_inline_definition",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "annotation",
-          "named": true
-        },
-        {
-          "type": "backtick_string",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "boolean",
-          "named": true
-        },
-        {
-          "type": "case_expression",
-          "named": true
-        },
-        {
-          "type": "excluding_clause",
-          "named": true
-        },
-        {
-          "type": "function_cast",
-          "named": true
-        },
-        {
-          "type": "function_extract",
-          "named": true
-        },
-        {
-          "type": "function_trim",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "new_expression",
-          "named": true
-        },
-        {
-          "type": "null",
-          "named": true
-        },
-        {
-          "type": "number",
-          "named": true
-        },
-        {
-          "type": "over_expression",
-          "named": true
-        },
-        {
-          "type": "parameter_ref_expression",
-          "named": true
-        },
-        {
-          "type": "parenthesized_expression",
-          "named": true
-        },
-        {
-          "type": "quoted_literal",
-          "named": true
-        },
-        {
-          "type": "select_item_inline_definition",
-          "named": true
-        },
-        {
-          "type": "select_item_inline_list",
+          "type": "select_item_list",
           "named": true
         },
         {
@@ -4563,7 +4436,7 @@
     }
   },
   {
-    "type": "select_item_inline_list",
+    "type": "select_item_list",
     "named": true,
     "fields": {},
     "children": {
@@ -4571,7 +4444,7 @@
       "required": false,
       "types": [
         {
-          "type": "select_item_inline_definition",
+          "type": "select_item",
           "named": true
         }
       ]
@@ -4800,17 +4673,24 @@
   {
     "type": "table_term",
     "named": true,
-    "fields": {},
+    "fields": {
+      "alias": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
       "types": [
         {
           "type": "from_path",
-          "named": true
-        },
-        {
-          "type": "identifier",
           "named": true
         },
         {
