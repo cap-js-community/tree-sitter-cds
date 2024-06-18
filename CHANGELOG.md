@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated to tree-sitter v0.22.6
 - grammar:
   + Only structured events (+ projections) are allowed, not scalar ones.
+  + The grammar was updated and finalized.
 
 ### Fixed
 

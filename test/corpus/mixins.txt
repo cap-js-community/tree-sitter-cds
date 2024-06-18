@@ -1,0 +1,52 @@
+================================================================================
+Mixins: Basic
+================================================================================
+
+entity S.Q as SELECT FROM E mixin {
+  assoc: Association to S.F on 1=1;
+  comp: Composition of S.G on 1=1;
+} into {
+  *,
+  assoc.ID,
+};
+
+--------------------------------------------------------------------------------
+
+(cds
+  (entity_definition
+    (name
+      (identifier)
+      (identifier))
+    (query_expression
+      (query_term
+        (query_primary
+          (query_source
+            (table_expression
+              (table_term
+                (from_path
+                  (identifier)))))
+          (mixin_definition_list
+            (mixin_element_definition
+              (name)
+              (association_to
+                (simple_path
+                  (identifier)
+                  (identifier))
+                (binary_condition
+                  (number)
+                  (number))))
+            (mixin_element_definition
+              (name)
+              (composition_of
+                (simple_path
+                  (identifier)
+                  (identifier))
+                (binary_condition
+                  (number)
+                  (number)))))
+          (select_item_list
+            (select_item)
+            (select_item
+              (value_path
+                (identifier)
+                (identifier)))))))))

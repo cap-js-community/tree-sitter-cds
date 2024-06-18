@@ -156,3 +156,32 @@ entity P as projection on ns.E as F {
               (identifier))
             (select_item_list
               (select_item))))))))
+
+================================================================================
+Projection: Select Association
+================================================================================
+
+entity P as projection on ns.E:struct.assoc[filter > 1] as F {
+ *,
+};
+
+--------------------------------------------------------------------------------
+
+(cds
+  (entity_definition
+    (name
+      (identifier))
+    (projection_clause
+      (from_path
+        (identifier)
+        (identifier)
+        (identifier)
+        (identifier)
+        (cardinality_and_filter
+          (binary_condition
+            (value_path
+              (identifier))
+            (number))))
+      (identifier)
+      (select_item_list
+        (select_item)))))

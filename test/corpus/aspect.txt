@@ -16,10 +16,15 @@ Aspect: No Elements
 ================================================================================
 
 aspect A {}
+aspect B : {}
 
 --------------------------------------------------------------------------------
 
 (cds
+  (aspect_definition
+    (name
+      (identifier))
+    (element_definitions))
   (aspect_definition
     (name
       (identifier))
@@ -39,6 +44,47 @@ aspect A {
   (aspect_definition
     (name
       (identifier))
+    (element_definitions
+      (element_definition
+        (name)
+        (simple_path
+          (identifier))))))
+
+================================================================================
+Aspect: With Includes
+================================================================================
+
+aspect A : B {
+  elem: String;
+}
+aspect A : B, C, D {
+  elem: String;
+}
+
+--------------------------------------------------------------------------------
+
+(cds
+  (aspect_definition
+    (name
+      (identifier))
+    (include_list
+      (simple_path
+        (identifier)))
+    (element_definitions
+      (element_definition
+        (name)
+        (simple_path
+          (identifier)))))
+  (aspect_definition
+    (name
+      (identifier))
+    (include_list
+      (simple_path
+        (identifier))
+      (simple_path
+        (identifier))
+      (simple_path
+        (identifier)))
     (element_definitions
       (element_definition
         (name)

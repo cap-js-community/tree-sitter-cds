@@ -7,6 +7,7 @@ entity P as projection on E {
        -1 + true * 4 / null
   AND 'abc'||`def` is null
   OR  func(`abc`)
+  OR  field is not null
   ) as field,
 };
 
@@ -24,23 +25,30 @@ entity P as projection on E {
           (parenthesized_expression
             (binary_condition
               (binary_condition
-                (binary_expression
-                  (unary_expression
-                    (number))
-                  (binary_expression
-                    (binary_expression
-                      (boolean)
-                      (number))
-                    (null)))
                 (binary_condition
                   (binary_expression
-                    (single_quote_string)
-                    (backtick_string))
-                  (null)))
-              (value_path
-                (identifier)
-                (path_arguments
-                  (backtick_string)))))
+                    (unary_expression
+                      (number))
+                    (binary_expression
+                      (binary_expression
+                        (boolean)
+                        (number))
+                      (null)))
+                  (binary_condition
+                    (binary_expression
+                      (single_quote_string)
+                      (backtick_string))
+                    (nullability
+                      (null))))
+                (value_path
+                  (identifier)
+                  (path_arguments
+                    (backtick_string))))
+              (binary_condition
+                (value_path
+                  (identifier))
+                (nullability
+                  (null)))))
           (identifier))))))
 
 ================================================================================

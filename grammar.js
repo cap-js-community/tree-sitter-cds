@@ -70,7 +70,7 @@ module.exports = grammar({
     ),
 
     artifact_import: $ => seq(
-      $.simple_path,
+      ref_definition($),
       optional(seq(kw('as'), field('alias', $.identifier))),
     ),
 
@@ -94,7 +94,8 @@ module.exports = grammar({
         seq(
           kw('extend'),
           choice(
-            $.extend_context_or_service,
+            $.extend_context,
+            $.extend_service,
             $.extend_structure,
             $.extend_projection,
             $.extend_artifact,
@@ -123,16 +124,18 @@ module.exports = grammar({
       ),
     ),
 
+    include_list: $ => list_of_trailing($.simple_path),
+
     entity_definition: $ => seq(
-      optional_kw('abstract'),
+      optional_kw('abstract'), // note: abstract entities are deprecated and replaced by aspects
       kw('entity'),
       def_path_name($),
       repeat($.annotation),
       optional($.parameter_list),
       choice(
         seq(
-          optional(seq(':', field('includes', optional(list_of_trailing($.simple_path))))),
-          field('elements', $.element_definitions),
+          optional(seq(':', optional($.include_list))),
+          $.element_definitions,
           optional($.bound_actions),
           optional(';'),
         ),
@@ -148,9 +151,9 @@ module.exports = grammar({
           kw('as'),
           $.projection_clause,
           seq(
-            optional(seq(kw('where'), $._condition)),
-            optional(seq(kw('group'), kw('by'), list_of($._expression))),
-            optional(seq(kw('having'), $._condition)),
+            optional($.where_clause),
+            optional($.group_by_clause),
+            optional($.having_clause),
             optional($.order_by_clause),
             optional($.limit_clause),
           ),
@@ -170,11 +173,7 @@ module.exports = grammar({
           choice(
             seq($.element_definitions, optional(';')),
             seq($.projection_clause, $._required_semicolon),
-            seq(
-              field('includes', optional_list_of_trailing($.simple_path)),
-              $.element_definitions,
-              optional(';'),
-            ),
+            seq($.include_list, $.element_definitions, optional(';')),
           ),
         ),
       ),
@@ -182,7 +181,7 @@ module.exports = grammar({
 
     projection_clause: $ => seq(
       kw('projection'), kw('on'),
-      $.from_path, optional(seq(':', $.from_path)),
+      $.from_path,
       optional(seq(kw('as'), field('alias', $.identifier))),
       optional($.select_item_list),
       optional($.excluding_clause),
@@ -194,10 +193,14 @@ module.exports = grammar({
 
     excluding_clause: $ => seq(
       kw('excluding'),
-      '{', list_of_trailing($.identifier), '}',
+      '{', list_of_trailing($.simple_path), '}',
     ),
 
-    from_path: $ => list_of(seq(
+    from_path: $ => seq(
+      $._from_path_segment,
+      optional(seq(':', $._from_path_segment)),
+    ),
+    _from_path_segment: $ => list_of(seq(
       $.identifier,
       optional(
         choice(
@@ -215,14 +218,13 @@ module.exports = grammar({
     cardinality_and_filter: $ => seq(
       '[',
       optional(seq($.number, ':')),
-      optional_kw('where'),
-      $._condition,
+      choice($.where_clause, $._condition),
       ']',
     ),
 
     _condition: $ => choice(
       $.unary_condition,
-      $.exists_expression,
+      $.exists_condition,
       $.binary_condition,
       $._expression,
       $.predicate_condition,
@@ -256,10 +258,8 @@ module.exports = grammar({
       )),
       prec.left('binary_comparison', seq(
         field('left', $._condition),
-        seq(
-          field('operator', kw('is'))),
-          field('right', seq(optional_kw('not'), $.null),
-        ),
+        field('operator', kw('is')),
+        field('right', $.nullability),
       )),
     ),
 
@@ -268,7 +268,7 @@ module.exports = grammar({
       field('argument', $._condition),
     )),
 
-    exists_expression: $ => seq(
+    exists_condition: $ => seq(
       kw('exists'),
       choice(
         seq('(', $.query_expression, ')'),
@@ -296,7 +296,7 @@ module.exports = grammar({
       $.over_expression,
       $.case_expression,
       $.parenthesized_expression,
-      $.parameter_ref_expression,
+      $.parameter_ref,
     ),
 
     binary_expression: $ => choice(
@@ -333,21 +333,26 @@ module.exports = grammar({
     case_expression: $ => seq(
       kw('case'),
       seq(
-        optional($._expression),
+        optional(field('case_value', $._expression)),
         repeat1(
           seq(
             kw('when'),
-            $._expression,
+            // technically, if `case_value` is set, this must be an expression,
+            // but we allow any condition
+            field('when', $._condition),
             kw('then'),
-            $._expression,
+            field('then', $._condition),
           ),
         ),
       ),
-      optional(seq(kw('else'), $._expression)),
+      optional(seq(
+        kw('else'),
+        field('else', $._expression),
+      )),
       kw('end'),
     ),
 
-    parameter_ref_expression: $ => seq(':', choice($.value_path, $.number)),
+    parameter_ref: $ => seq(':', choice($.value_path, $.number)),
     parenthesized_expression: $ => seq(
       '(',
       choice(
@@ -369,27 +374,23 @@ module.exports = grammar({
       kw('over'),
       '(',
       optional($.partition_by_clause),
-      optional($.over_order_by_clause),
+      optional($.order_by_clause),
       optional($.window_frame_clause),
       ')',
     ),
 
     partition_by_clause: $ => seq(
-      kw('partition'),
-      kw('by'),
+      kw('partition'), kw('by'),
       list_of($._expression),
-    ),
-
-    over_order_by_clause: $ => seq(
-      kw('order'),
-      kw('by'),
-      list_of($.order_by_spec),
     ),
 
     order_by_spec: $ => seq(
       $._expression,
       optional(choice(kw('asc'), kw('desc'))),
-      optional(seq(kw('nulls'), choice(kw('first'), kw('last')))),
+      optional(seq(
+        kw('nulls'),
+        choice(kw('first'), kw('last')),
+      )),
     ),
 
     window_frame_clause: $ => seq(
@@ -497,8 +498,7 @@ module.exports = grammar({
     ),
 
     type_type_of: $ => seq(
-      kw('type'),
-      kw('of'),
+      kw('type'), kw('of'),
       $.simple_path,
       optional(seq(':', $.simple_path)),
     ),
@@ -517,8 +517,8 @@ module.exports = grammar({
       optional(field('type_param', seq($.identifier, ':'))),
       field('value', choice(
         $.number,
-        kw('variable'),
-        kw('floating'),
+        kw('variable'), // for cds.Decimal
+        kw('floating'), // for cds.Decimal
       )),
     ),
 
@@ -526,16 +526,14 @@ module.exports = grammar({
       repeat($.annotation),
       field('name', $.identifier),
       repeat($.annotation),
-      optional(
-        seq(
-          '=',
-          choice(
-            $._literal,
-            seq(choice('+', '-'), $.number),
-          ),
-          repeat($.annotation),
+      optional(seq(
+        '=',
+        choice(
+          $._literal,
+          seq(choice('+', '-'), $.number),
         ),
-      ),
+        repeat($.annotation),
+      )),
       $._required_semicolon,
     ),
 
@@ -562,14 +560,20 @@ module.exports = grammar({
       ),
     ),
 
-    element_properties: $ => choice(
+    _element_properties: $ => choice(
       $.default_and_nullability,
       $.calc_element_assignment,
     ),
 
-    element_enum_definition: $ => seq(kw('enum'), '{', repeat($.enum_symbol_definition), '}'),
+    element_enum_definition: $ => seq(
+      kw('enum'),
+      '{',
+      repeat($.enum_symbol_definition),
+      '}',
+    ),
 
-    array_of: $ => choice(kw('many'), seq(kw('array'), kw('of'))),
+    many: $ => choice(kw('many'), $._array_of),
+    _array_of: $ => seq(kw('array'), kw('of')),
 
     type_definition: $ => seq(kw('type'), $._type_like_definition),
     annotation_definition: $ => seq(kw('annotation'), $._type_like_definition),
@@ -586,7 +590,7 @@ module.exports = grammar({
       kw('aspect'),
       def_path_name($),
       repeat($.annotation),
-      optional(seq(':', field('includes', optional_list_of_trailing($.simple_path)))),
+      optional(seq(':', optional($.include_list))),
       choice(
         seq(
           $.element_definitions,
@@ -597,19 +601,65 @@ module.exports = grammar({
       ),
     ),
 
-    type_association_base: $ => seq(
-      choice(kw('association'), kw('composition')),
+    // includes trailing `;`
+    composition_of: $ => seq(
+      kw('composition'),
       optional($.cardinality),
-      choice(kw('to'), kw('of')),
+      kw('of'),
+      choice(
+        // anonymous composition of aspect
+        seq($.element_definitions, optional(';')),
+        seq(
+          optional(choice(kw('one'), kw('many'))),
+          choice(
+            // anonymous composition of aspect
+            seq($.element_definitions, optional(';')),
+            // named composition of aspect or entity
+            seq(
+              $.simple_path,
+              optional($._association_to_end),
+              repeat($.annotation),
+              $._required_semicolon,
+            ),
+          ),
+        ),
+      ),
     ),
 
-    to_one_or_many_path: $ => seq(
+    // does not include semicolon
+    composition_of_unmanaged: $ => seq(
+      kw('composition'),
+      optional($.cardinality),
+      kw('of'),
       optional(choice(kw('one'), kw('many'))),
       $.simple_path,
+      optional($._association_to_end),
+    ),
+
+    // includes trailing `;`
+    _element_association_to: $ => seq(
+      $.association_to,
+      repeat($.annotation),
+      $._required_semicolon,
+    ),
+
+    association_to: $ => seq(
+      kw('association'),
+      optional($.cardinality),
+      kw('to'),
+      optional(choice(kw('one'), kw('many'))),
+      $.simple_path,
+      optional($._association_to_end),
+    ),
+
+    _association_to_end: $ => choice(
+      seq('{', optional_list_of_trailing($.foreign_key), '}', optional($.default_and_nullability)),
+      seq(kw('on'), $._condition),
+      $.default_and_nullability,
     ),
 
     _type_reference_or_inline_definition: $ => seq(
-      optional($.array_of),
+      optional($.many),
       choice(
         seq($.element_definitions, optional($.nullability)),
         seq($.type_type_of, optional($.nullability)),
@@ -640,17 +690,12 @@ module.exports = grammar({
               optional(';'),
             ),
           ),
-          seq(
-            $.type_association_base,
-            choice(
-              seq($.element_definitions, optional(';')),
-              seq(kw('one'), $.element_definitions, optional(';')),
-              seq(kw('many'), $.element_definitions, optional(';')),
-              seq($.to_one_or_many_path, $.type_association_element_cont),
-            ),
+          choice(
+            $.composition_of,
+            $._element_association_to,
           ),
           seq(
-            $.array_of,
+            $.many,
             choice(
               seq($.element_definitions, optional($.nullability), optional(';')),
               seq(
@@ -659,8 +704,8 @@ module.exports = grammar({
                 repeat($.annotation),
                 choice(
                   seq(
-                    seq($.element_enum_definition, choice(optional(';'), seq($.element_properties, $._required_semicolon))),
-                    seq(optional($.element_properties), $._required_semicolon),
+                    seq($.element_enum_definition, choice(optional(';'), seq($._element_properties, $._required_semicolon))),
+                    seq(optional($._element_properties), $._required_semicolon),
                   ),
                   $._required_semicolon,
                 ),
@@ -672,15 +717,15 @@ module.exports = grammar({
             // optional($.nullability),
             repeat($.annotation),
             choice(
-              seq($.element_enum_definition, choice(optional(';'), seq($.element_properties, $._required_semicolon))),
-              seq(optional($.element_properties), $._required_semicolon),
+              seq($.element_enum_definition, choice(optional(';'), seq($._element_properties, $._required_semicolon))),
+              seq(optional($._element_properties), $._required_semicolon),
               $._required_semicolon,
             ),
           ),
           seq(
             kw('localized'),
             $.type_reference,
-            optional($.element_properties),
+            optional($._element_properties),
             repeat($.annotation),
             $._required_semicolon,
           ),
@@ -691,8 +736,8 @@ module.exports = grammar({
                 '(', optional_list_of_trailing($.type_argument), ')',
                 repeat($.annotation),
                 choice(
-                  seq($.element_enum_definition, choice(optional(';'), seq($.element_properties, $._required_semicolon))),
-                  seq(optional($.element_properties), $._required_semicolon),
+                  seq($.element_enum_definition, choice(optional(';'), seq($._element_properties, $._required_semicolon))),
+                  seq(optional($._element_properties), $._required_semicolon),
                 ),
               ),
               seq(
@@ -701,15 +746,15 @@ module.exports = grammar({
                 // optional($.nullability),
                 repeat($.annotation),
                 choice(
-                  seq($.element_enum_definition, choice(optional(';'), seq($.element_properties, $._required_semicolon))),
-                  seq(optional($.element_properties), $._required_semicolon),
+                  seq($.element_enum_definition, choice(optional(';'), seq($._element_properties, $._required_semicolon))),
+                  seq(optional($._element_properties), $._required_semicolon),
                 ),
               ),
               seq(
                 repeat($.annotation),
                 choice(
-                  seq($.element_enum_definition, choice(optional(';'), seq($.element_properties, $._required_semicolon))),
-                  seq(optional($.element_properties), $._required_semicolon),
+                  seq($.element_enum_definition, choice(optional(';'), seq($._element_properties, $._required_semicolon))),
+                  seq(optional($._element_properties), $._required_semicolon),
                 ),
               ),
               seq(
@@ -731,24 +776,6 @@ module.exports = grammar({
       '=',
       $._expression,
       optional(kw('stored')),
-    ),
-
-    type_association_cont: $ => choice(
-      seq('{', optional_list_of_trailing($.foreign_key), '}', optional($.default_and_nullability)),
-      seq(kw('on'), $._condition),
-      $.default_and_nullability,
-    ),
-
-    type_association_element_cont: $ => seq(
-      optional(
-        choice(
-          seq('{', optional_list_of_trailing($.foreign_key), '}', optional($.default_and_nullability)),
-          seq(kw('on'), $._condition),
-          $.default_and_nullability,
-        ),
-      ),
-      repeat($.annotation),
-      $._required_semicolon,
     ),
 
     foreign_key: $ => seq(
@@ -820,8 +847,18 @@ module.exports = grammar({
       $._required_semicolon,
     ),
 
-    extend_context_or_service: $ => seq(
-      field('kind', choice(kw('context'), kw('service'))),
+    extend_context: $ => seq(
+      kw('context'),
+      ref_definition($),
+      optional(kw('with')),
+      repeat($.annotation),
+      choice(
+        seq('{', repeat($._definition), '}', optional(';')),
+        $._required_semicolon,
+      ),
+    ),
+    extend_service: $ => seq(
+      kw('service'),
       ref_definition($),
       optional(kw('with')),
       repeat($.annotation),
@@ -885,7 +922,7 @@ module.exports = grammar({
           kw('with'),
           repeat($.annotation),
           choice(
-            seq(list_of($.simple_path), $._required_semicolon),
+            seq($.include_list, $._required_semicolon),
             $._required_semicolon,
             seq('(', optional_list_of_trailing($.type_argument), ')', $._required_semicolon),
             seq(optional(kw('elements')), '{', repeat($._element_definition_or_extend), '}', optional(';')),
@@ -956,44 +993,42 @@ module.exports = grammar({
         seq(
           ':',
           choice(
-            seq(
-              kw('redirected'),
-              kw('to'),
-              $.simple_path,
-              choice(
-                $.type_association_cont,
-                repeat($.annotation),
-              ),
-            ),
+            $.redirected_to,
             seq($.type_type_of, repeat($.annotation)),
             seq(
               optional_kw('localized'),
               $.type_reference,
               repeat($.annotation),
             ),
-            seq(
-              $.type_association_base,
-              choice(
-                seq(kw('many'), $.simple_path),
-                seq(kw('one'), $.simple_path),
-                $.simple_path,
-              ),
-              optional($.type_association_cont),
+            choice(
+              $.association_to,
+              alias($.composition_of_unmanaged, $.composition_of),
             ),
           ),
         ),
       ),
     ),
 
+    redirected_to: $ => seq(
+      kw('redirected'),
+      kw('to'),
+      $.simple_path,
+      choice(
+        $._association_to_end,
+        repeat($.annotation),
+      ),
+    ),
+
     _element_definition_or_extend: $ => seq(
       repeat($.annotation),
       choice(
-        seq(kw('extend'), $.extend_element),
+        $.extend_element,
         $.element_definition,
       ),
     ),
 
     extend_element: $ => seq(
+      kw('extend'),
       optional('element'),
       $.identifier,
       choice(
@@ -1018,11 +1053,22 @@ module.exports = grammar({
       ),
     ),
 
+    where_clause: $ => seq(
+      kw('where'),
+      $._condition,
+    ),
+    having_clause: $ => seq(
+      kw('having'),
+      $._condition,
+    ),
     order_by_clause: $ => seq(
       kw('order'), kw('by'),
       list_of($.order_by_spec),
     ),
-
+    group_by_clause: $ => seq(
+      kw('group'), kw('by'),
+      list_of($._expression),
+    ),
     limit_clause: $ => seq(
       kw('limit'),
       choice($.number, $.null),
@@ -1054,6 +1100,14 @@ module.exports = grammar({
       ),
     ),
 
+    mixin_definition_list: $ => seq(
+      kw('mixin'),
+      '{',
+      repeat($.mixin_element_definition),
+      '}',
+      kw('into'),
+    ),
+
     query_primary: $ => choice(
       seq('(', $.query_expression, ')'),
       seq(
@@ -1062,15 +1116,7 @@ module.exports = grammar({
           seq(
             kw('from'),
             $.query_source,
-            optional(
-              seq(
-                kw('mixin'),
-                '{',
-                repeat($.mixin_element_definition),
-                '}',
-                kw('into'),
-              ),
-            ),
+            optional($.mixin_definition_list),
             optional(choice(kw('all'), kw('distinct'))),
             optional($.select_item_list),
             optional($.excluding_clause),
@@ -1082,9 +1128,9 @@ module.exports = grammar({
             $.query_source,
           ),
         ),
-        optional(seq(kw('where'), $._condition)),
-        optional(seq(kw('group'), kw('by'), list_of($._expression))),
-        optional(seq(kw('having'), $._condition)),
+        optional($.where_clause),
+        optional($.group_by_clause),
+        optional($.having_clause),
       ),
     ),
 
@@ -1123,7 +1169,6 @@ module.exports = grammar({
     table_term: $ => choice(
       seq(
         $.from_path,
-        optional(seq(':', $.from_path)),
         optional(seq(optional_kw('as'), field('alias', $.identifier))),
       ),
       choice(
@@ -1138,20 +1183,16 @@ module.exports = grammar({
         seq(
           ':',
           choice(
+            $._element_association_to,
+            $.composition_of,
             seq(
-              $.type_association_base,
-              $.to_one_or_many_path,
-              optional($.type_association_cont),
-            ),
-            seq(
-              $.type_reference,
               optional(seq('=', $._expression)),
+              $._required_semicolon,
             ),
           ),
         ),
-        seq('=', $._expression),
+        seq('=', $._expression, $._required_semicolon),
       ),
-      $._required_semicolon,
     ),
 
     annotate_artifact: $ => seq(
@@ -1381,7 +1422,7 @@ module.exports = grammar({
       $._delimited_identifier,
     ),
 
-    _unquoted_identifier: $ => /[\p{ID_Start}$_][\p{ID_Continue}$\u200C\u200D]*/,
+    _unquoted_identifier: $ => /[\p{ID_Start}$_][\p{ID_Continue}$\u200C\u200D]*/u,
     _delimited_identifier: $ => token(choice(
       // new style
       /!\[[^\]\n\r\u2028\u2029]*](][^\]\n\r\u2028\u2029]*])*/,

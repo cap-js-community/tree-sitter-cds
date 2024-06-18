@@ -25,11 +25,9 @@ entity ForeignKeys {
           (identifier)))
       (element_definition
         (name)
-        (type_association_base)
-        (to_one_or_many_path
+        (association_to
           (simple_path
-            (identifier)))
-        (type_association_element_cont
+            (identifier))
           (foreign_key
             (simple_path
               (identifier)))
@@ -73,11 +71,9 @@ entity ForeignKeys {
           (identifier)))
       (element_definition
         (name)
-        (type_association_base)
-        (to_one_or_many_path
+        (association_to
           (simple_path
-            (identifier)))
-        (type_association_element_cont
+            (identifier))
           (foreign_key
             (simple_path
               (identifier))
@@ -133,11 +129,9 @@ entity ForeignKeys {
           (identifier)))
       (element_definition
         (name)
-        (type_association_base)
-        (to_one_or_many_path
+        (association_to
           (simple_path
-            (identifier)))
-        (type_association_element_cont
+            (identifier))
           (foreign_key
             (annotation
               (annotation_path
