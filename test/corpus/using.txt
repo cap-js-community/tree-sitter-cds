@@ -11,15 +11,15 @@ uSIng str;
 (cds
   (using
     (artifact_import
-      (simple_path
+      (definition_reference
         (identifier))))
   (using
     (artifact_import
-      (simple_path
+      (definition_reference
         (identifier))))
   (using
     (artifact_import
-      (simple_path
+      (definition_reference
         (identifier)))))
 
 ================================================================================
@@ -37,7 +37,7 @@ using abc;
       (identifier)))
   (using
     (artifact_import
-      (simple_path
+      (definition_reference
         (identifier)))))
 
 ================================================================================
@@ -51,12 +51,12 @@ using { some.value as val, other.val as value } from './file.cds';
 (cds
   (using
     (artifact_import
-      (simple_path
+      (definition_reference
         (identifier)
         (identifier))
       (identifier))
     (artifact_import
-      (simple_path
+      (definition_reference
         (identifier)
         (identifier))
       (identifier))

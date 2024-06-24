@@ -38,8 +38,9 @@ event B : C, D, E { elem: String; };
   (event_definition
     (name
       (identifier))
-    (simple_path
-      (identifier))
+    (include_list
+      (simple_path
+        (identifier)))
     (element_definitions
       (element_definition
         (name)
@@ -48,12 +49,13 @@ event B : C, D, E { elem: String; };
   (event_definition
     (name
       (identifier))
-    (simple_path
-      (identifier))
-    (simple_path
-      (identifier))
-    (simple_path
-      (identifier))
+    (include_list
+      (simple_path
+        (identifier))
+      (simple_path
+        (identifier))
+      (simple_path
+        (identifier)))
     (element_definitions
       (element_definition
         (name)
@@ -84,8 +86,8 @@ event B : projection on ns.E { *, ID };
       (from_path
         (identifier)
         (identifier))
-      (select_item_definition_list
-        (select_item_definition)
-        (select_item_definition
+      (select_item_list
+        (select_item)
+        (select_item
           (value_path
             (identifier)))))))

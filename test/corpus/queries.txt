@@ -1,0 +1,185 @@
+================================================================================
+Queries: JOIN
+================================================================================
+
+entity S.Q as SELECT FROM E JOIN F on E.ID = F.ID {
+  E.ID,
+} where E.ID > 10;
+
+--------------------------------------------------------------------------------
+
+(cds
+  (entity_definition
+    (name
+      (identifier)
+      (identifier))
+    (query_expression
+      (query_term
+        (query_primary
+          (query_source
+            (table_expression
+              (table_term
+                (from_path
+                  (identifier)))
+              (join_op)
+              (table_expression
+                (table_term
+                  (from_path
+                    (identifier))))
+              (binary_condition
+                (value_path
+                  (identifier)
+                  (identifier))
+                (value_path
+                  (identifier)
+                  (identifier)))))
+          (select_item_list
+            (select_item
+              (value_path
+                (identifier)
+                (identifier))))
+          (where_clause
+            (binary_condition
+              (value_path
+                (identifier)
+                (identifier))
+              (number))))))))
+
+================================================================================
+Queries: UNION
+================================================================================
+
+entity S.Q as SELECT FROM E {
+  ID,
+} UNION SELECT FROM F {
+  ID,
+};
+
+--------------------------------------------------------------------------------
+
+(cds
+  (entity_definition
+    (name
+      (identifier)
+      (identifier))
+    (query_expression
+      (query_term
+        (query_primary
+          (query_source
+            (table_expression
+              (table_term
+                (from_path
+                  (identifier)))))
+          (select_item_list
+            (select_item
+              (value_path
+                (identifier))))))
+      (query_term
+        (query_primary
+          (query_source
+            (table_expression
+              (table_term
+                (from_path
+                  (identifier)))))
+          (select_item_list
+            (select_item
+              (value_path
+                (identifier)))))))))
+
+================================================================================
+Queries: redirected to
+================================================================================
+
+entity S.Q as SELECT FROM E {
+  ID,
+  assoc : redirected to S.E on assoc.ID = ID,
+};
+
+--------------------------------------------------------------------------------
+
+(cds
+  (entity_definition
+    (name
+      (identifier)
+      (identifier))
+    (query_expression
+      (query_term
+        (query_primary
+          (query_source
+            (table_expression
+              (table_term
+                (from_path
+                  (identifier)))))
+          (select_item_list
+            (select_item
+              (value_path
+                (identifier)))
+            (select_item
+              (value_path
+                (identifier))
+              (redirected_to
+                (simple_path
+                  (identifier)
+                  (identifier))
+                (binary_condition
+                  (value_path
+                    (identifier)
+                    (identifier))
+                  (value_path
+                    (identifier)))))))))))
+
+================================================================================
+Queries: inline association
+================================================================================
+
+entity S.Q as SELECT FROM E {
+  ID,
+  assoc : Association to S.F on assoc.ID = ID,
+  comp : Composition of S.F on assoc.ID = ID,
+};
+
+--------------------------------------------------------------------------------
+
+(cds
+  (entity_definition
+    (name
+      (identifier)
+      (identifier))
+    (query_expression
+      (query_term
+        (query_primary
+          (query_source
+            (table_expression
+              (table_term
+                (from_path
+                  (identifier)))))
+          (select_item_list
+            (select_item
+              (value_path
+                (identifier)))
+            (select_item
+              (value_path
+                (identifier))
+              (association_to
+                (simple_path
+                  (identifier)
+                  (identifier))
+                (binary_condition
+                  (value_path
+                    (identifier)
+                    (identifier))
+                  (value_path
+                    (identifier)))))
+            (select_item
+              (value_path
+                (identifier))
+              (composition_of
+                (simple_path
+                  (identifier)
+                  (identifier))
+                (binary_condition
+                  (value_path
+                    (identifier)
+                    (identifier))
+                  (value_path
+                    (identifier)))))))))))

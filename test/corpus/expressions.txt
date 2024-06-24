@@ -15,8 +15,8 @@ entity P as projection on E {
     (projection_clause
       (from_path
         (identifier))
-      (select_item_definition_list
-        (select_item_definition
+      (select_item_list
+        (select_item
           (binary_expression
             (number)
             (binary_expression

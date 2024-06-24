@@ -102,3 +102,41 @@ annotate E:elem @(anno: false);
             (identifier))
           (annotation_value
             (boolean)))))))
+
+================================================================================
+Annotate - Returns
+================================================================================
+
+annotate E actions {
+  A returns { @anno field; };
+}
+
+annotate F {} actions {
+ A returns { @anno field; };
+}
+
+--------------------------------------------------------------------------------
+
+(cds
+  (annotate_artifact
+    (definition_reference
+      (identifier))
+    (annotate_action
+      (identifier)
+      (annotate_returns
+        (annotate_element
+          (annotation
+            (annotation_path
+              (identifier)))
+          (identifier)))))
+  (annotate_artifact
+    (definition_reference
+      (identifier))
+    (annotate_action
+      (identifier)
+      (annotate_returns
+        (annotate_element
+          (annotation
+            (annotation_path
+              (identifier)))
+          (identifier))))))

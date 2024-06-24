@@ -184,7 +184,7 @@ entity MyView as SELECT FROM MyEntity {} actions {
               (table_term
                 (from_path
                   (identifier)))))
-          (select_item_definition_list))))
+          (select_item_list))))
     (bound_actions
       (action_definition
         (name
