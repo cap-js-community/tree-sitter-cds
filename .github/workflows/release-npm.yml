@@ -35,12 +35,21 @@ jobs:
       with:
         version: '${{ steps.package-version.outputs.current-version }}'
 
-  #  - name: Create a GitHub release
-  #    uses: ncipollo/release-action@v1
-  #    with:
-  #      tag: 'v${{ steps.package-version.outputs.current-version }}'
-  #      body: '${{ steps.parse-changelog.outputs.body }}'
+    - name: Print Changelog
+      id: print-changelog
+      env:
+        CHANGELOG: ${{ steps.parse-changelog.outputs.body }}
+        VERSION: v${{ steps.package-version.outputs.current-version }}
+      run: |
+        echo "${VERSION:?}"
+        echo "${CHANGELOG:?}"
 
-    - run: npm publish --access public --dry
+    - name: Create a GitHub release
+      uses: ncipollo/release-action@v1
+      with:
+        tag: 'v${{ steps.package-version.outputs.current-version }}'
+        body: '${{ steps.parse-changelog.outputs.body }}'
+
+    - run: npm publish --access public
       env:
         NODE_AUTH_TOKEN: ${{secrets.npm_token}}
