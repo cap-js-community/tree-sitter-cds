@@ -1,6 +1,6 @@
 {
   "name": "@cap-js-community/tree-sitter-cds",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "tree-sitter grammar for SAP CAP CDS",
   "main": "bindings/node",
   "types": "bindings/node",
