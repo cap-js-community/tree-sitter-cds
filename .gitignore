@@ -15,3 +15,6 @@ log.html
 target/
 
 *.so
+
+# via Python bindings
+tree_sitter_cds.egg-info/

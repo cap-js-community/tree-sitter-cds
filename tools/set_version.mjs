@@ -8,6 +8,13 @@
 import path from 'node:path';
 import fs from 'node:fs';
 
+const node_major_version = Number.parseInt(process.versions.node.split('.')[0], 10);
+
+if (node_major_version < 20) {
+  console.error(`This script requires at least Node 20. Found ${process.version}`);
+  process.exit(1);
+}
+
 const project_dir = path.join(import.meta.dirname, '..');
 
 const new_version = process.argv[2];

@@ -20,6 +20,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -32,8 +34,12 @@ jobs:
       # TODO: Abort if there are diffs; see #18
       - name: Ensure generated files are up-to-date
         run: |
+          # package.json may change due to custom scripts
+          git checkout HEAD -- package.json
+
           git diff --diff-filter=M --color | head -n 100
           git diff --diff-filter=M --quiet || (echo 'Generated grammar is not up-to-date: run `npm run build` and commit all changes')
+          git reset --hard HEAD
 
       - run: npm run test:all
       - run: npm run lint
