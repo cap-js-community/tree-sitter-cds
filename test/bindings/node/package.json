@@ -1,7 +1,7 @@
 {
   "name": "node",
   "private": true,
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Test project for the tree-sitter-cds NodeJs bindings.",
   "main": "index.js",
   "author": "Andre Meyering <andre.meyering@sap.com>",

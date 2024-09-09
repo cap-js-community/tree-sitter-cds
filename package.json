@@ -1,6 +1,6 @@
 {
   "name": "@cap-js-community/tree-sitter-cds",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "tree-sitter grammar for SAP CAP CDS",
   "main": "bindings/node",
   "types": "bindings/node",
@@ -41,20 +41,23 @@
     "@eslint/js": "^9.9.0",
     "eslint": "^9.9.0",
     "prebuildify": "^6.0.0",
-    "tree-sitter-cli": "^0.22.2"
+    "tree-sitter-cli": "^0.23.0"
   },
   "scripts": {
-    "build": "tree-sitter generate && node-gyp configure && node-gyp build",
-    "test": "tree-sitter test",
-    "test:all": "npm run test && npm run test:queries && npm run test:shellcheck",
+    "build": "npx tree-sitter generate && node-gyp configure && node-gyp build",
+    "install": "node-gyp-build",
+    "prestart": "npx tree-sitter build --wasm",
+    "start": "npx tree-sitter playground",
+    "playground": "npm run build && npm run prestart && npm run start",
+    "lint": "eslint .",
+    "log:versions": "npx tree-sitter --version",
+
+    "test": "npx tree-sitter test",
+    "test:all": "npm run test && npm run test:node && npm run test:queries && npm run test:shellcheck",
+    "test:node": "node --test bindings/node/*_test.js",
     "test:queries": "./tools/checks/test_queries.sh",
     "test:shellcheck": "./tools/checks/run_shellcheck.sh",
-    "test:update": "tree-sitter test --update",
-    "playground": "npm run build && tree-sitter build-wasm && tree-sitter playground",
-    "lint": "eslint .",
-    "log:versions": "which tree-sitter && tree-sitter --version",
-    "install": "node-gyp-build",
-    "prebuildify": "prebuildify --napi --strip"
+    "test:update": "npx tree-sitter test --update"
   },
   "engines": {
     "node": ">=18.0.0"
