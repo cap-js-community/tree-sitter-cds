@@ -51,7 +51,6 @@
     "playground": "npm run build && npm run prestart && npm run start",
     "lint": "eslint .",
     "log:versions": "npx tree-sitter --version",
-
     "test": "npx tree-sitter test",
     "test:all": "npm run test && npm run test:node && npm run test:queries && npm run test:shellcheck",
     "test:node": "node --test bindings/node/*_test.js",
@@ -61,18 +60,5 @@
   },
   "engines": {
     "node": ">=18.0.0"
-  },
-  "tree-sitter": [
-    {
-      "scope": "source.cds",
-      "file-types": [
-        "cds",
-        "cdl"
-      ],
-      "highlights": [
-        "queries/highlights.scm"
-      ],
-      "injection-regex": "^(cds)$"
-    }
-  ]
+  }
 }
