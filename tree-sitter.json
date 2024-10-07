@@ -1,0 +1,40 @@
+{
+  "grammars": [
+    {
+      "name": "@cap-js-community/cds",
+      "camelcase": "CapJsCommunityCds",
+      "scope": "source.cds",
+      "path": ".",
+      "file-types": [
+        "cds",
+        "cdl"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ],
+      "injection-regex": "^(cds)$"
+    }
+  ],
+  "metadata": {
+    "version": "2.0.0",
+    "license": "Apache-2.0",
+    "description": "tree-sitter grammar for SAP CAP CDS",
+    "authors": [
+      {
+        "name": "Andre Meyering",
+        "email": "andre.meyering@sap.com"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/cap-js-community/tree-sitter-cds"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

@@ -9,8 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- [__BREAKING__] Generated bindings via tree-sitter-cli v0.23.0  
-  With tree-sitter v0.23.0, Rust bindings have changed.
+- [__BREAKING__] Generated bindings via tree-sitter-cli v0.24.0  
+  With tree-sitter >=v0.23.0, Rust bindings have changed.
 
 
 ## Version 1.0.0 - 2024-06-25
