@@ -3928,6 +3928,23 @@
               "name": "_type_definition_body"
             },
             {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "projection_clause"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_required_semicolon"
+                }
+              ]
+            },
+            {
               "type": "SYMBOL",
               "name": "_required_semicolon"
             }
@@ -4677,17 +4694,12 @@
                   ]
                 },
                 {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "composition_of"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "_element_association_to"
-                    }
-                  ]
+                  "type": "SYMBOL",
+                  "name": "composition_of"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_element_association_to"
                 },
                 {
                   "type": "SEQ",

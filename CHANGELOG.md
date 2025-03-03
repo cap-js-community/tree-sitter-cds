@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Upcoming
 
+### Added
+
+- Type definitions now support projection syntax.
+
 ### Changed
 
 - [__BREAKING__] Generated bindings via tree-sitter-cli v0.24.0  
