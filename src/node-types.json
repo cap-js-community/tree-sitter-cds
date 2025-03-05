@@ -260,6 +260,10 @@
           "named": true
         },
         {
+          "type": "projection_clause",
+          "named": true
+        },
+        {
           "type": "simple_path",
           "named": true
         },
@@ -5848,6 +5852,10 @@
         },
         {
           "type": "nullability",
+          "named": true
+        },
+        {
+          "type": "projection_clause",
           "named": true
         },
         {

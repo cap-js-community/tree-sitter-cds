@@ -582,6 +582,7 @@ module.exports = grammar({
       repeat($.annotation),
       choice(
         $._type_definition_body,
+        seq(':', $.projection_clause, $._required_semicolon ),
         $._required_semicolon,
       ),
     ),
@@ -690,10 +691,8 @@ module.exports = grammar({
               optional(';'),
             ),
           ),
-          choice(
-            $.composition_of,
-            $._element_association_to,
-          ),
+          $.composition_of,
+          $._element_association_to,
           seq(
             $.many,
             choice(

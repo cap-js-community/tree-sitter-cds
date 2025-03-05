@@ -76,3 +76,42 @@ type T { e : String; };
         (name)
         (simple_path
           (identifier))))))
+
+================================================================================
+Type Projections
+================================================================================
+
+type T1 : projection on E;
+type T2 : projection on E { * };
+type T3 : projection on E { * } excluding { foo, bar };
+
+--------------------------------------------------------------------------------
+
+(cds
+  (type_definition
+    (name
+      (identifier))
+    (projection_clause
+      (from_path
+        (identifier))))
+  (type_definition
+    (name
+      (identifier))
+    (projection_clause
+      (from_path
+        (identifier))
+      (select_item_list
+        (select_item))))
+  (type_definition
+    (name
+      (identifier))
+    (projection_clause
+      (from_path
+        (identifier))
+      (select_item_list
+        (select_item))
+      (excluding_clause
+        (simple_path
+          (identifier))
+        (simple_path
+          (identifier))))))
