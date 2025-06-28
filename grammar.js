@@ -252,7 +252,7 @@ module.exports = grammar({
       ),
       prec.left('binary_comparison', seq(
         field('left', $._condition),
-        field('operator', choice('=', '<>', '>' , '>=', '<', '<=', '!=')),
+        field('operator', choice('=', '<>', '>' , '>=', '<', '<=', '!=', '==')),
         optional(field('count', choice(kw('any'), kw('some'), kw('all')))),
         field('right', $._condition),
       )),
